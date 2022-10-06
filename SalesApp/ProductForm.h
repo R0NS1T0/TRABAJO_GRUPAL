@@ -123,7 +123,8 @@ namespace SalesApp {
 			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->archivoToolStripMenuItem });
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(576, 30);
+			this->menuStrip1->Padding = System::Windows::Forms::Padding(4, 2, 0, 2);
+			this->menuStrip1->Size = System::Drawing::Size(589, 24);
 			this->menuStrip1->TabIndex = 0;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -134,25 +135,25 @@ namespace SalesApp {
 					this->modificarProductoToolStripMenuItem, this->salirToolStripMenuItem
 			});
 			this->archivoToolStripMenuItem->Name = L"archivoToolStripMenuItem";
-			this->archivoToolStripMenuItem->Size = System::Drawing::Size(73, 24);
+			this->archivoToolStripMenuItem->Size = System::Drawing::Size(60, 20);
 			this->archivoToolStripMenuItem->Text = L"Archivo";
 			// 
 			// nuevoProductoToolStripMenuItem
 			// 
 			this->nuevoProductoToolStripMenuItem->Name = L"nuevoProductoToolStripMenuItem";
-			this->nuevoProductoToolStripMenuItem->Size = System::Drawing::Size(221, 26);
+			this->nuevoProductoToolStripMenuItem->Size = System::Drawing::Size(177, 22);
 			this->nuevoProductoToolStripMenuItem->Text = L"Nuevo producto";
 			// 
 			// modificarProductoToolStripMenuItem
 			// 
 			this->modificarProductoToolStripMenuItem->Name = L"modificarProductoToolStripMenuItem";
-			this->modificarProductoToolStripMenuItem->Size = System::Drawing::Size(221, 26);
+			this->modificarProductoToolStripMenuItem->Size = System::Drawing::Size(177, 22);
 			this->modificarProductoToolStripMenuItem->Text = L"Modificar producto";
 			// 
 			// salirToolStripMenuItem
 			// 
 			this->salirToolStripMenuItem->Name = L"salirToolStripMenuItem";
-			this->salirToolStripMenuItem->Size = System::Drawing::Size(221, 26);
+			this->salirToolStripMenuItem->Size = System::Drawing::Size(177, 22);
 			this->salirToolStripMenuItem->Text = L"Salir";
 			// 
 			// dgvProduct
@@ -162,11 +163,12 @@ namespace SalesApp {
 				this->ProductId,
 					this->producName, this->productPrice, this->productStock
 			});
-			this->dgvProduct->Location = System::Drawing::Point(43, 342);
+			this->dgvProduct->Location = System::Drawing::Point(32, 278);
+			this->dgvProduct->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->dgvProduct->Name = L"dgvProduct";
 			this->dgvProduct->RowHeadersWidth = 51;
 			this->dgvProduct->RowTemplate->Height = 24;
-			this->dgvProduct->Size = System::Drawing::Size(486, 150);
+			this->dgvProduct->Size = System::Drawing::Size(488, 114);
 			this->dgvProduct->TabIndex = 30;
 			this->dgvProduct->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &ProductForm::dgvProduct_CellClick);
 			// 
@@ -200,9 +202,10 @@ namespace SalesApp {
 			// 
 			// btnDelete
 			// 
-			this->btnDelete->Location = System::Drawing::Point(267, 294);
+			this->btnDelete->Location = System::Drawing::Point(200, 239);
+			this->btnDelete->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btnDelete->Name = L"btnDelete";
-			this->btnDelete->Size = System::Drawing::Size(105, 32);
+			this->btnDelete->Size = System::Drawing::Size(79, 26);
 			this->btnDelete->TabIndex = 29;
 			this->btnDelete->Text = L"Eliminar";
 			this->btnDelete->UseVisualStyleBackColor = true;
@@ -210,9 +213,10 @@ namespace SalesApp {
 			// 
 			// btnUpdate
 			// 
-			this->btnUpdate->Location = System::Drawing::Point(156, 294);
+			this->btnUpdate->Location = System::Drawing::Point(117, 239);
+			this->btnUpdate->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btnUpdate->Name = L"btnUpdate";
-			this->btnUpdate->Size = System::Drawing::Size(105, 32);
+			this->btnUpdate->Size = System::Drawing::Size(79, 26);
 			this->btnUpdate->TabIndex = 28;
 			this->btnUpdate->Text = L"Modificar";
 			this->btnUpdate->UseVisualStyleBackColor = true;
@@ -220,9 +224,10 @@ namespace SalesApp {
 			// 
 			// btnAdd
 			// 
-			this->btnAdd->Location = System::Drawing::Point(43, 294);
+			this->btnAdd->Location = System::Drawing::Point(32, 239);
+			this->btnAdd->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btnAdd->Name = L"btnAdd";
-			this->btnAdd->Size = System::Drawing::Size(107, 32);
+			this->btnAdd->Size = System::Drawing::Size(80, 26);
 			this->btnAdd->TabIndex = 27;
 			this->btnAdd->Text = L"Agregar";
 			this->btnAdd->UseVisualStyleBackColor = true;
@@ -230,27 +235,30 @@ namespace SalesApp {
 			// 
 			// pbPhoto
 			// 
-			this->pbPhoto->Location = System::Drawing::Point(392, 55);
+			this->pbPhoto->Location = System::Drawing::Point(294, 45);
+			this->pbPhoto->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->pbPhoto->Name = L"pbPhoto";
-			this->pbPhoto->Size = System::Drawing::Size(136, 165);
+			this->pbPhoto->Size = System::Drawing::Size(102, 134);
 			this->pbPhoto->TabIndex = 26;
 			this->pbPhoto->TabStop = false;
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(40, 254);
+			this->label5->Location = System::Drawing::Point(30, 206);
+			this->label5->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(41, 16);
+			this->label5->Size = System::Drawing::Size(35, 13);
 			this->label5->TabIndex = 25;
 			this->label5->Text = L"Stock";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(40, 226);
+			this->label4->Location = System::Drawing::Point(30, 184);
+			this->label4->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(46, 16);
+			this->label4->Size = System::Drawing::Size(37, 13);
 			this->label4->TabIndex = 24;
 			this->label4->Text = L"Precio";
 			this->label4->Click += gcnew System::EventHandler(this, &ProductForm::label4_Click);
@@ -258,103 +266,115 @@ namespace SalesApp {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(40, 111);
+			this->label3->Location = System::Drawing::Point(30, 90);
+			this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(79, 16);
+			this->label3->Size = System::Drawing::Size(63, 13);
 			this->label3->TabIndex = 23;
 			this->label3->Text = L"Descripcion";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(40, 83);
+			this->label2->Location = System::Drawing::Point(30, 67);
+			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(56, 16);
+			this->label2->Size = System::Drawing::Size(44, 13);
 			this->label2->TabIndex = 22;
 			this->label2->Text = L"Nombre";
 			// 
 			// txtStock
 			// 
-			this->txtStock->Location = System::Drawing::Point(148, 254);
+			this->txtStock->Location = System::Drawing::Point(111, 206);
+			this->txtStock->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txtStock->Name = L"txtStock";
-			this->txtStock->Size = System::Drawing::Size(100, 22);
+			this->txtStock->Size = System::Drawing::Size(76, 20);
 			this->txtStock->TabIndex = 23;
 			// 
 			// txtPrice
 			// 
-			this->txtPrice->Location = System::Drawing::Point(148, 226);
+			this->txtPrice->Location = System::Drawing::Point(111, 184);
+			this->txtPrice->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txtPrice->Name = L"txtPrice";
-			this->txtPrice->Size = System::Drawing::Size(100, 22);
+			this->txtPrice->Size = System::Drawing::Size(76, 20);
 			this->txtPrice->TabIndex = 22;
 			// 
 			// txtDescription
 			// 
-			this->txtDescription->Location = System::Drawing::Point(148, 111);
+			this->txtDescription->Location = System::Drawing::Point(111, 90);
+			this->txtDescription->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txtDescription->Multiline = true;
 			this->txtDescription->Name = L"txtDescription";
-			this->txtDescription->Size = System::Drawing::Size(216, 53);
+			this->txtDescription->Size = System::Drawing::Size(163, 44);
 			this->txtDescription->TabIndex = 19;
 			// 
 			// txtName
 			// 
-			this->txtName->Location = System::Drawing::Point(148, 83);
+			this->txtName->Location = System::Drawing::Point(111, 67);
+			this->txtName->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txtName->Name = L"txtName";
-			this->txtName->Size = System::Drawing::Size(216, 22);
+			this->txtName->Size = System::Drawing::Size(163, 20);
 			this->txtName->TabIndex = 18;
 			// 
 			// txtCode
 			// 
-			this->txtCode->Location = System::Drawing::Point(148, 55);
+			this->txtCode->Location = System::Drawing::Point(111, 45);
+			this->txtCode->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txtCode->Name = L"txtCode";
-			this->txtCode->Size = System::Drawing::Size(100, 22);
+			this->txtCode->Size = System::Drawing::Size(76, 20);
 			this->txtCode->TabIndex = 17;
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(40, 55);
+			this->label1->Location = System::Drawing::Point(30, 45);
+			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(40, 16);
+			this->label1->Size = System::Drawing::Size(32, 13);
 			this->label1->TabIndex = 16;
 			this->label1->Text = L"Code";
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(40, 198);
+			this->label6->Location = System::Drawing::Point(30, 161);
+			this->label6->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(39, 16);
+			this->label6->Size = System::Drawing::Size(31, 13);
 			this->label6->TabIndex = 34;
 			this->label6->Text = L"Color";
 			// 
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(40, 170);
+			this->label7->Location = System::Drawing::Point(30, 138);
+			this->label7->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(38, 16);
+			this->label7->Size = System::Drawing::Size(30, 13);
 			this->label7->TabIndex = 33;
 			this->label7->Text = L"Talla";
 			// 
 			// txtColor
 			// 
-			this->txtColor->Location = System::Drawing::Point(148, 198);
+			this->txtColor->Location = System::Drawing::Point(111, 161);
+			this->txtColor->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txtColor->Name = L"txtColor";
-			this->txtColor->Size = System::Drawing::Size(100, 22);
+			this->txtColor->Size = System::Drawing::Size(76, 20);
 			this->txtColor->TabIndex = 21;
 			// 
 			// txtSize
 			// 
-			this->txtSize->Location = System::Drawing::Point(148, 170);
+			this->txtSize->Location = System::Drawing::Point(111, 138);
+			this->txtSize->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txtSize->Name = L"txtSize";
-			this->txtSize->Size = System::Drawing::Size(100, 22);
+			this->txtSize->Size = System::Drawing::Size(76, 20);
 			this->txtSize->TabIndex = 20;
 			// 
 			// ProductForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(576, 504);
+			this->ClientSize = System::Drawing::Size(589, 426);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->txtColor);
@@ -376,6 +396,7 @@ namespace SalesApp {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->menuStrip1);
 			this->MainMenuStrip = this->menuStrip1;
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->Name = L"ProductForm";
 			this->Text = L"Mantenimiento de productos";
 			this->menuStrip1->ResumeLayout(false);
