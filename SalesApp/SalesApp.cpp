@@ -10,8 +10,6 @@ int main(array<System::String ^> ^args){
 
     Application::EnableVisualStyles();
     Application::SetCompatibleTextRenderingDefault(false);
-    //SalesApp is your project name
-    //OTRA PRUEBA PARA GITHUB
     SalesApp::SalesMainForm form;
     Application::Run(% form);
 
@@ -98,4 +96,3 @@ int main(array<System::String ^> ^args){
     */
     return 0;
 }
-//Comentario de prueba
