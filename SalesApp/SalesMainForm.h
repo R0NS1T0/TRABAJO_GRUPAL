@@ -1,5 +1,6 @@
 #pragma once
 #include "ProductForm.h"
+#include "LoginForm.h"
 
 namespace SalesApp {
 
@@ -149,6 +150,8 @@ namespace SalesApp {
 		}
 #pragma endregion
 	private: System::Void SalesMainForm_Load(System::Object^ sender, System::EventArgs^ e) {
+		LoginForm^ loginForm = gcnew LoginForm();
+		loginForm->ShowDialog();
 	}
 	private: System::Void transacToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	}

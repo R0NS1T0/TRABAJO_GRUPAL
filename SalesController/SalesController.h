@@ -16,5 +16,7 @@ namespace SalesController {
 			static int DeleteProduct(int productCode);
 			static List <Product^>^ QueryAllProducts();
 			static Product^ QueryProductById(int productCode);
+
+			static Employee^ Login(String ^CompanyUser, String^ Password);
 	};
 }		

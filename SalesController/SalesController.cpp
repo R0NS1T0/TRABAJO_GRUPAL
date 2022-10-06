@@ -47,3 +47,18 @@ Product^ SalesController::Controller::QueryProductById(int productCode)
         }
     return nullptr;
 }
+
+Employee^ SalesController::Controller::Login(String^ CompanyUser, String^ Password)
+{
+    Employee^ employee;
+    if (CompanyUser == "grupo5" && Password == "LPOO") {
+        employee = gcnew Employee();
+        employee->Name = "Usuario de prueba";
+        employee->Email = "emaildeprueba@pucp.edu.pe";
+        employee->Address = "San Miguel Urbanizacion Las Gardenias";
+        employee->DocumentNumber = "98123971";
+        employee->PhoneNumber = "987675185";
+        employee->CompanyUser = "grupo5";
+    }
+    return employee;
+}
