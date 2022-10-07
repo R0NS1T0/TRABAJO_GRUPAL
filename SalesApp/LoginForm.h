@@ -165,7 +165,6 @@ namespace SalesApp {
 }
 private: System::Void linkLabel1_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) {
 	RegisterUserForm^ registerUserForm = gcnew RegisterUserForm();
-	registerUserForm->MdiParent = this;
 	registerUserForm->Show();
 }
 };
