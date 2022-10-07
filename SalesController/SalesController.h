@@ -13,10 +13,12 @@ namespace SalesController {
 		public:
 			static int AddProduct(Product^ product);
 			static int UpdateProduct(Product^ product);
-			static int DeleteProduct(int productCode);
+			static int DeleteProduct(String^ productCode);
 			static List <Product^>^ QueryAllProducts();
-			static Product^ QueryProductById(int productCode);
-
+			static Product^ QueryProductByID(String^ productCode);
+			static void LoadProductsData();
+			static void PersistWarehouse();
+			static int searchProduct(Product^ productcode);
 			static Employee^ Login(String ^CompanyUser, String^ Password);
 	};
 }		

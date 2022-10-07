@@ -43,11 +43,12 @@ namespace SalesApp {
 	private: System::Windows::Forms::ToolStripMenuItem^ nuevoProductoToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ modificarProductoToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ salirToolStripMenuItem;
-	private: System::Windows::Forms::DataGridView^ dgvProduct;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ProductId;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ producName;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ productPrice;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ productStock;
+	private: System::Windows::Forms::DataGridView^ dgvWarehouse;
+
+
+
+
+
 	private: System::Windows::Forms::Button^ btnDelete;
 	private: System::Windows::Forms::Button^ btnUpdate;
 	private: System::Windows::Forms::Button^ btnAdd;
@@ -55,11 +56,11 @@ namespace SalesApp {
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::Label^ label2;
+
 	private: System::Windows::Forms::TextBox^ txtStock;
 	private: System::Windows::Forms::TextBox^ txtPrice;
 	private: System::Windows::Forms::TextBox^ txtDescription;
-	private: System::Windows::Forms::TextBox^ txtName;
+
 	private: System::Windows::Forms::TextBox^ txtCode;
 
 	private: System::Windows::Forms::Label^ label1;
@@ -68,13 +69,19 @@ namespace SalesApp {
 	private: System::Windows::Forms::TextBox^ txtColor;
 
 	private: System::Windows::Forms::TextBox^ txtSize;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ProductCode;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ productPrice;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ productStock;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ productSize;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ producDescription;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ productColor;
 
 
 	private:
 		/// <summary>
 		/// Variable del diseñador necesaria.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -88,11 +95,13 @@ namespace SalesApp {
 			this->nuevoProductoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->modificarProductoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->salirToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->dgvProduct = (gcnew System::Windows::Forms::DataGridView());
-			this->ProductId = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->producName = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->dgvWarehouse = (gcnew System::Windows::Forms::DataGridView());
+			this->ProductCode = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->productPrice = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->productStock = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->productSize = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->producDescription = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->productColor = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->btnDelete = (gcnew System::Windows::Forms::Button());
 			this->btnUpdate = (gcnew System::Windows::Forms::Button());
 			this->btnAdd = (gcnew System::Windows::Forms::Button());
@@ -100,11 +109,9 @@ namespace SalesApp {
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->txtStock = (gcnew System::Windows::Forms::TextBox());
 			this->txtPrice = (gcnew System::Windows::Forms::TextBox());
 			this->txtDescription = (gcnew System::Windows::Forms::TextBox());
-			this->txtName = (gcnew System::Windows::Forms::TextBox());
 			this->txtCode = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
@@ -112,7 +119,7 @@ namespace SalesApp {
 			this->txtColor = (gcnew System::Windows::Forms::TextBox());
 			this->txtSize = (gcnew System::Windows::Forms::TextBox());
 			this->menuStrip1->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvProduct))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvWarehouse))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbPhoto))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -123,8 +130,7 @@ namespace SalesApp {
 			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->archivoToolStripMenuItem });
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Padding = System::Windows::Forms::Padding(4, 2, 0, 2);
-			this->menuStrip1->Size = System::Drawing::Size(589, 24);
+			this->menuStrip1->Size = System::Drawing::Size(1056, 28);
 			this->menuStrip1->TabIndex = 0;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -135,56 +141,50 @@ namespace SalesApp {
 					this->modificarProductoToolStripMenuItem, this->salirToolStripMenuItem
 			});
 			this->archivoToolStripMenuItem->Name = L"archivoToolStripMenuItem";
-			this->archivoToolStripMenuItem->Size = System::Drawing::Size(60, 20);
+			this->archivoToolStripMenuItem->Size = System::Drawing::Size(73, 24);
 			this->archivoToolStripMenuItem->Text = L"Archivo";
 			// 
 			// nuevoProductoToolStripMenuItem
 			// 
 			this->nuevoProductoToolStripMenuItem->Name = L"nuevoProductoToolStripMenuItem";
-			this->nuevoProductoToolStripMenuItem->Size = System::Drawing::Size(177, 22);
+			this->nuevoProductoToolStripMenuItem->Size = System::Drawing::Size(221, 26);
 			this->nuevoProductoToolStripMenuItem->Text = L"Nuevo producto";
 			// 
 			// modificarProductoToolStripMenuItem
 			// 
 			this->modificarProductoToolStripMenuItem->Name = L"modificarProductoToolStripMenuItem";
-			this->modificarProductoToolStripMenuItem->Size = System::Drawing::Size(177, 22);
+			this->modificarProductoToolStripMenuItem->Size = System::Drawing::Size(221, 26);
 			this->modificarProductoToolStripMenuItem->Text = L"Modificar producto";
 			// 
 			// salirToolStripMenuItem
 			// 
 			this->salirToolStripMenuItem->Name = L"salirToolStripMenuItem";
-			this->salirToolStripMenuItem->Size = System::Drawing::Size(177, 22);
+			this->salirToolStripMenuItem->Size = System::Drawing::Size(221, 26);
 			this->salirToolStripMenuItem->Text = L"Salir";
 			// 
-			// dgvProduct
+			// dgvWarehouse
 			// 
-			this->dgvProduct->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dgvProduct->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
-				this->ProductId,
-					this->producName, this->productPrice, this->productStock
+			this->dgvWarehouse->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgvWarehouse->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {
+				this->ProductCode,
+					this->productPrice, this->productStock, this->productSize, this->producDescription, this->productColor
 			});
-			this->dgvProduct->Location = System::Drawing::Point(32, 278);
-			this->dgvProduct->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
-			this->dgvProduct->Name = L"dgvProduct";
-			this->dgvProduct->RowHeadersWidth = 51;
-			this->dgvProduct->RowTemplate->Height = 24;
-			this->dgvProduct->Size = System::Drawing::Size(488, 114);
-			this->dgvProduct->TabIndex = 30;
-			this->dgvProduct->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &ProductForm::dgvProduct_CellClick);
+			this->dgvWarehouse->Location = System::Drawing::Point(57, 421);
+			this->dgvWarehouse->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->dgvWarehouse->Name = L"dgvWarehouse";
+			this->dgvWarehouse->RowHeadersWidth = 51;
+			this->dgvWarehouse->RowTemplate->Height = 24;
+			this->dgvWarehouse->Size = System::Drawing::Size(983, 185);
+			this->dgvWarehouse->TabIndex = 30;
+			this->dgvWarehouse->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &ProductForm::dgvWarehouse_CellClick);
+			this->dgvWarehouse->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &ProductForm::dgvWarehouse_CellContentClick);
 			// 
-			// ProductId
+			// ProductCode
 			// 
-			this->ProductId->HeaderText = L"Id";
-			this->ProductId->MinimumWidth = 6;
-			this->ProductId->Name = L"ProductId";
-			this->ProductId->Width = 50;
-			// 
-			// producName
-			// 
-			this->producName->HeaderText = L"Nombre";
-			this->producName->MinimumWidth = 6;
-			this->producName->Name = L"producName";
-			this->producName->Width = 225;
+			this->ProductCode->HeaderText = L"Codigo";
+			this->ProductCode->MinimumWidth = 6;
+			this->ProductCode->Name = L"ProductCode";
+			this->ProductCode->Width = 70;
 			// 
 			// productPrice
 			// 
@@ -200,12 +200,33 @@ namespace SalesApp {
 			this->productStock->Name = L"productStock";
 			this->productStock->Width = 80;
 			// 
+			// productSize
+			// 
+			this->productSize->HeaderText = L"Talla";
+			this->productSize->MinimumWidth = 6;
+			this->productSize->Name = L"productSize";
+			this->productSize->Width = 125;
+			// 
+			// producDescription
+			// 
+			this->producDescription->HeaderText = L"Descripcion";
+			this->producDescription->MinimumWidth = 6;
+			this->producDescription->Name = L"producDescription";
+			this->producDescription->Width = 225;
+			// 
+			// productColor
+			// 
+			this->productColor->HeaderText = L"Color";
+			this->productColor->MinimumWidth = 6;
+			this->productColor->Name = L"productColor";
+			this->productColor->Width = 125;
+			// 
 			// btnDelete
 			// 
-			this->btnDelete->Location = System::Drawing::Point(200, 239);
-			this->btnDelete->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btnDelete->Location = System::Drawing::Point(267, 294);
+			this->btnDelete->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnDelete->Name = L"btnDelete";
-			this->btnDelete->Size = System::Drawing::Size(79, 26);
+			this->btnDelete->Size = System::Drawing::Size(105, 32);
 			this->btnDelete->TabIndex = 29;
 			this->btnDelete->Text = L"Eliminar";
 			this->btnDelete->UseVisualStyleBackColor = true;
@@ -213,10 +234,10 @@ namespace SalesApp {
 			// 
 			// btnUpdate
 			// 
-			this->btnUpdate->Location = System::Drawing::Point(117, 239);
-			this->btnUpdate->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btnUpdate->Location = System::Drawing::Point(156, 294);
+			this->btnUpdate->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnUpdate->Name = L"btnUpdate";
-			this->btnUpdate->Size = System::Drawing::Size(79, 26);
+			this->btnUpdate->Size = System::Drawing::Size(105, 32);
 			this->btnUpdate->TabIndex = 28;
 			this->btnUpdate->Text = L"Modificar";
 			this->btnUpdate->UseVisualStyleBackColor = true;
@@ -224,10 +245,10 @@ namespace SalesApp {
 			// 
 			// btnAdd
 			// 
-			this->btnAdd->Location = System::Drawing::Point(32, 239);
-			this->btnAdd->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btnAdd->Location = System::Drawing::Point(43, 294);
+			this->btnAdd->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnAdd->Name = L"btnAdd";
-			this->btnAdd->Size = System::Drawing::Size(80, 26);
+			this->btnAdd->Size = System::Drawing::Size(107, 32);
 			this->btnAdd->TabIndex = 27;
 			this->btnAdd->Text = L"Agregar";
 			this->btnAdd->UseVisualStyleBackColor = true;
@@ -235,30 +256,30 @@ namespace SalesApp {
 			// 
 			// pbPhoto
 			// 
-			this->pbPhoto->Location = System::Drawing::Point(294, 45);
-			this->pbPhoto->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->pbPhoto->Location = System::Drawing::Point(587, 80);
+			this->pbPhoto->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pbPhoto->Name = L"pbPhoto";
-			this->pbPhoto->Size = System::Drawing::Size(102, 134);
+			this->pbPhoto->Size = System::Drawing::Size(136, 165);
 			this->pbPhoto->TabIndex = 26;
 			this->pbPhoto->TabStop = false;
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(30, 206);
-			this->label5->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label5->Location = System::Drawing::Point(364, 198);
+			this->label5->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(35, 13);
+			this->label5->Size = System::Drawing::Size(41, 16);
 			this->label5->TabIndex = 25;
 			this->label5->Text = L"Stock";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(30, 184);
-			this->label4->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label4->Location = System::Drawing::Point(65, 167);
+			this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(37, 13);
+			this->label4->Size = System::Drawing::Size(46, 16);
 			this->label4->TabIndex = 24;
 			this->label4->Text = L"Precio";
 			this->label4->Click += gcnew System::EventHandler(this, &ProductForm::label4_Click);
@@ -266,120 +287,102 @@ namespace SalesApp {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(30, 90);
-			this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label3->Location = System::Drawing::Point(53, 100);
+			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(63, 13);
+			this->label3->Size = System::Drawing::Size(79, 16);
 			this->label3->TabIndex = 23;
 			this->label3->Text = L"Descripcion";
 			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(30, 67);
-			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(44, 13);
-			this->label2->TabIndex = 22;
-			this->label2->Text = L"Nombre";
-			// 
 			// txtStock
 			// 
-			this->txtStock->Location = System::Drawing::Point(111, 206);
-			this->txtStock->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->txtStock->Location = System::Drawing::Point(426, 198);
+			this->txtStock->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txtStock->Name = L"txtStock";
-			this->txtStock->Size = System::Drawing::Size(76, 20);
+			this->txtStock->Size = System::Drawing::Size(100, 22);
 			this->txtStock->TabIndex = 23;
 			// 
 			// txtPrice
 			// 
-			this->txtPrice->Location = System::Drawing::Point(111, 184);
-			this->txtPrice->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->txtPrice->Location = System::Drawing::Point(148, 161);
+			this->txtPrice->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txtPrice->Name = L"txtPrice";
-			this->txtPrice->Size = System::Drawing::Size(76, 20);
+			this->txtPrice->Size = System::Drawing::Size(100, 22);
 			this->txtPrice->TabIndex = 22;
+			this->txtPrice->TextChanged += gcnew System::EventHandler(this, &ProductForm::txtPrice_TextChanged);
 			// 
 			// txtDescription
 			// 
-			this->txtDescription->Location = System::Drawing::Point(111, 90);
-			this->txtDescription->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->txtDescription->Location = System::Drawing::Point(148, 97);
+			this->txtDescription->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txtDescription->Multiline = true;
 			this->txtDescription->Name = L"txtDescription";
-			this->txtDescription->Size = System::Drawing::Size(163, 44);
+			this->txtDescription->Size = System::Drawing::Size(216, 53);
 			this->txtDescription->TabIndex = 19;
-			// 
-			// txtName
-			// 
-			this->txtName->Location = System::Drawing::Point(111, 67);
-			this->txtName->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
-			this->txtName->Name = L"txtName";
-			this->txtName->Size = System::Drawing::Size(163, 20);
-			this->txtName->TabIndex = 18;
 			// 
 			// txtCode
 			// 
-			this->txtCode->Location = System::Drawing::Point(111, 45);
-			this->txtCode->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->txtCode->Location = System::Drawing::Point(148, 55);
+			this->txtCode->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtCode->Name = L"txtCode";
-			this->txtCode->Size = System::Drawing::Size(76, 20);
+			this->txtCode->Size = System::Drawing::Size(100, 22);
 			this->txtCode->TabIndex = 17;
+			this->txtCode->TextChanged += gcnew System::EventHandler(this, &ProductForm::txtCode_TextChanged);
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(30, 45);
-			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label1->Location = System::Drawing::Point(40, 55);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(32, 13);
+			this->label1->Size = System::Drawing::Size(51, 16);
 			this->label1->TabIndex = 16;
-			this->label1->Text = L"Code";
+			this->label1->Text = L"Codigo";
+			this->label1->Click += gcnew System::EventHandler(this, &ProductForm::label1_Click);
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(30, 161);
-			this->label6->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label6->Location = System::Drawing::Point(72, 204);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(31, 13);
+			this->label6->Size = System::Drawing::Size(39, 16);
 			this->label6->TabIndex = 34;
 			this->label6->Text = L"Color";
 			// 
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(30, 138);
-			this->label7->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label7->Location = System::Drawing::Point(364, 161);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(30, 13);
+			this->label7->Size = System::Drawing::Size(38, 16);
 			this->label7->TabIndex = 33;
 			this->label7->Text = L"Talla";
 			// 
 			// txtColor
 			// 
-			this->txtColor->Location = System::Drawing::Point(111, 161);
-			this->txtColor->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->txtColor->Location = System::Drawing::Point(148, 198);
+			this->txtColor->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtColor->Name = L"txtColor";
-			this->txtColor->Size = System::Drawing::Size(76, 20);
+			this->txtColor->Size = System::Drawing::Size(100, 22);
 			this->txtColor->TabIndex = 21;
 			// 
 			// txtSize
 			// 
-			this->txtSize->Location = System::Drawing::Point(111, 138);
-			this->txtSize->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->txtSize->Location = System::Drawing::Point(426, 155);
+			this->txtSize->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtSize->Name = L"txtSize";
-			this->txtSize->Size = System::Drawing::Size(76, 20);
+			this->txtSize->Size = System::Drawing::Size(100, 22);
 			this->txtSize->TabIndex = 20;
 			// 
 			// ProductForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(589, 426);
+			this->ClientSize = System::Drawing::Size(1056, 620);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->txtColor);
 			this->Controls->Add(this->txtSize);
-			this->Controls->Add(this->dgvProduct);
+			this->Controls->Add(this->dgvWarehouse);
 			this->Controls->Add(this->btnDelete);
 			this->Controls->Add(this->btnUpdate);
 			this->Controls->Add(this->btnAdd);
@@ -387,21 +390,20 @@ namespace SalesApp {
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label3);
-			this->Controls->Add(this->label2);
 			this->Controls->Add(this->txtStock);
 			this->Controls->Add(this->txtPrice);
 			this->Controls->Add(this->txtDescription);
-			this->Controls->Add(this->txtName);
 			this->Controls->Add(this->txtCode);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->menuStrip1);
 			this->MainMenuStrip = this->menuStrip1;
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"ProductForm";
 			this->Text = L"Mantenimiento de productos";
+			this->Load += gcnew System::EventHandler(this, &ProductForm::ProductForm_Load);
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvProduct))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvWarehouse))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbPhoto))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -414,73 +416,102 @@ namespace SalesApp {
 	public:
 		void RefreshGrid() {
 			List<Product^>^ productList = Controller::QueryAllProducts();
-			dgvProduct->Rows->Clear();
+			dgvWarehouse->Rows->Clear();
 			for (int i = 0; i < productList->Count; i++) {
-				dgvProduct->Rows->Add(gcnew array<String^>{
-					"" + productList[i]->Code,
-						productList[i]->Name,
-						"" + productList[i]->Price,
-						"" + productList[i]->Stock
+				dgvWarehouse->Rows->Add(gcnew array<String^>{
+					productList[i]->Code,			//codigo
+						"" + productList[i]->Price,		//precio
+						productList[i]->Size,			//talla
+						"" + productList[i]->Stock,		//stock
+						productList[i]->Description,	//descripción
+						productList[i]->Color			//Color
 				});
+
 			}
 		}
 
-private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e) {
-	Product^ p = gcnew Product();
-	p->Code = Int32::Parse(txtCode->Text);
-	p->Name = txtName->Text;
-	p->Description = txtDescription->Text;
-	p->Size = txtSize->Text;
-	p->Color = txtColor->Text;
-	p->Price = Double::Parse(txtPrice->Text);
-	p->Stock = Int32::Parse(txtStock->Text);
-	p->Status = 'A';
-	Controller::AddProduct(p);
-	RefreshGrid();
-	ClearControls();
-}
-private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^ e) {
-	Product^ p = gcnew Product();
-	p->Code = Int32::Parse(txtCode->Text);
-	p->Name = txtName->Text;
-	p->Description = txtDescription->Text;
-	p->Size = txtSize->Text;
-	p->Color = txtColor->Text;
-	p->Price = Double::Parse(txtPrice->Text);
-	p->Stock = Int32::Parse(txtStock->Text);
-	p->Status = 'A';
-	Controller::UpdateProduct(p);
-	RefreshGrid();
-	ClearControls();
-}
-private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
-	int productId = Int32::Parse(txtCode->Text);
-	Controller::DeleteProduct(productId);
-	RefreshGrid();
-}
-private: System::Void dgvProduct_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-	int selectedRowIndex = dgvProduct->SelectedCells[0]->RowIndex;
-	int productId = Int32::Parse(dgvProduct->Rows[selectedRowIndex]->Cells[0]->Value->ToString());
-	Product^ p = Controller::QueryProductById(productId);
+		void ClearControls() {
+			txtCode->Clear();
+			txtDescription->Clear();
+			txtSize->Clear();
+			txtColor->Clear();
+			txtPrice->Clear();
+			txtStock->Clear();
+		}
+	private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e) {
+		Product^ p = gcnew Product();
+		p->Code = txtCode->Text;
+		p->Price = Double::Parse(txtPrice->Text);
+		p->Size = txtSize->Text;
+		p->Stock = Double::Parse(txtStock->Text);
+		p->Description = txtDescription->Text;
+		p->Color = txtColor->Text;
 
-	txtCode->Text = "" + p->Code;
-	txtName->Text = p->Name;
-	txtDescription->Text = p->Description;
-	txtSize->Text = p->Size;
-	txtColor->Text = p->Color;
-	txtPrice->Text = "" + p->Price;
-	txtStock->Text = "" + p->Stock;
-}
+		Controller::AddProduct(p);
+		RefreshGrid();
+		ClearControls();
+	}
+	private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^ e) {
+		Product^ p = gcnew Product();
+		p->Code = txtCode->Text;
+		p->Price = Double::Parse(txtPrice->Text);
+		p->Size = txtSize->Text;
+		p->Stock = Double::Parse(txtStock->Text);
+		p->Description = txtDescription->Text;
+		p->Color = txtColor->Text;
 
-	   void ClearControls() {
-		   txtCode->Clear();
-		   txtName->Clear();
-		   txtDescription->Clear();
-		   txtSize->Clear();
-		   txtColor->Clear();
-		   txtPrice->Clear();
-		   txtStock->Clear();
-	   }
+		Controller::UpdateProduct(p);
+		RefreshGrid();
+		ClearControls();
 
-};
+	}
+	private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
+		String^ CodeProduct = txtCode->Text;
+		Controller::DeleteProduct(CodeProduct);
+		RefreshGrid();
+
+	}
+	private: System::Void dgvWarehouse_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+		int SelectedRowIndex = dgvWarehouse->SelectedCells[0]->RowIndex;
+		String^ ProductCode = dgvWarehouse->Rows[SelectedRowIndex]->Cells[0]->Value->ToString();
+		Product^ p = Controller::QueryProductByID(ProductCode);
+
+		txtCode->Text = p->Code;
+		txtPrice->Text = "" + p->Price;
+		txtSize->Text = p->Size;
+		txtStock->Text = "" + p->Stock;
+		txtDescription->Text = p->Description;
+		txtColor->Text = p->Color;
+	}
+
+
+	private: System::Void txtCode_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void dgvWarehouse_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+		if (dgvWarehouse->CurrentCell != nullptr &&
+			dgvWarehouse->CurrentCell->Value != nullptr &&
+			dgvWarehouse->CurrentCell->Value->ToString() != "") {
+			int selectedrowindex = dgvWarehouse->SelectedCells[0]->RowIndex;
+			DataGridViewRow^ selectedRow = dgvWarehouse->Rows[selectedrowindex];
+			String^ a = selectedRow->Cells[0]->Value->ToString();
+
+			String^ ProductCode = a;
+			Product^ s = Controller::QueryProductByID(ProductCode);
+			txtCode->Text = s->Code;
+			txtPrice->Text = "" + s->Price;
+			txtSize->Text = s->Size;
+			txtStock->Text = "" + s->Stock;
+			txtDescription->Text = s->Description;
+			txtColor->Text = s->Color;
+
+		}
+	}
+	private: System::Void ProductForm_Load(System::Object^ sender, System::EventArgs^ e) {
+		RefreshGrid();
+	}
+	private: System::Void txtPrice_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+	};
 }
