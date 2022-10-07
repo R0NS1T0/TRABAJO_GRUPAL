@@ -1,4 +1,5 @@
 #pragma once
+#include "RegisterUserForm.h"
 
 namespace SalesApp {
 
@@ -44,6 +45,7 @@ namespace SalesApp {
 	private: System::Windows::Forms::TextBox^ txtCompanyUser;
 
 	private: System::Windows::Forms::TextBox^ txtPassword;
+	private: System::Windows::Forms::LinkLabel^ linkLabel1;
 
 
 	private:
@@ -65,6 +67,7 @@ namespace SalesApp {
 			this->btnCancel = (gcnew System::Windows::Forms::Button());
 			this->txtCompanyUser = (gcnew System::Windows::Forms::TextBox());
 			this->txtPassword = (gcnew System::Windows::Forms::TextBox());
+			this->linkLabel1 = (gcnew System::Windows::Forms::LinkLabel());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -120,11 +123,23 @@ namespace SalesApp {
 			this->txtPassword->Size = System::Drawing::Size(146, 20);
 			this->txtPassword->TabIndex = 5;
 			// 
+			// linkLabel1
+			// 
+			this->linkLabel1->AutoSize = true;
+			this->linkLabel1->Location = System::Drawing::Point(39, 138);
+			this->linkLabel1->Name = L"linkLabel1";
+			this->linkLabel1->Size = System::Drawing::Size(89, 13);
+			this->linkLabel1->TabIndex = 6;
+			this->linkLabel1->TabStop = true;
+			this->linkLabel1->Text = L"Crear una cuenta";
+			this->linkLabel1->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &LoginForm::linkLabel1_LinkClicked);
+			// 
 			// LoginForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(317, 139);
+			this->ClientSize = System::Drawing::Size(334, 170);
+			this->Controls->Add(this->linkLabel1);
 			this->Controls->Add(this->txtPassword);
 			this->Controls->Add(this->txtCompanyUser);
 			this->Controls->Add(this->btnCancel);
@@ -147,6 +162,11 @@ namespace SalesApp {
 	}
 	private: System::Void btnCancel_Click(System::Object^ sender, System::EventArgs^ e) {
 		Application::Exit();
+}
+private: System::Void linkLabel1_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) {
+	RegisterUserForm^ registerUserForm = gcnew RegisterUserForm();
+	registerUserForm->MdiParent = this;
+	registerUserForm->Show();
 }
 };
 }
