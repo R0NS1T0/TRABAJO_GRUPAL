@@ -131,6 +131,9 @@
     <ClInclude Include="LoginForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="UsersForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="pch.h" />
     <ClInclude Include="ProductForm.h">
       <FileType>CppForm</FileType>
@@ -194,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SalesMainForm.resx">
       <DependentUpon>SalesMainForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsersForm.resx">
+      <DependentUpon>UsersForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

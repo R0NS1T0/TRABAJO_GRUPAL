@@ -25,5 +25,12 @@ namespace SalesController {
 		//funciones relacionadas al registro de usuarios, complementado con la inscripción de nuevos usuarios
 			static Employee^ Login(String ^CompanyUser, String^ Password);
 			static int AddCompanyUser(Employee^ employee);
+			static int UpdateCompanyUser(Employee^ employee);
+			static int DeleteCompanyUser(String^ userId);
+			static List<Employee^>^ QueryAllUsers();
+			static Employee^ QueryUserById(String^ userId);
+			static void LoadUsersData();
+			static void PersistUsersData();
+
 	};
 }		

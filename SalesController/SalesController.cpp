@@ -129,10 +129,76 @@ Employee^ SalesController::Controller::Login(String^ CompanyUser, String^ Passwo
     return employee;
 }
 
+void SalesController::Controller::LoadUsersData() {
+    //funcion que permite la lectura de datos de una lista de usuarios registrados
+    employeeList = gcnew List<Employee^>();
+    Stream^ sr = nullptr;
+    try {
+        sr = File::Open("Users.bin", FileMode::Open);
+        BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
+        employeeList = (List<Employee^>^)bFormatter->Deserialize(sr);
+    }
+    catch (FileNotFoundException^ ex) {}
+    catch (Exception^ ex) {}
+    finally {
+        if (sr != nullptr) sr->Close();
+    }
+}
+void SalesController::Controller::PersistUsersData() {
+    Stream^ stream = File::Open("Users.bin", FileMode::Create);
+    try{
+        BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
+        bFormatter->Serialize(stream, employeeList);
+    }
+    catch (FileNotFoundException^ ex) {}
+    catch (Exception^ ex) {}
+    finally {
+        if (stream != nullptr) stream->Close();
+    }
+}
 int SalesController::Controller::AddCompanyUser(Employee^ employee)
 {
     employeeList->Add(employee);
+    PersistUsersData();
     return 1;
 }
 
+int SalesController::Controller::UpdateCompanyUser(Employee^ employee) {
+    for (int i = 0; i < employeeList->Count; i++)
+        if (employee->CompanyUser == employeeList[i]->CompanyUser) {
+            employeeList[i] = employee;
+            PersistUsersData();
+            return 1;
+        }
+    return 0;
+}
+
+int SalesController::Controller::DeleteCompanyUser(String^ userId){
+    for (int i = 0; i < employeeList->Count; i++)
+        if (userId == employeeList[i]->CompanyUser) {
+            employeeList->RemoveAt(i);
+            PersistUsersData();
+            return 1;
+        }
+    return 0;
+}
+
+List<Employee^>^ SalesController::Controller::QueryAllUsers()
+{
+    LoadUsersData();
+    List<Employee^>^ UserList = gcnew List<Employee^>();
+    for (int i = 0; i < employeeList->Count; i++) { 
+            UserList->Add(employeeList[i]);
+    }
+    return UserList;
+}
+
+Employee^ SalesController::Controller::QueryUserById(String^ userId)
+{
+    for (int i = 0; i < employeeList->Count; i++)
+        if (userId == employeeList[i]->CompanyUser) {
+            return employeeList[i];
+        }
+    return nullptr;
+}
 
