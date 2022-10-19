@@ -147,19 +147,21 @@ namespace SalesApp {
 			// nuevoProductoToolStripMenuItem
 			// 
 			this->nuevoProductoToolStripMenuItem->Name = L"nuevoProductoToolStripMenuItem";
-			this->nuevoProductoToolStripMenuItem->Size = System::Drawing::Size(221, 26);
+			this->nuevoProductoToolStripMenuItem->Size = System::Drawing::Size(224, 26);
 			this->nuevoProductoToolStripMenuItem->Text = L"Nuevo producto";
+			this->nuevoProductoToolStripMenuItem->Click += gcnew System::EventHandler(this, &ProductForm::nuevoProductoToolStripMenuItem_Click);
 			// 
 			// modificarProductoToolStripMenuItem
 			// 
 			this->modificarProductoToolStripMenuItem->Name = L"modificarProductoToolStripMenuItem";
-			this->modificarProductoToolStripMenuItem->Size = System::Drawing::Size(221, 26);
+			this->modificarProductoToolStripMenuItem->Size = System::Drawing::Size(224, 26);
 			this->modificarProductoToolStripMenuItem->Text = L"Modificar producto";
+			this->modificarProductoToolStripMenuItem->Click += gcnew System::EventHandler(this, &ProductForm::modificarProductoToolStripMenuItem_Click);
 			// 
 			// salirToolStripMenuItem
 			// 
 			this->salirToolStripMenuItem->Name = L"salirToolStripMenuItem";
-			this->salirToolStripMenuItem->Size = System::Drawing::Size(221, 26);
+			this->salirToolStripMenuItem->Size = System::Drawing::Size(224, 26);
 			this->salirToolStripMenuItem->Text = L"Salir";
 			// 
 			// dgvWarehouse
@@ -170,7 +172,7 @@ namespace SalesApp {
 					this->productPrice, this->productStock, this->productSize, this->producDescription, this->productColor
 			});
 			this->dgvWarehouse->Location = System::Drawing::Point(57, 421);
-			this->dgvWarehouse->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->dgvWarehouse->Margin = System::Windows::Forms::Padding(4);
 			this->dgvWarehouse->Name = L"dgvWarehouse";
 			this->dgvWarehouse->RowHeadersWidth = 51;
 			this->dgvWarehouse->RowTemplate->Height = 24;
@@ -297,7 +299,7 @@ namespace SalesApp {
 			// txtStock
 			// 
 			this->txtStock->Location = System::Drawing::Point(426, 198);
-			this->txtStock->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->txtStock->Margin = System::Windows::Forms::Padding(4);
 			this->txtStock->Name = L"txtStock";
 			this->txtStock->Size = System::Drawing::Size(100, 22);
 			this->txtStock->TabIndex = 23;
@@ -305,7 +307,7 @@ namespace SalesApp {
 			// txtPrice
 			// 
 			this->txtPrice->Location = System::Drawing::Point(148, 161);
-			this->txtPrice->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->txtPrice->Margin = System::Windows::Forms::Padding(4);
 			this->txtPrice->Name = L"txtPrice";
 			this->txtPrice->Size = System::Drawing::Size(100, 22);
 			this->txtPrice->TabIndex = 22;
@@ -314,7 +316,7 @@ namespace SalesApp {
 			// txtDescription
 			// 
 			this->txtDescription->Location = System::Drawing::Point(148, 97);
-			this->txtDescription->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->txtDescription->Margin = System::Windows::Forms::Padding(4);
 			this->txtDescription->Multiline = true;
 			this->txtDescription->Name = L"txtDescription";
 			this->txtDescription->Size = System::Drawing::Size(216, 53);
@@ -510,8 +512,22 @@ namespace SalesApp {
 	}
 	private: System::Void ProductForm_Load(System::Object^ sender, System::EventArgs^ e) {
 		RefreshGrid();
+		//estado inicial del formulario requiere que se seleccione una o
+		btnAdd->Enabled = false;
+		btnDelete->Enabled = false;
+		btnUpdate->Enabled = false;
 	}
 	private: System::Void txtPrice_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
-	};
+	private: System::Void nuevoProductoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		btnAdd->Enabled = true;
+		btnDelete->Enabled = false;
+		btnUpdate->Enabled = false;
+	}
+private: System::Void modificarProductoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		btnAdd->Enabled = false;
+		btnDelete->Enabled = true;
+		btnUpdate->Enabled = true;
+}
+};
 }

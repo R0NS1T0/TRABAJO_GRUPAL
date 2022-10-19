@@ -9,6 +9,7 @@ namespace SalesController {
 	{
 		private:
 			static List <Product^>^ productList = gcnew List<Product^>();
+			static List <Employee^>^ employeeList = gcnew List<Employee^>();
 		// TODO: Agregue aquí los métodos de esta clase.
 		public:
 			static int AddProduct(Product^ product);
@@ -19,6 +20,10 @@ namespace SalesController {
 			static void LoadProductsData();
 			static void PersistWarehouse();
 			static int searchProduct(Product^ productcode);
+
+
+		//funciones relacionadas al registro de usuarios, complementado con la inscripción de nuevos usuarios
 			static Employee^ Login(String ^CompanyUser, String^ Password);
+			static int AddCompanyUser(Employee^ employee);
 	};
 }		

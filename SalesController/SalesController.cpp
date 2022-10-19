@@ -5,6 +5,7 @@ using namespace System;
 using namespace System::Collections::Generic;
 using namespace SalesModel;
 using namespace System::IO;
+using namespace System::Runtime::Serialization::Formatters::Binary;
 
 Void SalesController::Controller::PersistWarehouse() {
     StreamWriter^ sw = gcnew StreamWriter("ListaProductos.txt");
@@ -102,15 +103,36 @@ Void SalesController::Controller::LoadProductsData() {
 
 Employee^ SalesController::Controller::Login(String^ CompanyUser, String^ Password)
 {
-    Employee^ employee;
-    if (CompanyUser == "grupo5" && Password == "LPOO") {
-        employee = gcnew Employee();
-        employee->Name = "Usuario de prueba";
-        employee->Email = "emaildeprueba@pucp.edu.pe";
-        employee->Address = "San Miguel Urbanizacion Las Gardenias";
-        employee->DocumentNumber = "98123971";
-        employee->PhoneNumber = "987675185";
-        employee->CompanyUser = "grupo5";
+    Employee^ employee;     //variable que identifica que al usuario registrado
+    //funcion que permite la lectura de datos de una lista de usuarios registrados
+    employeeList = gcnew List<Employee^>();
+    Stream^ sr = nullptr;
+    try {
+        sr = File::Open("Users.bin", FileMode::Open);
+        BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
+        employeeList = (List<Employee^>^)bFormatter->Deserialize(sr);
+    }
+    catch (FileNotFoundException^ ex) {}
+    catch (Exception^ ex) {}
+    finally {
+        if (sr != nullptr) sr->Close();
+    }
+    for (int i = 0; i < employeeList->Count; i++) {
+        if (CompanyUser == employeeList[i]->CompanyUser && Password == employeeList[i]->Password) {
+            //esta funcion requiere de una lectura de datos encriptado
+            //el formato que estoy eligiendo es BIN
+            //lectura de datos ejecutada en la misma función, no va a requerir una función adicional de carga de datos
+            employee = employeeList[i];
+            return employee;
+        }
     }
     return employee;
 }
+
+int SalesController::Controller::AddCompanyUser(Employee^ employee)
+{
+    employeeList->Add(employee);
+    return 1;
+}
+
+

@@ -8,6 +8,9 @@ namespace SalesApp {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace SalesModel;
+	using namespace SalesController;
+	using namespace System::Collections::Generic;
 
 	/// <summary>
 	/// Resumen de RegisterUserForm
@@ -189,6 +192,7 @@ namespace SalesApp {
 			this->txtName->Name = L"txtName";
 			this->txtName->Size = System::Drawing::Size(121, 22);
 			this->txtName->TabIndex = 7;
+			this->txtName->TextChanged += gcnew System::EventHandler(this, &RegisterUserForm::txtName_TextChanged);
 			// 
 			// txtSurname
 			// 
@@ -222,7 +226,7 @@ namespace SalesApp {
 			// cbAuthorityLvl
 			// 
 			this->cbAuthorityLvl->FormattingEnabled = true;
-			this->cbAuthorityLvl->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Vendedor", L"Administrador" });
+			this->cbAuthorityLvl->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L'1', L'2', L'3'});
 			this->cbAuthorityLvl->Location = System::Drawing::Point(145, 177);
 			this->cbAuthorityLvl->Name = L"cbAuthorityLvl";
 			this->cbAuthorityLvl->Size = System::Drawing::Size(121, 24);
@@ -340,6 +344,7 @@ namespace SalesApp {
 			this->txtAdminAccesCode->PasswordChar = '*';
 			this->txtAdminAccesCode->Size = System::Drawing::Size(100, 22);
 			this->txtAdminAccesCode->TabIndex = 27;
+			this->txtAdminAccesCode->Text = L"q";
 			// 
 			// RegisterUserForm
 			// 
@@ -390,8 +395,26 @@ namespace SalesApp {
 		this->Close();
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		//si
-
+		//Como punto de partida, estoy estableciendo este codigo de acceso de administrador:1234
+		String^ admincode;
+		admincode = txtAdminAccesCode->Text;
+		if ((admincode) == "1234") {
+			Employee^ d = gcnew Employee();
+			d->Name = txtName->Text;
+			d->LastName = txtSurname->Text;
+			d->Email = txtEmail->Text;
+			d->Address = txtAddress->Text;
+			d->Birthday = dtpBirthday->Text;
+			d->CompanyUser = txtUsername->Text;
+			d->Gender = cbGender->Text;
+			d->DocumentNumber = txtId->Text;
+			d->AuthorityClass = Convert::ToInt16(cbAuthorityLvl->Text);
+			d->Password = txtPassword->Text;
+			d->PhoneNumber = txtPhoneNumber->Text;
+			Controller::AddCompanyUser(d);
+		}
+		else
+		this->Close();
 	}
 	private: System::Void dateTimePicker1_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
@@ -399,5 +422,7 @@ namespace SalesApp {
 	}
 	private: System::Void RegisterUserForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
-	};
+	private: System::Void txtName_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+};
 }
