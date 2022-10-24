@@ -397,23 +397,34 @@ namespace SalesApp {
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		//Como punto de partida, estoy estableciendo este codigo de acceso de administrador:1234
 		String^ admincode;
-		admincode = txtAdminAccesCode->Text;
-		if ((admincode) == "1234") {
-			Employee^ d = gcnew Employee();
-			d->Name = txtName->Text;
-			d->LastName = txtSurname->Text;
-			d->Email = txtEmail->Text;
-			d->Address = txtAddress->Text;
-			d->Birthday = dtpBirthday->Text;
-			d->CompanyUser = txtUsername->Text;
-			d->Gender = cbGender->Text;
-			d->DocumentNumber = txtId->Text;
-			d->AuthorityClass = Convert::ToInt16(cbAuthorityLvl->Text);
-			d->Password = txtPassword->Text;
-			d->PhoneNumber = txtPhoneNumber->Text;
-			Controller::AddCompanyUser(d);
+		Employee^ registeredUser;
+
+		registeredUser = Controller::QueryUserById(txtUsername->Text);
+
+		if(registeredUser!=nullptr){
+			admincode = txtAdminAccesCode->Text;
+			if ((admincode) == "1234") {
+				Employee^ d = gcnew Employee();
+				d->Name = txtName->Text;
+				d->LastName = txtSurname->Text;
+				d->Email = txtEmail->Text;
+				d->Address = txtAddress->Text;
+				d->Birthday = dtpBirthday->Text;
+				d->CompanyUser = txtUsername->Text;
+				d->Gender = cbGender->Text;
+				d->DocumentNumber = txtId->Text;
+				d->AuthorityClass = Convert::ToInt16(cbAuthorityLvl->Text);
+				d->Password = txtPassword->Text;
+				d->PhoneNumber = txtPhoneNumber->Text;
+				Controller::AddCompanyUser(d);
+			}
+			else { this->Close(); }
+
 		}
-		else
+		else {
+			MessageBox::Show("Usuario ya existe");
+		}
+		
 		this->Close();
 	}
 	private: System::Void dateTimePicker1_ValueChanged(System::Object^ sender, System::EventArgs^ e) {

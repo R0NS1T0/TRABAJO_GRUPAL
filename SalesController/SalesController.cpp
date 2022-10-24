@@ -156,6 +156,7 @@ void SalesController::Controller::PersistUsersData() {
         if (stream != nullptr) stream->Close();
     }
 }
+
 int SalesController::Controller::AddCompanyUser(Employee^ employee)
 {
     employeeList->Add(employee);

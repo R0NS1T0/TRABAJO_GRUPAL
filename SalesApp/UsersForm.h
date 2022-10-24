@@ -246,20 +246,21 @@ namespace SalesApp {
 					this->modificarToolStripMenuItem
 			});
 			this->accionesToolStripMenuItem->Name = L"accionesToolStripMenuItem";
+			this->accionesToolStripMenuItem->RightToLeft = System::Windows::Forms::RightToLeft::Yes;
 			this->accionesToolStripMenuItem->Size = System::Drawing::Size(82, 24);
 			this->accionesToolStripMenuItem->Text = L"Acciones";
 			// 
 			// añadirToolStripMenuItem
 			// 
 			this->añadirToolStripMenuItem->Name = L"añadirToolStripMenuItem";
-			this->añadirToolStripMenuItem->Size = System::Drawing::Size(156, 26);
+			this->añadirToolStripMenuItem->Size = System::Drawing::Size(224, 26);
 			this->añadirToolStripMenuItem->Text = L"añadir";
 			this->añadirToolStripMenuItem->Click += gcnew System::EventHandler(this, &UsersForm::añadirToolStripMenuItem_Click);
 			// 
 			// modificarToolStripMenuItem
 			// 
 			this->modificarToolStripMenuItem->Name = L"modificarToolStripMenuItem";
-			this->modificarToolStripMenuItem->Size = System::Drawing::Size(156, 26);
+			this->modificarToolStripMenuItem->Size = System::Drawing::Size(224, 26);
 			this->modificarToolStripMenuItem->Text = L"modificar";
 			this->modificarToolStripMenuItem->Click += gcnew System::EventHandler(this, &UsersForm::modificarToolStripMenuItem_Click);
 			// 
@@ -552,9 +553,9 @@ private: System::Void añadirToolStripMenuItem_Click(System::Object^ sender, Syst
 }
 private: System::Void UsersForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	RefreshGrid();
-	btnAdd->Enabled = false;
-	btnDelete->Enabled = false;
-	btnupdate->Enabled = false;
+	btnAdd->Enabled = true;
+	btnDelete->Enabled = true;
+	btnupdate->Enabled = true;
 }
 private: System::Void modificarToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	btnAdd->Enabled = false;

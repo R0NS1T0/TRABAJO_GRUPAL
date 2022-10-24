@@ -32,5 +32,13 @@ namespace SalesController {
 			static void LoadUsersData();
 			static void PersistUsersData();
 
+		//funciones para el mantenimiento de venta
+
+
+		//funciones para el mantenimiento de tiendas***
+
+
+		//funciones extra
+
 	};
 }		

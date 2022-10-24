@@ -156,7 +156,7 @@ namespace SalesApp {
 	private: System::Void btnOK_Click(System::Object^ sender, System::EventArgs^ e) {
 		Employee^ emp = Controller::Login(txtCompanyUser->Text, txtPassword->Text);
 		if (emp != nullptr) {
-			MessageBox::Show("Bienvenido" + emp->Name);
+			MessageBox::Show("Bienvenido " + emp->Name);
 			this->Close();
 		}
 		else MessageBox::Show("Datos incorrectos");
