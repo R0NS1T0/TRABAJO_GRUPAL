@@ -47,6 +47,9 @@
     <ClInclude Include="SearchProduct.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="CustomerForm.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SalesApp.cpp">
@@ -75,6 +78,9 @@
     </ClCompile>
     <ClCompile Include="SearchProduct.cpp">
       <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomerForm.cpp">
+      <Filter>Archivos de encabezado</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

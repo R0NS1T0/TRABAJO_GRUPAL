@@ -156,6 +156,95 @@ void SalesController::Controller::PersistUsersData() {
         if (stream != nullptr) stream->Close();
     }
 }
+void SalesController::Controller::LoadCustomerData()
+{
+    customerList = gcnew List<Customer^>();
+    Stream^ sr = nullptr;
+    try {
+        sr = File::Open("Customers.bin", FileMode::Open);
+        BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
+        customerList = (List<Customer^>^)bFormatter->Deserialize(sr);
+    }
+    catch (FileNotFoundException^ ex) {}
+    catch (Exception^ ex) {}
+    finally {
+        if (sr != nullptr) sr->Close();
+    }
+}
+
+void SalesController::Controller::PersistCustomersData()
+{
+    Stream^ stream = File::Open("Customers.bin", FileMode::Create);
+    try {
+        BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
+        bFormatter->Serialize(stream, customerList);
+    }
+    catch (FileNotFoundException^ ex) {}
+    catch (Exception^ ex) {}
+    finally {
+        if (stream != nullptr) stream->Close();
+    }
+}
+int SalesController::Controller::AddCustomer(Customer^ customer)
+{
+    customerList->Add(customer);
+    PersistCustomersData();
+    return 1;
+}
+
+int SalesController::Controller::UpdateCustomer(Customer^ customer)
+{
+    for (int i = 0; i < customerList->Count; i++)
+        if (customer->Name == customerList[i]->Name) {
+            customerList[i] = customer;
+            PersistCustomersData();
+            return 1;
+        }
+    return 0;
+}
+
+int SalesController::Controller::DeleteCustomer(String^ customername)
+{
+    for (int i = 0; i < customerList->Count; i++)
+        if (customername == customerList[i]->Name) {
+            customerList->RemoveAt(i);
+            PersistCustomersData();
+            return 1;
+        }
+    return 0;
+}
+
+List<Customer^>^ SalesController::Controller::QueryAllCustomers()
+{
+    LoadCustomerData();
+    List<Customer^>^ CustomerList = gcnew List<Customer^>();
+    for (int i = 0; i < customerList->Count; i++) {
+        CustomerList->Add(customerList[i]);
+    }
+    return CustomerList;
+}
+
+Customer^ SalesController::Controller::QueryCustomersbyDNI(String^ customerDNI)
+{
+    for (int i = 0; i < customerList->Count; i++)
+        if (customerDNI == customerList[i]->DNI) {
+            return customerList[i];
+        }
+    return nullptr;
+}
+
+Customer^ SalesController::Controller::QueryCustomerbyName(String^ customerName)
+{
+    for (int i = 0; i < customerList->Count; i++) {
+        if (customerName == customerList[i]->Name) {
+            return customerList[i];
+        }
+        if (customerName == customerList[i]->LastName) {
+            return customerList[i];
+        }
+    }
+    return nullptr;
+}
 
 int SalesController::Controller::AddCompanyUser(Employee^ employee)
 {

@@ -128,6 +128,9 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CustomerForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="LoginForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -154,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="CustomerForm.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -187,6 +191,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CustomerForm.resx">
+      <DependentUpon>CustomerForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.h</DependentUpon>
     </EmbeddedResource>
