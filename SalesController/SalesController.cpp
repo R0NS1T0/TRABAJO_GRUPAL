@@ -289,6 +289,6 @@ Employee^ SalesController::Controller::QueryUserById(String^ userId)
         if (userId == employeeList[i]->CompanyUser) {
             return employeeList[i];
         }
-    return nullptr;
+    return nullptr; //11
 }
 
