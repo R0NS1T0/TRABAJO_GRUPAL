@@ -10,5 +10,6 @@ namespace SalesModel {
     public ref class Salesman : public Employee {
     public:
         property double SaleAmount;
+        property Employee^ employee;
     };
 }

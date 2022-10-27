@@ -103,7 +103,7 @@ Void SalesController::Controller::LoadProductsData() {
 
 Employee^ SalesController::Controller::Login(String^ CompanyUser, String^ Password)
 {
-    Employee^ employee;     //variable que identifica que al usuario registrado
+    Employee^ employee;   
     //funcion que permite la lectura de datos de una lista de usuarios registrados
     employeeList = gcnew List<Employee^>();
     Stream^ sr = nullptr;
@@ -183,6 +183,46 @@ void SalesController::Controller::PersistCustomersData()
     catch (Exception^ ex) {}
     finally {
         if (stream != nullptr) stream->Close();
+    }
+}
+void SalesController::Controller::RegisterSale(Sale^ sale)
+{
+    salesList->Add(sale);
+    PersistSales();
+}
+int SalesController::Controller::QueryLastSale()
+{
+    LoadSalesData();
+    int lastSaleId = 0;
+    for (int i = 0; i < salesList->Count; i++) {
+        if (salesList[i]->ID > lastSaleId)
+            lastSaleId = salesList[i]->ID;
+    }
+    return lastSaleId;
+}
+void SalesController::Controller::PersistSales()
+{
+    Stream^ stream = File::Open("Sales.bin", FileMode::Create);
+    BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
+    bFormatter->Serialize(stream, salesList);
+    stream->Close();
+}
+void SalesController::Controller::LoadSalesData()
+{
+    salesList = gcnew List<Sale^>();
+    //Lectura desde un archivo binario
+    Stream^ sr = nullptr;
+    try {
+        sr = File::Open("Sales.bin", FileMode::Open);
+        BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
+        salesList = (List<Sale^>^)bFormatter->Deserialize(sr);
+    }
+    catch (FileNotFoundException^ ex) {
+    }
+    catch (Exception^ ex) {
+    }
+    finally {
+        if (sr != nullptr) sr->Close();
     }
 }
 int SalesController::Controller::AddCustomer(Customer^ customer)
