@@ -288,6 +288,7 @@ Customer^ SalesController::Controller::QueryCustomerbyName(String^ customerName)
 
 int SalesController::Controller::AddCompanyUser(Employee^ employee)
 {
+    LoadUsersData();
     employeeList->Add(employee);
     PersistUsersData();
     return 1;

@@ -93,7 +93,7 @@ namespace SalesApp {
 			// btnOK
 			// 
 			this->btnOK->Location = System::Drawing::Point(85, 121);
-			this->btnOK->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->btnOK->Margin = System::Windows::Forms::Padding(4);
 			this->btnOK->Name = L"btnOK";
 			this->btnOK->Size = System::Drawing::Size(100, 28);
 			this->btnOK->TabIndex = 2;
@@ -104,7 +104,7 @@ namespace SalesApp {
 			// btnCancel
 			// 
 			this->btnCancel->Location = System::Drawing::Point(256, 121);
-			this->btnCancel->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->btnCancel->Margin = System::Windows::Forms::Padding(4);
 			this->btnCancel->Name = L"btnCancel";
 			this->btnCancel->Size = System::Drawing::Size(100, 28);
 			this->btnCancel->TabIndex = 3;
@@ -115,7 +115,7 @@ namespace SalesApp {
 			// txtCompanyUser
 			// 
 			this->txtCompanyUser->Location = System::Drawing::Point(161, 41);
-			this->txtCompanyUser->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->txtCompanyUser->Margin = System::Windows::Forms::Padding(4);
 			this->txtCompanyUser->Name = L"txtCompanyUser";
 			this->txtCompanyUser->Size = System::Drawing::Size(193, 22);
 			this->txtCompanyUser->TabIndex = 4;
@@ -123,7 +123,7 @@ namespace SalesApp {
 			// txtPassword
 			// 
 			this->txtPassword->Location = System::Drawing::Point(161, 73);
-			this->txtPassword->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->txtPassword->Margin = System::Windows::Forms::Padding(4);
 			this->txtPassword->Name = L"txtPassword";
 			this->txtPassword->PasswordChar = '*';
 			this->txtPassword->Size = System::Drawing::Size(193, 22);
@@ -154,9 +154,9 @@ namespace SalesApp {
 			this->Controls->Add(this->btnOK);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
-			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"LoginForm";
-			this->Text = L"Inicio de seción";
+			this->Text = L"Inicio de sesión";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 

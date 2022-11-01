@@ -241,6 +241,8 @@ namespace SalesApp {
 			// 
 			// accionesToolStripMenuItem
 			// 
+			this->accionesToolStripMenuItem->Checked = true;
+			this->accionesToolStripMenuItem->CheckState = System::Windows::Forms::CheckState::Checked;
 			this->accionesToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
 				this->añadirToolStripMenuItem,
 					this->modificarToolStripMenuItem
@@ -333,8 +335,7 @@ namespace SalesApp {
 			// 
 			this->cmbAuthority->FormattingEnabled = true;
 			this->cmbAuthority->Items->AddRange(gcnew cli::array< System::Object^  >(3) {
-				static_cast<System::UInt16>(49), static_cast<System::UInt16>(50),
-					static_cast<System::UInt16>(51)
+				L"administrador", L"gerente de tienda", L"vendedor"
 			});
 			this->cmbAuthority->Location = System::Drawing::Point(422, 212);
 			this->cmbAuthority->Name = L"cmbAuthority";
@@ -517,7 +518,17 @@ private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e)
 	d->CompanyUser = txtCompanyuser->Text;
 	d->Gender = cmbGender->Text;
 	d->DocumentNumber = txtDNI->Text;
-	d->AuthorityClass = Convert::ToInt16(cmbAuthority->Text);
+	//para d, cambiar cmbauthority de string a int16
+	//L"administrador", L"gerente de tienda", L"vendedor"
+	if (cmbAuthority->Text == "administrador") {
+		d->AuthorityClass = 1;
+	}
+	if (cmbAuthority->Text == "gerente de tienda") {
+		d->AuthorityClass = 2;
+	}
+	if (cmbAuthority->Text == "vendedor") {
+		d->AuthorityClass = 3;
+	}
 	d->Password = txtPassword->Text;
 	d->PhoneNumber = txtPhone->Text;
 	Controller::AddCompanyUser(d);
@@ -534,7 +545,15 @@ private: System::Void btnupdate_Click(System::Object^ sender, System::EventArgs^
 	d->CompanyUser = txtCompanyuser->Text;
 	d->Gender = cmbGender->Text;
 	d->DocumentNumber = txtDNI->Text;
-	d->AuthorityClass = Convert::ToInt16(cmbAuthority->Text);
+	if (cmbAuthority->Text == "administrador") {
+		d->AuthorityClass = 1;
+	}
+	if (cmbAuthority->Text == "gerente de tienda") {
+		d->AuthorityClass = 2;
+	}
+	if (cmbAuthority->Text == "vendedor") {
+		d->AuthorityClass = 3;
+	}
 	d->Password = txtPassword->Text;
 	d->PhoneNumber = txtPhone->Text;
 	Controller::UpdateCompanyUser(d);
@@ -577,7 +596,7 @@ private: System::Void dgvUserList_CellContentClick(System::Object^ sender, Syste
 		txtLastname->Text = s->LastName;
 		txtDNI->Text = s->DocumentNumber;
 		txtPhone->Text = s->PhoneNumber;
-
+		txtPassword->Text=s->Password;
 	}
 }
 private: System::Void dgvUserList_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {

@@ -129,7 +129,6 @@ namespace SalesApp {
 			this->label1->Size = System::Drawing::Size(59, 16);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Nombre:";
-			this->label1->Click += gcnew System::EventHandler(this, &RegisterUserForm::label1_Click);
 			// 
 			// label2
 			// 
@@ -139,7 +138,6 @@ namespace SalesApp {
 			this->label2->Size = System::Drawing::Size(60, 16);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Apellido:";
-			this->label2->Click += gcnew System::EventHandler(this, &RegisterUserForm::label2_Click);
 			// 
 			// label3
 			// 
@@ -192,7 +190,7 @@ namespace SalesApp {
 			this->txtName->Name = L"txtName";
 			this->txtName->Size = System::Drawing::Size(121, 22);
 			this->txtName->TabIndex = 7;
-			this->txtName->TextChanged += gcnew System::EventHandler(this, &RegisterUserForm::txtName_TextChanged);
+			
 			// 
 			// txtSurname
 			// 
@@ -207,7 +205,7 @@ namespace SalesApp {
 			this->txtEmail->Name = L"txtEmail";
 			this->txtEmail->Size = System::Drawing::Size(196, 22);
 			this->txtEmail->TabIndex = 9;
-			this->txtEmail->TextChanged += gcnew System::EventHandler(this, &RegisterUserForm::textBox3_TextChanged);
+			
 			// 
 			// txtId
 			// 
@@ -249,7 +247,7 @@ namespace SalesApp {
 			this->btnCreate->TabIndex = 16;
 			this->btnCreate->Text = L"Crear";
 			this->btnCreate->UseVisualStyleBackColor = true;
-			this->btnCreate->Click += gcnew System::EventHandler(this, &RegisterUserForm::button1_Click);
+			this->btnCreate->Click += gcnew System::EventHandler(this, &RegisterUserForm::btnCreate_click);
 			// 
 			// btnCancel
 			// 
@@ -259,7 +257,7 @@ namespace SalesApp {
 			this->btnCancel->TabIndex = 17;
 			this->btnCancel->Text = L"Cancelar";
 			this->btnCancel->UseVisualStyleBackColor = true;
-			this->btnCancel->Click += gcnew System::EventHandler(this, &RegisterUserForm::button2_Click);
+			this->btnCancel->Click += gcnew System::EventHandler(this, &RegisterUserForm::btnCancel_click);
 			// 
 			// dtpBirthday
 			// 
@@ -267,7 +265,7 @@ namespace SalesApp {
 			this->dtpBirthday->Name = L"dtpBirthday";
 			this->dtpBirthday->Size = System::Drawing::Size(210, 22);
 			this->dtpBirthday->TabIndex = 18;
-			this->dtpBirthday->ValueChanged += gcnew System::EventHandler(this, &RegisterUserForm::dateTimePicker1_ValueChanged);
+			
 			// 
 			// label8
 			// 
@@ -304,7 +302,6 @@ namespace SalesApp {
 			this->label11->Size = System::Drawing::Size(54, 16);
 			this->label11->TabIndex = 22;
 			this->label11->Text = L"Usuario";
-			this->label11->Click += gcnew System::EventHandler(this, &RegisterUserForm::label11_Click);
 			// 
 			// label12
 			// 
@@ -385,26 +382,18 @@ namespace SalesApp {
 
 		}
 #pragma endregion
-	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
-	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
-	private: System::Void textBox3_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-	}
-	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	
+	private: System::Void btnCancel_click(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();
 	}
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void btnCreate_click(System::Object^ sender, System::EventArgs^ e) {
 		//Como punto de partida, estoy estableciendo este codigo de acceso de administrador:1234
 		String^ admincode;
-		Employee^ registeredUser;
+		Employee^ d = gcnew Employee();
 
-		registeredUser = Controller::QueryUserById(txtUsername->Text);
-
-		if(registeredUser!=nullptr){
-			admincode = txtAdminAccesCode->Text;
-			if ((admincode) == "1234") {
-				Employee^ d = gcnew Employee();
+		
+			if ((admincode= txtAdminAccesCode->Text) == "1234") {
+			
 				d->Name = txtName->Text;
 				d->LastName = txtSurname->Text;
 				d->Email = txtEmail->Text;
@@ -417,23 +406,12 @@ namespace SalesApp {
 				d->Password = txtPassword->Text;
 				d->PhoneNumber = txtPhoneNumber->Text;
 				Controller::AddCompanyUser(d);
-			}
-			else { this->Close(); }
-
-		}
-		else {
-			MessageBox::Show("Usuario ya existe");
-		}
-		
+			}			
 		this->Close();
 	}
-	private: System::Void dateTimePicker1_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
-	}
-	private: System::Void label11_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
+	
 	private: System::Void RegisterUserForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void txtName_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-	}
+
 };
 }
