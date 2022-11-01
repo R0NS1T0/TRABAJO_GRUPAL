@@ -224,7 +224,7 @@ namespace SalesApp {
 			// cbAuthorityLvl
 			// 
 			this->cbAuthorityLvl->FormattingEnabled = true;
-			this->cbAuthorityLvl->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L'1', L'2', L'3'});
+			this->cbAuthorityLvl->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"administrador", L"gerente de tienda", L"vendedor" });
 			this->cbAuthorityLvl->Location = System::Drawing::Point(145, 177);
 			this->cbAuthorityLvl->Name = L"cbAuthorityLvl";
 			this->cbAuthorityLvl->Size = System::Drawing::Size(121, 24);
@@ -402,7 +402,15 @@ namespace SalesApp {
 				d->CompanyUser = txtUsername->Text;
 				d->Gender = cbGender->Text;
 				d->DocumentNumber = txtId->Text;
-				d->AuthorityClass = Convert::ToInt16(cbAuthorityLvl->Text);
+				if (cbAuthorityLvl->Text== "administrador") {
+					d->AuthorityClass = 1;
+				}
+				if (cbAuthorityLvl->Text == "gerente de tienda") {
+					d->AuthorityClass = 2;
+				}
+				if (cbAuthorityLvl->Text == "vendedor") {
+					d->AuthorityClass = 3;
+				}
 				d->Password = txtPassword->Text;
 				d->PhoneNumber = txtPhoneNumber->Text;
 				Controller::AddCompanyUser(d);
