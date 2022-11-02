@@ -1,5 +1,5 @@
 10P003,pantalon perla,60,XL,1000,Pantalon talla extra larga denim,blanco
 10P004,pantalon elegante,15,32,1000,Pantalon talla extra larga denim,gris
 10P005,jean negro,15,30,1000,Pantalon talla extra larga denim,negro
-10P002,jean rojo,15,M,1000,Pantalon talla extra larga denim,rojo
-DJAS,playera generica,60,S,1000,POLO,blanco
+10P002,,15,M,1000,Pantalon talla extra larga denim,rojo
+DJAS,,60,S,1000,POLO,blanco

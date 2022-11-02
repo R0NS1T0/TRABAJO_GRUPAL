@@ -8,13 +8,17 @@ using namespace System::IO;
 using namespace System::Runtime::Serialization::Formatters::Binary;
 
 Void SalesController::Controller::PersistWarehouse() {
-    StreamWriter^ sw = gcnew StreamWriter("ListaProductos.txt");
+    /*StreamWriter^ sw = gcnew StreamWriter("ListaProductos.txt");
     for (int i = 0; i < productList->Count; i++) {
         sw->WriteLine(productList[i]->Code + "," + productList[i]->Name + "," + productList[i]->Price + "," +
             productList[i]->Size + "," + productList[i]->Stock + "," +
             productList[i]->Description + "," + productList[i]->Color);
     }
-    sw->Close();
+    sw->Close();*/
+    Stream^ stream = File::Open("Products.bin", FileMode::Create);
+    BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
+    bFormatter->Serialize(stream, productList);
+    stream->Close();
 }
 int SalesController::Controller::searchProduct(Product^ productCode)
 {
@@ -90,23 +94,20 @@ Product^ SalesController::Controller::QueryProductByName(String^ productname)
 Void SalesController::Controller::LoadProductsData() {
 
     productList = gcnew List<Product^>();
-
-    StreamReader^ sr = gcnew StreamReader("ListaProductos.txt");
-    while (!sr->EndOfStream) {
-        Product^ p = gcnew Product();
-        String^ line = sr->ReadLine();
-
-        array<String^>^ data = line->Split(',');
-        p->Code = data[0];						//Codigo
-        p->Name = data[1];
-        p->Price = Convert::ToDouble(data[2]);	//Precio
-        p->Size = data[3];						//Talla
-        p->Stock = Convert::ToDouble(data[4]);	//Stock
-        p->Description = data[5];				//Descripcion
-        p->Color = data[6];						//Color
-        productList->Add(p);
+    Stream^ sr = nullptr;
+    //Lectura desde un archivo binario
+    try {
+        Stream^ sr = File::Open("Products.bin", FileMode::Open);
+        BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
+        productList = (List<Product^>^)bFormatter->Deserialize(sr);
     }
-    sr->Close();
+    catch (FileNotFoundException^ ex) {
+    }
+    catch (Exception^ ex) {
+    }
+    finally {
+        if (sr != nullptr)  sr->Close();
+    }
 }
 
 

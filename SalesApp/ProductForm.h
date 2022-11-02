@@ -53,6 +53,9 @@ namespace SalesApp {
 	private: System::Windows::Forms::Button^ btnUpdate;
 	private: System::Windows::Forms::Button^ btnAdd;
 	private: System::Windows::Forms::PictureBox^ pbPhoto;
+
+
+
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Label^ label3;
@@ -77,6 +80,9 @@ namespace SalesApp {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ productColor;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::TextBox^ txtName;
+	private: System::Windows::Forms::Button^ btnPhoto;
+
+
 
 
 	private:
@@ -122,6 +128,7 @@ namespace SalesApp {
 			this->txtSize = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->txtName = (gcnew System::Windows::Forms::TextBox());
+			this->btnPhoto = (gcnew System::Windows::Forms::Button());
 			this->menuStrip1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvWarehouse))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbPhoto))->BeginInit();
@@ -134,7 +141,7 @@ namespace SalesApp {
 			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->archivoToolStripMenuItem });
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(1056, 30);
+			this->menuStrip1->Size = System::Drawing::Size(1056, 28);
 			this->menuStrip1->TabIndex = 0;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -145,7 +152,7 @@ namespace SalesApp {
 					this->modificarProductoToolStripMenuItem, this->salirToolStripMenuItem
 			});
 			this->archivoToolStripMenuItem->Name = L"archivoToolStripMenuItem";
-			this->archivoToolStripMenuItem->Size = System::Drawing::Size(73, 26);
+			this->archivoToolStripMenuItem->Size = System::Drawing::Size(73, 24);
 			this->archivoToolStripMenuItem->Text = L"Archivo";
 			// 
 			// nuevoProductoToolStripMenuItem
@@ -175,7 +182,7 @@ namespace SalesApp {
 				this->ProductCode,
 					this->productPrice, this->productStock, this->productSize, this->producDescription, this->productColor
 			});
-			this->dgvWarehouse->Location = System::Drawing::Point(57, 421);
+			this->dgvWarehouse->Location = System::Drawing::Point(40, 402);
 			this->dgvWarehouse->Margin = System::Windows::Forms::Padding(4);
 			this->dgvWarehouse->Name = L"dgvWarehouse";
 			this->dgvWarehouse->RowHeadersWidth = 51;
@@ -229,7 +236,7 @@ namespace SalesApp {
 			// 
 			// btnDelete
 			// 
-			this->btnDelete->Location = System::Drawing::Point(267, 294);
+			this->btnDelete->Location = System::Drawing::Point(541, 349);
 			this->btnDelete->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnDelete->Name = L"btnDelete";
 			this->btnDelete->Size = System::Drawing::Size(105, 32);
@@ -240,7 +247,7 @@ namespace SalesApp {
 			// 
 			// btnUpdate
 			// 
-			this->btnUpdate->Location = System::Drawing::Point(156, 294);
+			this->btnUpdate->Location = System::Drawing::Point(379, 349);
 			this->btnUpdate->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnUpdate->Name = L"btnUpdate";
 			this->btnUpdate->Size = System::Drawing::Size(105, 32);
@@ -251,7 +258,7 @@ namespace SalesApp {
 			// 
 			// btnAdd
 			// 
-			this->btnAdd->Location = System::Drawing::Point(43, 294);
+			this->btnAdd->Location = System::Drawing::Point(209, 349);
 			this->btnAdd->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnAdd->Name = L"btnAdd";
 			this->btnAdd->Size = System::Drawing::Size(107, 32);
@@ -262,17 +269,19 @@ namespace SalesApp {
 			// 
 			// pbPhoto
 			// 
-			this->pbPhoto->Location = System::Drawing::Point(587, 80);
+			this->pbPhoto->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->pbPhoto->Location = System::Drawing::Point(474, 64);
 			this->pbPhoto->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pbPhoto->Name = L"pbPhoto";
-			this->pbPhoto->Size = System::Drawing::Size(136, 165);
+			this->pbPhoto->Size = System::Drawing::Size(181, 186);
+			this->pbPhoto->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pbPhoto->TabIndex = 26;
 			this->pbPhoto->TabStop = false;
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(364, 198);
+			this->label5->Location = System::Drawing::Point(86, 304);
 			this->label5->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(41, 16);
@@ -282,18 +291,17 @@ namespace SalesApp {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(65, 167);
+			this->label4->Location = System::Drawing::Point(86, 158);
 			this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(46, 16);
 			this->label4->TabIndex = 24;
 			this->label4->Text = L"Precio";
-			this->label4->Click += gcnew System::EventHandler(this, &ProductForm::label4_Click);
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(53, 100);
+			this->label3->Location = System::Drawing::Point(65, 95);
 			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(79, 16);
@@ -302,7 +310,7 @@ namespace SalesApp {
 			// 
 			// txtStock
 			// 
-			this->txtStock->Location = System::Drawing::Point(426, 198);
+			this->txtStock->Location = System::Drawing::Point(148, 301);
 			this->txtStock->Margin = System::Windows::Forms::Padding(4);
 			this->txtStock->Name = L"txtStock";
 			this->txtStock->Size = System::Drawing::Size(100, 22);
@@ -310,7 +318,7 @@ namespace SalesApp {
 			// 
 			// txtPrice
 			// 
-			this->txtPrice->Location = System::Drawing::Point(148, 161);
+			this->txtPrice->Location = System::Drawing::Point(148, 155);
 			this->txtPrice->Margin = System::Windows::Forms::Padding(4);
 			this->txtPrice->Name = L"txtPrice";
 			this->txtPrice->Size = System::Drawing::Size(100, 22);
@@ -319,7 +327,7 @@ namespace SalesApp {
 			// 
 			// txtDescription
 			// 
-			this->txtDescription->Location = System::Drawing::Point(148, 97);
+			this->txtDescription->Location = System::Drawing::Point(148, 92);
 			this->txtDescription->Margin = System::Windows::Forms::Padding(4);
 			this->txtDescription->Multiline = true;
 			this->txtDescription->Name = L"txtDescription";
@@ -328,7 +336,7 @@ namespace SalesApp {
 			// 
 			// txtCode
 			// 
-			this->txtCode->Location = System::Drawing::Point(148, 55);
+			this->txtCode->Location = System::Drawing::Point(148, 58);
 			this->txtCode->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtCode->Name = L"txtCode";
 			this->txtCode->Size = System::Drawing::Size(100, 22);
@@ -338,7 +346,7 @@ namespace SalesApp {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(40, 55);
+			this->label1->Location = System::Drawing::Point(86, 64);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(51, 16);
 			this->label1->TabIndex = 16;
@@ -348,7 +356,7 @@ namespace SalesApp {
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(72, 204);
+			this->label6->Location = System::Drawing::Point(86, 195);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(39, 16);
 			this->label6->TabIndex = 34;
@@ -357,7 +365,7 @@ namespace SalesApp {
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(364, 161);
+			this->label7->Location = System::Drawing::Point(86, 270);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(38, 16);
 			this->label7->TabIndex = 33;
@@ -365,7 +373,7 @@ namespace SalesApp {
 			// 
 			// txtColor
 			// 
-			this->txtColor->Location = System::Drawing::Point(148, 198);
+			this->txtColor->Location = System::Drawing::Point(148, 192);
 			this->txtColor->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtColor->Name = L"txtColor";
 			this->txtColor->Size = System::Drawing::Size(100, 22);
@@ -373,7 +381,7 @@ namespace SalesApp {
 			// 
 			// txtSize
 			// 
-			this->txtSize->Location = System::Drawing::Point(426, 155);
+			this->txtSize->Location = System::Drawing::Point(148, 264);
 			this->txtSize->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtSize->Name = L"txtSize";
 			this->txtSize->Size = System::Drawing::Size(100, 22);
@@ -382,24 +390,35 @@ namespace SalesApp {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(364, 55);
+			this->label2->Location = System::Drawing::Point(86, 231);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(53, 16);
+			this->label2->Size = System::Drawing::Size(56, 16);
 			this->label2->TabIndex = 35;
-			this->label2->Text = L"nombre";
+			this->label2->Text = L"Nombre";
 			// 
 			// txtName
 			// 
-			this->txtName->Location = System::Drawing::Point(426, 52);
+			this->txtName->Location = System::Drawing::Point(148, 228);
 			this->txtName->Name = L"txtName";
-			this->txtName->Size = System::Drawing::Size(110, 22);
+			this->txtName->Size = System::Drawing::Size(107, 22);
 			this->txtName->TabIndex = 36;
+			// 
+			// btnPhoto
+			// 
+			this->btnPhoto->Location = System::Drawing::Point(474, 270);
+			this->btnPhoto->Name = L"btnPhoto";
+			this->btnPhoto->Size = System::Drawing::Size(181, 28);
+			this->btnPhoto->TabIndex = 37;
+			this->btnPhoto->Text = L"Agregar foto";
+			this->btnPhoto->UseVisualStyleBackColor = true;
+			this->btnPhoto->Click += gcnew System::EventHandler(this, &ProductForm::btnPhoto_Click);
 			// 
 			// ProductForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1056, 620);
+			this->Controls->Add(this->btnPhoto);
 			this->Controls->Add(this->txtName);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label6);
@@ -434,8 +453,6 @@ namespace SalesApp {
 
 		}
 #pragma endregion
-	private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
 
 	public:
 		void RefreshGrid() {
@@ -461,6 +478,7 @@ namespace SalesApp {
 			txtColor->Clear();
 			txtPrice->Clear();
 			txtStock->Clear();
+			pbPhoto->Image = nullptr;
 		}
 	private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e) {
 		Product^ p = gcnew Product();
@@ -471,7 +489,11 @@ namespace SalesApp {
 		p->Stock = Double::Parse(txtStock->Text);
 		p->Description = txtDescription->Text;
 		p->Color = txtColor->Text;
-
+		if (pbPhoto != nullptr && pbPhoto->Image != nullptr) {
+			System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream();
+			pbPhoto->Image->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
+			p->Photo = ms->ToArray();
+		}
 		Controller::AddProduct(p);
 		RefreshGrid();
 		ClearControls();
@@ -485,16 +507,20 @@ namespace SalesApp {
 		p->Stock = Double::Parse(txtStock->Text);
 		p->Description = txtDescription->Text;
 		p->Color = txtColor->Text;
-
+		if (pbPhoto != nullptr && pbPhoto->Image != nullptr) {
+			System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream();
+			pbPhoto->Image->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
+			p->Photo = ms->ToArray();
+		}	
 		Controller::UpdateProduct(p);
 		RefreshGrid();
-		ClearControls();
 
 	}
 	private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
 		String^ CodeProduct = txtCode->Text;
 		Controller::DeleteProduct(CodeProduct);
 		RefreshGrid();
+		ClearControls();
 
 	}
 	private: System::Void dgvWarehouse_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
@@ -508,6 +534,14 @@ namespace SalesApp {
 		txtStock->Text = "" + p->Stock;
 		txtDescription->Text = p->Description;
 		txtColor->Text = p->Color;
+		if (p->Photo != nullptr) {
+			System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream(p->Photo);
+			pbPhoto->Image = Image::FromStream(ms);
+		}
+		else {
+			pbPhoto->Image = nullptr;
+			pbPhoto->Invalidate();
+		}
 	}
 
 
@@ -540,6 +574,7 @@ namespace SalesApp {
 		btnAdd->Enabled = false;
 		btnDelete->Enabled = false;
 		btnUpdate->Enabled = false;
+		btnPhoto->Enabled = false;
 	}
 	private: System::Void txtPrice_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
@@ -547,11 +582,21 @@ namespace SalesApp {
 		btnAdd->Enabled = true;
 		btnDelete->Enabled = false;
 		btnUpdate->Enabled = false;
+		btnPhoto->Enabled = true;
 	}
 private: System::Void modificarProductoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 		btnAdd->Enabled = false;
 		btnDelete->Enabled = true;
 		btnUpdate->Enabled = true;
+		btnPhoto->Enabled = true;
+}
+private: System::Void btnPhoto_Click(System::Object^ sender, System::EventArgs^ e) {
+	OpenFileDialog^ opnfd = gcnew OpenFileDialog();
+	opnfd->Filter = "Image Files (*.jpg;*.jpeg;)|*.jpg;*.jpeg;";
+	if (opnfd->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+	{
+		pbPhoto->Image = gcnew Bitmap(opnfd->FileName);
+	}
 }
 };
 }
