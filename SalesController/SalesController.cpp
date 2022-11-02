@@ -1,20 +1,11 @@
 #include "pch.h"
 
 #include "SalesController.h"
-using namespace System;
-using namespace System::Collections::Generic;
-using namespace SalesModel;
-using namespace System::IO;
+
 using namespace System::Runtime::Serialization::Formatters::Binary;
 
 Void SalesController::Controller::PersistWarehouse() {
-    /*StreamWriter^ sw = gcnew StreamWriter("ListaProductos.txt");
-    for (int i = 0; i < productList->Count; i++) {
-        sw->WriteLine(productList[i]->Code + "," + productList[i]->Name + "," + productList[i]->Price + "," +
-            productList[i]->Size + "," + productList[i]->Stock + "," +
-            productList[i]->Description + "," + productList[i]->Color);
-    }
-    sw->Close();*/
+
     Stream^ stream = File::Open("Products.bin", FileMode::Create);
     BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
     bFormatter->Serialize(stream, productList);
@@ -92,22 +83,11 @@ Product^ SalesController::Controller::QueryProductByName(String^ productname)
     return nullptr;
 }
 Void SalesController::Controller::LoadProductsData() {
-
     productList = gcnew List<Product^>();
-    Stream^ sr = nullptr;
-    //Lectura desde un archivo binario
-    try {
-        Stream^ sr = File::Open("Products.bin", FileMode::Open);
-        BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
-        productList = (List<Product^>^)bFormatter->Deserialize(sr);
-    }
-    catch (FileNotFoundException^ ex) {
-    }
-    catch (Exception^ ex) {
-    }
-    finally {
-        if (sr != nullptr)  sr->Close();
-    }
+    Stream^ sr = File::Open("Products.bin", FileMode::Open);
+    BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
+    productList = (List<Product^>^)bFormatter->Deserialize(sr);
+    sr->Close();
 }
 
 
