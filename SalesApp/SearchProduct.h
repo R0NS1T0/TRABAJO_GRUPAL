@@ -10,18 +10,21 @@ namespace SalesApp {
 	using namespace System::Drawing;
 	using namespace SalesController;
 	using namespace SalesModel;
+	using namespace System::Collections::Generic;
 	/// <summary>
 	/// Resumen de SearchProduct
 	/// </summary>
 	public ref class SearchProduct : public System::Windows::Forms::Form
 	{
+		Form^ refForm;
 	public:
-		SearchProduct(void)
+		SearchProduct(Form^ form)
 		{
 			InitializeComponent();
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			refForm = form;
 		}
 
 	protected:
@@ -156,7 +159,7 @@ namespace SalesApp {
 		}
 #pragma endregion
 	private: System::Void btnSearch_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (txtCode != nullptr) {
+		if (txtCode->Text->Trim() != "") {
 			String^ productCode;
 			productCode = txtCode->Text;
 			Product^ p = Controller::QueryProductByID(productCode);
@@ -172,8 +175,20 @@ namespace SalesApp {
 		}
 		else {
 			MessageBox::Show("Ingrese un código registrado");
-
+			List<Product^>^ productList = Controller::QueryAllProducts();
+			//Se borran los datos del grid.
+			dgvproducts->Rows->Clear();
+			for (int i = 0; i < productList->Count; i++) {
+				dgvproducts->Rows->Add(gcnew array<String^> {
+					    productList[i]->Code,
+						productList[i]->Name,
+						Convert::ToString(productList[i]->Price),
+						Convert::ToString(productList[i]->Stock)
+				});
+			}
 		}
 	}
+	private: System::Void dgvProducts_CellClick(System::Object^ sender,
+		System::Windows::Forms::DataGridViewCellEventArgs^ e);
 	};
 }

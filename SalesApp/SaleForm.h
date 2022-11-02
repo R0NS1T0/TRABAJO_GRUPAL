@@ -386,18 +386,18 @@ namespace SalesApp {
 		 txtTotal->Text = "" + total;
 	 }
 private: System::Void btnAddtosale_Click(System::Object^ sender, System::EventArgs^ e) {
-	SearchProduct^ searchproduct = gcnew SearchProduct();
+	SearchProduct^ searchproduct = gcnew SearchProduct(this);
 	searchproduct->ShowDialog();
 }
 	   public: Void AddProducttoSalesDetail(Product^ p) {
 		   dataGridView1->Rows->Add(gcnew array<String^> {
-			   p->Code,
+					p->Code,
 				   p->Name,
 				   Convert::ToString(p->Price),
 				   "1",
 				   Convert::ToString(p->Price)
 		   });
-		   RefreshTotalAmount();
+		   //RefreshTotalAmount();
 	   }
 
 private: System::Void btnSearchClient_Click(System::Object^ sender, System::EventArgs^ e) {
