@@ -112,6 +112,7 @@ namespace SalesApp {
 			this->dgvproducts->RowTemplate->Height = 24;
 			this->dgvproducts->Size = System::Drawing::Size(500, 111);
 			this->dgvproducts->TabIndex = 3;
+			this->dgvproducts->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &SearchProduct::dgvproducts_CellClick);
 			// 
 			// codigo
 			// 
@@ -145,6 +146,7 @@ namespace SalesApp {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->AutoSize = true;
 			this->ClientSize = System::Drawing::Size(524, 290);
 			this->Controls->Add(this->dgvproducts);
 			this->Controls->Add(this->txtCode);
@@ -174,7 +176,7 @@ namespace SalesApp {
 
 		}
 		else {
-			MessageBox::Show("Ingrese un código registrado");
+			//MessageBox::Show("Ingrese un código registrado");
 			List<Product^>^ productList = Controller::QueryAllProducts();
 			//Se borran los datos del grid.
 			dgvproducts->Rows->Clear();
@@ -188,7 +190,7 @@ namespace SalesApp {
 			}
 		}
 	}
-	private: System::Void dgvProducts_CellClick(System::Object^ sender,
+	private: System::Void dgvproducts_CellClick(System::Object^ sender,
 		System::Windows::Forms::DataGridViewCellEventArgs^ e);
-	};
+};
 }

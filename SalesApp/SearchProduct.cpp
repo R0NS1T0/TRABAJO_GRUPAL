@@ -2,7 +2,7 @@
 #include "SearchProduct.h"
 #include "SaleForm.h"
 
-System::Void SalesApp::SearchProduct::dgvProducts_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
+System::Void SalesApp::SearchProduct::dgvproducts_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
 {
 	if (e->RowIndex < 0) return;
 	if (e->RowIndex >= 0) {

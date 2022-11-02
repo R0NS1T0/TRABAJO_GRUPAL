@@ -34,6 +34,11 @@ namespace SalesApp {
 		Customer^ customer;
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::TextBox^ txtCompanyUser;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Código;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nombre;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Precio;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Cantidad;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Subtotal;
 
 		   double Salenumber;
 	protected:
@@ -61,11 +66,11 @@ namespace SalesApp {
 
 
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Id;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nombre;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Precio;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Cantidad;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Subtotal;
+
+
+
+
+
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Label^ label5;
@@ -99,11 +104,6 @@ namespace SalesApp {
 			this->btnAddtosale = (gcnew System::Windows::Forms::Button());
 			this->btnRemovefromsale = (gcnew System::Windows::Forms::Button());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->Id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Nombre = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Precio = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Cantidad = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Subtotal = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
@@ -115,6 +115,11 @@ namespace SalesApp {
 			this->lblcustomerDNI = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->txtCompanyUser = (gcnew System::Windows::Forms::TextBox());
+			this->Código = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Nombre = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Precio = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Cantidad = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Subtotal = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -191,8 +196,8 @@ namespace SalesApp {
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
-				this->Id, this->Nombre,
-					this->Precio, this->Cantidad, this->Subtotal
+				this->Código,
+					this->Nombre, this->Precio, this->Cantidad, this->Subtotal
 			});
 			this->dataGridView1->Location = System::Drawing::Point(28, 212);
 			this->dataGridView1->Margin = System::Windows::Forms::Padding(4);
@@ -201,41 +206,6 @@ namespace SalesApp {
 			this->dataGridView1->Size = System::Drawing::Size(724, 176);
 			this->dataGridView1->TabIndex = 7;
 			this->dataGridView1->CellValueChanged += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &SaleForm::dataGridView1_CellValueChanged);
-			// 
-			// Id
-			// 
-			this->Id->HeaderText = L"Id";
-			this->Id->MinimumWidth = 6;
-			this->Id->Name = L"Id";
-			this->Id->Width = 30;
-			// 
-			// Nombre
-			// 
-			this->Nombre->HeaderText = L"Nombre";
-			this->Nombre->MinimumWidth = 6;
-			this->Nombre->Name = L"Nombre";
-			this->Nombre->Width = 270;
-			// 
-			// Precio
-			// 
-			this->Precio->HeaderText = L"Precio";
-			this->Precio->MinimumWidth = 6;
-			this->Precio->Name = L"Precio";
-			this->Precio->Width = 60;
-			// 
-			// Cantidad
-			// 
-			this->Cantidad->HeaderText = L"Cantidad";
-			this->Cantidad->MinimumWidth = 6;
-			this->Cantidad->Name = L"Cantidad";
-			this->Cantidad->Width = 70;
-			// 
-			// Subtotal
-			// 
-			this->Subtotal->HeaderText = L"Subtotal";
-			this->Subtotal->MinimumWidth = 6;
-			this->Subtotal->Name = L"Subtotal";
-			this->Subtotal->Width = 70;
 			// 
 			// label3
 			// 
@@ -340,6 +310,40 @@ namespace SalesApp {
 			this->txtCompanyUser->Size = System::Drawing::Size(117, 22);
 			this->txtCompanyUser->TabIndex = 18;
 			this->txtCompanyUser->TextChanged += gcnew System::EventHandler(this, &SaleForm::txtCompanyUser_TextChanged);
+			// 
+			// Código
+			// 
+			this->Código->HeaderText = L"Id";
+			this->Código->MinimumWidth = 6;
+			this->Código->Name = L"Código";
+			// 
+			// Nombre
+			// 
+			this->Nombre->HeaderText = L"Nombre";
+			this->Nombre->MinimumWidth = 6;
+			this->Nombre->Name = L"Nombre";
+			this->Nombre->Width = 270;
+			// 
+			// Precio
+			// 
+			this->Precio->HeaderText = L"Precio";
+			this->Precio->MinimumWidth = 6;
+			this->Precio->Name = L"Precio";
+			this->Precio->Width = 60;
+			// 
+			// Cantidad
+			// 
+			this->Cantidad->HeaderText = L"Cantidad";
+			this->Cantidad->MinimumWidth = 6;
+			this->Cantidad->Name = L"Cantidad";
+			this->Cantidad->Width = 70;
+			// 
+			// Subtotal
+			// 
+			this->Subtotal->HeaderText = L"Subtotal";
+			this->Subtotal->MinimumWidth = 6;
+			this->Subtotal->Name = L"Subtotal";
+			this->Subtotal->Width = 70;
 			// 
 			// SaleForm
 			// 
