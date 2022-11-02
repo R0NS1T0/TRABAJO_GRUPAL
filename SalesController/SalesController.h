@@ -19,6 +19,7 @@ namespace SalesController {
 			static int DeleteProduct(String^ productCode);
 			static List <Product^>^ QueryAllProducts();
 			static Product^ QueryProductByID(String^ productCode);
+			static Product^ QueryProductByName(String^ productname);
 			static void LoadProductsData();
 			static void PersistWarehouse();
 			static int searchProduct(Product^ productcode);

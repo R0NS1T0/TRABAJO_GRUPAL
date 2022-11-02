@@ -10,7 +10,7 @@ using namespace System::Runtime::Serialization::Formatters::Binary;
 Void SalesController::Controller::PersistWarehouse() {
     StreamWriter^ sw = gcnew StreamWriter("ListaProductos.txt");
     for (int i = 0; i < productList->Count; i++) {
-        sw->WriteLine(productList[i]->Code + "," + productList[i]->Price + "," +
+        sw->WriteLine(productList[i]->Code + "," + productList[i]->Name + "," + productList[i]->Price + "," +
             productList[i]->Size + "," + productList[i]->Stock + "," +
             productList[i]->Description + "," + productList[i]->Color);
     }
@@ -79,6 +79,14 @@ Product^ SalesController::Controller::QueryProductByID(String^ productCode)
         }
     return nullptr;
 }
+Product^ SalesController::Controller::QueryProductByName(String^ productname)
+{
+    for (int i = 0; i < productList->Count; i++)
+        if (productname == productList[i]->Name) {
+            return productList[i];
+        }
+    return nullptr;
+}
 Void SalesController::Controller::LoadProductsData() {
 
     productList = gcnew List<Product^>();
@@ -90,11 +98,12 @@ Void SalesController::Controller::LoadProductsData() {
 
         array<String^>^ data = line->Split(',');
         p->Code = data[0];						//Codigo
-        p->Price = Convert::ToDouble(data[1]);	//Precio
-        p->Size = data[2];						//Talla
-        p->Stock = Convert::ToDouble(data[3]);	//Stock
-        p->Description = data[4];				//Descripcion
-        p->Color = data[5];						//Color
+        p->Name = data[1];
+        p->Price = Convert::ToDouble(data[2]);	//Precio
+        p->Size = data[3];						//Talla
+        p->Stock = Convert::ToDouble(data[4]);	//Stock
+        p->Description = data[5];				//Descripcion
+        p->Color = data[6];						//Color
         productList->Add(p);
     }
     sr->Close();

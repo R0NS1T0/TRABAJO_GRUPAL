@@ -75,6 +75,8 @@ namespace SalesApp {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ productSize;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ producDescription;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ productColor;
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::TextBox^ txtName;
 
 
 	private:
@@ -118,6 +120,8 @@ namespace SalesApp {
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->txtColor = (gcnew System::Windows::Forms::TextBox());
 			this->txtSize = (gcnew System::Windows::Forms::TextBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->txtName = (gcnew System::Windows::Forms::TextBox());
 			this->menuStrip1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvWarehouse))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbPhoto))->BeginInit();
@@ -130,7 +134,7 @@ namespace SalesApp {
 			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->archivoToolStripMenuItem });
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(1056, 28);
+			this->menuStrip1->Size = System::Drawing::Size(1056, 30);
 			this->menuStrip1->TabIndex = 0;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -141,27 +145,27 @@ namespace SalesApp {
 					this->modificarProductoToolStripMenuItem, this->salirToolStripMenuItem
 			});
 			this->archivoToolStripMenuItem->Name = L"archivoToolStripMenuItem";
-			this->archivoToolStripMenuItem->Size = System::Drawing::Size(73, 24);
+			this->archivoToolStripMenuItem->Size = System::Drawing::Size(73, 26);
 			this->archivoToolStripMenuItem->Text = L"Archivo";
 			// 
 			// nuevoProductoToolStripMenuItem
 			// 
 			this->nuevoProductoToolStripMenuItem->Name = L"nuevoProductoToolStripMenuItem";
-			this->nuevoProductoToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->nuevoProductoToolStripMenuItem->Size = System::Drawing::Size(221, 26);
 			this->nuevoProductoToolStripMenuItem->Text = L"Nuevo producto";
 			this->nuevoProductoToolStripMenuItem->Click += gcnew System::EventHandler(this, &ProductForm::nuevoProductoToolStripMenuItem_Click);
 			// 
 			// modificarProductoToolStripMenuItem
 			// 
 			this->modificarProductoToolStripMenuItem->Name = L"modificarProductoToolStripMenuItem";
-			this->modificarProductoToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->modificarProductoToolStripMenuItem->Size = System::Drawing::Size(221, 26);
 			this->modificarProductoToolStripMenuItem->Text = L"Modificar producto";
 			this->modificarProductoToolStripMenuItem->Click += gcnew System::EventHandler(this, &ProductForm::modificarProductoToolStripMenuItem_Click);
 			// 
 			// salirToolStripMenuItem
 			// 
 			this->salirToolStripMenuItem->Name = L"salirToolStripMenuItem";
-			this->salirToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->salirToolStripMenuItem->Size = System::Drawing::Size(221, 26);
 			this->salirToolStripMenuItem->Text = L"Salir";
 			// 
 			// dgvWarehouse
@@ -375,11 +379,29 @@ namespace SalesApp {
 			this->txtSize->Size = System::Drawing::Size(100, 22);
 			this->txtSize->TabIndex = 20;
 			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(364, 55);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(53, 16);
+			this->label2->TabIndex = 35;
+			this->label2->Text = L"nombre";
+			// 
+			// txtName
+			// 
+			this->txtName->Location = System::Drawing::Point(426, 52);
+			this->txtName->Name = L"txtName";
+			this->txtName->Size = System::Drawing::Size(110, 22);
+			this->txtName->TabIndex = 36;
+			// 
 			// ProductForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1056, 620);
+			this->Controls->Add(this->txtName);
+			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->txtColor);
@@ -443,6 +465,7 @@ namespace SalesApp {
 	private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e) {
 		Product^ p = gcnew Product();
 		p->Code = txtCode->Text;
+		p->Name = txtName->Text;
 		p->Price = Double::Parse(txtPrice->Text);
 		p->Size = txtSize->Text;
 		p->Stock = Double::Parse(txtStock->Text);
@@ -456,6 +479,7 @@ namespace SalesApp {
 	private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^ e) {
 		Product^ p = gcnew Product();
 		p->Code = txtCode->Text;
+		p->Name = txtName->Text;
 		p->Price = Double::Parse(txtPrice->Text);
 		p->Size = txtSize->Text;
 		p->Stock = Double::Parse(txtStock->Text);
