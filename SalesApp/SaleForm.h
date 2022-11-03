@@ -456,11 +456,14 @@ private: System::Void btnRecordSale_Click(System::Object^ sender, System::EventA
 	Salenumber++;
 	Sale^ s = gcnew Sale();
 	s->ID = Salenumber;
-	s->Customer = (Customer^)txtClient->Text;
+	s->Customer = txtClient->Text;
 	s->Date = txtdate->Text;
 	s->TotalPrice = Convert::ToDouble(txtTotal->Text);
-	s->Salesman = (Salesman^)txtCompanyUser->Text;
+	s->Salesman = txtCompanyUser->Text;
 	Controller::RegisterSale(s);
+
+
+
 }
 private: System::Void label6_Click(System::Object^ sender, System::EventArgs^ e) {
 }
