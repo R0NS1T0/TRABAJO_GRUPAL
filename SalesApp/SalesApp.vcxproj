@@ -137,6 +137,9 @@
     <ClInclude Include="SearchProduct.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="StoreForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="UsersForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -171,6 +174,7 @@
     <ClCompile Include="SalesApp.cpp" />
     <ClCompile Include="SalesMainForm.cpp" />
     <ClCompile Include="SearchProduct.cpp" />
+    <ClCompile Include="StoreForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="app.ico" />
@@ -211,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SearchProduct.resx">
       <DependentUpon>SearchProduct.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StoreForm.resx">
+      <DependentUpon>StoreForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsersForm.resx">
       <DependentUpon>UsersForm.h</DependentUpon>
