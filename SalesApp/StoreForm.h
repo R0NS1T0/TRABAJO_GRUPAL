@@ -45,15 +45,15 @@ namespace SalesApp {
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Label^ label5;
-	private: System::Windows::Forms::Label^ label6;
+
 	private: System::Windows::Forms::Label^ label7;
-	private: System::Windows::Forms::Label^ label8;
+
 	private: System::Windows::Forms::TextBox^ txtId;
 	private: System::Windows::Forms::TextBox^ txtName;
 	private: System::Windows::Forms::TextBox^ txtDescription;
 	private: System::Windows::Forms::TextBox^ txtAddress;
-	private: System::Windows::Forms::TextBox^ txtPostalCode;
-	private: System::Windows::Forms::TextBox^ txtArea;
+
+
 
 
 
@@ -62,9 +62,9 @@ namespace SalesApp {
 
 	private: System::Windows::Forms::ComboBox^ cmbDistrict;
 	private: System::Windows::Forms::ComboBox^ cmbSalesman;
-	private: System::Windows::Forms::GroupBox^ groupBox1;
-	private: System::Windows::Forms::RadioButton^ rbtnNo;
-	private: System::Windows::Forms::RadioButton^ rbtnYes;
+
+
+
 	private: System::Windows::Forms::Button^ btnAdd;
 	private: System::Windows::Forms::Button^ btnUpdate;
 	private: System::Windows::Forms::Button^ btnDelete;
@@ -73,6 +73,9 @@ namespace SalesApp {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ storeId;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ storeName;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ salesmanResponsible;
+
+
+
 
 	private:
 		/// <summary>
@@ -97,20 +100,13 @@ namespace SalesApp {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->txtId = (gcnew System::Windows::Forms::TextBox());
 			this->txtName = (gcnew System::Windows::Forms::TextBox());
 			this->txtDescription = (gcnew System::Windows::Forms::TextBox());
 			this->txtAddress = (gcnew System::Windows::Forms::TextBox());
-			this->txtPostalCode = (gcnew System::Windows::Forms::TextBox());
-			this->txtArea = (gcnew System::Windows::Forms::TextBox());
 			this->cmbDistrict = (gcnew System::Windows::Forms::ComboBox());
 			this->cmbSalesman = (gcnew System::Windows::Forms::ComboBox());
-			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
-			this->rbtnYes = (gcnew System::Windows::Forms::RadioButton());
-			this->rbtnNo = (gcnew System::Windows::Forms::RadioButton());
 			this->btnAdd = (gcnew System::Windows::Forms::Button());
 			this->btnUpdate = (gcnew System::Windows::Forms::Button());
 			this->btnDelete = (gcnew System::Windows::Forms::Button());
@@ -119,7 +115,6 @@ namespace SalesApp {
 			this->storeName = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->salesmanResponsible = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->menuStrip1->SuspendLayout();
-			this->groupBox1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvStore))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -206,15 +201,6 @@ namespace SalesApp {
 			this->label5->TabIndex = 5;
 			this->label5->Text = L"Distrito:";
 			// 
-			// label6
-			// 
-			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(25, 275);
-			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(76, 16);
-			this->label6->TabIndex = 6;
-			this->label6->Text = L"Cód.Postal:";
-			// 
 			// label7
 			// 
 			this->label7->AutoSize = true;
@@ -223,15 +209,6 @@ namespace SalesApp {
 			this->label7->Size = System::Drawing::Size(149, 16);
 			this->label7->TabIndex = 7;
 			this->label7->Text = L"Vendedor responsable:";
-			// 
-			// label8
-			// 
-			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(272, 275);
-			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(68, 16);
-			this->label8->TabIndex = 8;
-			this->label8->Text = L"Área (m2):";
 			// 
 			// txtId
 			// 
@@ -262,20 +239,6 @@ namespace SalesApp {
 			this->txtAddress->Size = System::Drawing::Size(605, 22);
 			this->txtAddress->TabIndex = 12;
 			// 
-			// txtPostalCode
-			// 
-			this->txtPostalCode->Location = System::Drawing::Point(113, 269);
-			this->txtPostalCode->Name = L"txtPostalCode";
-			this->txtPostalCode->Size = System::Drawing::Size(136, 22);
-			this->txtPostalCode->TabIndex = 14;
-			// 
-			// txtArea
-			// 
-			this->txtArea->Location = System::Drawing::Point(346, 272);
-			this->txtArea->Name = L"txtArea";
-			this->txtArea->Size = System::Drawing::Size(100, 22);
-			this->txtArea->TabIndex = 15;
-			// 
 			// cmbDistrict
 			// 
 			this->cmbDistrict->FormattingEnabled = true;
@@ -292,42 +255,9 @@ namespace SalesApp {
 			this->cmbSalesman->Size = System::Drawing::Size(171, 24);
 			this->cmbSalesman->TabIndex = 17;
 			// 
-			// groupBox1
-			// 
-			this->groupBox1->Controls->Add(this->rbtnNo);
-			this->groupBox1->Controls->Add(this->rbtnYes);
-			this->groupBox1->Location = System::Drawing::Point(491, 228);
-			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Size = System::Drawing::Size(227, 63);
-			this->groupBox1->TabIndex = 18;
-			this->groupBox1->TabStop = false;
-			this->groupBox1->Text = L"Posee sistema de refrigeración";
-			// 
-			// rbtnYes
-			// 
-			this->rbtnYes->AutoSize = true;
-			this->rbtnYes->Location = System::Drawing::Point(19, 37);
-			this->rbtnYes->Name = L"rbtnYes";
-			this->rbtnYes->Size = System::Drawing::Size(40, 20);
-			this->rbtnYes->TabIndex = 0;
-			this->rbtnYes->TabStop = true;
-			this->rbtnYes->Text = L"Sí";
-			this->rbtnYes->UseVisualStyleBackColor = true;
-			// 
-			// rbtnNo
-			// 
-			this->rbtnNo->AutoSize = true;
-			this->rbtnNo->Location = System::Drawing::Point(137, 37);
-			this->rbtnNo->Name = L"rbtnNo";
-			this->rbtnNo->Size = System::Drawing::Size(46, 20);
-			this->rbtnNo->TabIndex = 1;
-			this->rbtnNo->TabStop = true;
-			this->rbtnNo->Text = L"No";
-			this->rbtnNo->UseVisualStyleBackColor = true;
-			// 
 			// btnAdd
 			// 
-			this->btnAdd->Location = System::Drawing::Point(146, 313);
+			this->btnAdd->Location = System::Drawing::Point(113, 274);
 			this->btnAdd->Name = L"btnAdd";
 			this->btnAdd->Size = System::Drawing::Size(155, 25);
 			this->btnAdd->TabIndex = 19;
@@ -336,7 +266,7 @@ namespace SalesApp {
 			// 
 			// btnUpdate
 			// 
-			this->btnUpdate->Location = System::Drawing::Point(324, 315);
+			this->btnUpdate->Location = System::Drawing::Point(302, 276);
 			this->btnUpdate->Name = L"btnUpdate";
 			this->btnUpdate->Size = System::Drawing::Size(163, 23);
 			this->btnUpdate->TabIndex = 20;
@@ -345,7 +275,7 @@ namespace SalesApp {
 			// 
 			// btnDelete
 			// 
-			this->btnDelete->Location = System::Drawing::Point(510, 315);
+			this->btnDelete->Location = System::Drawing::Point(510, 276);
 			this->btnDelete->Name = L"btnDelete";
 			this->btnDelete->Size = System::Drawing::Size(154, 23);
 			this->btnDelete->TabIndex = 21;
@@ -396,18 +326,13 @@ namespace SalesApp {
 			this->Controls->Add(this->btnDelete);
 			this->Controls->Add(this->btnUpdate);
 			this->Controls->Add(this->btnAdd);
-			this->Controls->Add(this->groupBox1);
 			this->Controls->Add(this->cmbSalesman);
 			this->Controls->Add(this->cmbDistrict);
-			this->Controls->Add(this->txtArea);
-			this->Controls->Add(this->txtPostalCode);
 			this->Controls->Add(this->txtAddress);
 			this->Controls->Add(this->txtDescription);
 			this->Controls->Add(this->txtName);
 			this->Controls->Add(this->txtId);
-			this->Controls->Add(this->label8);
 			this->Controls->Add(this->label7);
-			this->Controls->Add(this->label6);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label3);
@@ -419,8 +344,6 @@ namespace SalesApp {
 			this->Text = L"Mantenimiento de tiendas";
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
-			this->groupBox1->ResumeLayout(false);
-			this->groupBox1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvStore))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
