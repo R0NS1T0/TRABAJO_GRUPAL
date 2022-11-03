@@ -37,8 +37,13 @@ namespace SalesApp {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Código;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nombre;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Precio;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Cantidad;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ quantity;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Subtotal;
+
+
+
+
+
 
 		   double Salenumber;
 	protected:
@@ -107,7 +112,7 @@ namespace SalesApp {
 			this->Código = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Nombre = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Precio = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Cantidad = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->quantity = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Subtotal = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
@@ -197,7 +202,7 @@ namespace SalesApp {
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
 				this->Código,
-					this->Nombre, this->Precio, this->Cantidad, this->Subtotal
+					this->Nombre, this->Precio, this->quantity, this->Subtotal
 			});
 			this->dataGridView1->Location = System::Drawing::Point(28, 212);
 			this->dataGridView1->Margin = System::Windows::Forms::Padding(4);
@@ -229,12 +234,12 @@ namespace SalesApp {
 			this->Precio->Name = L"Precio";
 			this->Precio->Width = 60;
 			// 
-			// Cantidad
+			// quantity
 			// 
-			this->Cantidad->HeaderText = L"Cantidad";
-			this->Cantidad->MinimumWidth = 6;
-			this->Cantidad->Name = L"Cantidad";
-			this->Cantidad->Width = 70;
+			this->quantity->HeaderText = L"Cantidad";
+			this->quantity->MinimumWidth = 6;
+			this->quantity->Name = L"quantity";
+			this->quantity->Width = 70;
 			// 
 			// Subtotal
 			// 
@@ -316,18 +321,18 @@ namespace SalesApp {
 			this->lblcustomername->AutoSize = true;
 			this->lblcustomername->Location = System::Drawing::Point(181, 186);
 			this->lblcustomername->Name = L"lblcustomername";
-			this->lblcustomername->Size = System::Drawing::Size(44, 16);
+			this->lblcustomername->Size = System::Drawing::Size(73, 16);
 			this->lblcustomername->TabIndex = 15;
-			this->lblcustomername->Text = L"label6";
+			this->lblcustomername->Text = L"                      ";
 			// 
 			// lblcustomerDNI
 			// 
 			this->lblcustomerDNI->AutoSize = true;
-			this->lblcustomerDNI->Location = System::Drawing::Point(260, 186);
+			this->lblcustomerDNI->Location = System::Drawing::Point(342, 186);
 			this->lblcustomerDNI->Name = L"lblcustomerDNI";
-			this->lblcustomerDNI->Size = System::Drawing::Size(44, 16);
+			this->lblcustomerDNI->Size = System::Drawing::Size(61, 16);
 			this->lblcustomerDNI->TabIndex = 16;
-			this->lblcustomerDNI->Text = L"label7";
+			this->lblcustomerDNI->Text = L"                  ";
 			// 
 			// label6
 			// 
@@ -387,7 +392,7 @@ namespace SalesApp {
 		 double IGV = 0.18;
 		 for (int i = 0; i < dataGridView1->RowCount - 1; i++)
 			 total += Double::Parse(dataGridView1->Rows[i]->Cells[4]->Value->ToString());
-		 txtSubTotal->Text = "" + (total * (1 - IGV));
+		 txtSubTotal->Text = "" + total*(1-IGV);
 		 txtIGV->Text = "" + (total * IGV);
 		 txtTotal->Text = "" + total;
 	 }
@@ -465,5 +470,8 @@ private: System::Void txtCompanyUser_TextChanged(System::Object^ sender, System:
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	RefreshTotalAmount();
 }
+/*private: System::Void btnRemovefromsale_Click(System::Object^ sender, System::EventArgs^ e) {
+	dataGridView1->Rows
+}*/
 };
 }
