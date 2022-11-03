@@ -17,13 +17,15 @@ namespace SalesApp {
 	/// </summary>
 	public ref class CustomerForm : public System::Windows::Forms::Form
 	{
+		Form^ refForm;
 	public:
-		CustomerForm(void)
+		CustomerForm(Form^ form)
 		{
 			InitializeComponent();
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			refForm = form;
 		}
 
 	protected:
@@ -106,6 +108,7 @@ namespace SalesApp {
 			this->dgvCustomer->TabIndex = 0;
 			this->dgvCustomer->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &CustomerForm::dgvCustomer_CellClick);
 			this->dgvCustomer->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &CustomerForm::dgvCustomer_CellContentClick);
+			this->dgvCustomer->CellContentDoubleClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &CustomerForm::dgvCustomer_CellContentDoubleClick);
 			// 
 			// nombre
 			// 
@@ -277,15 +280,7 @@ private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^
 	Controller::DeleteProduct(CustomerName);
 	RefreshGrid();
 }
-private: System::Void dgvCustomer_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-	int SelectedRowIndex = dgvCustomer->SelectedCells[0]->RowIndex;
-	String^ CustomerName = dgvCustomer->Rows[SelectedRowIndex]->Cells[0]->Value->ToString();
-	Customer^ c = Controller::QueryCustomerbyName(CustomerName);
-
-	txtName->Text = c->Name;
-	txtLastName->Text = c->LastName;
-	txtDNI->Text = c->DNI;
-}
+private: System::Void dgvCustomer_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
 private: System::Void dgvCustomer_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	if (dgvCustomer->CurrentCell != nullptr &&
 		dgvCustomer->CurrentCell->Value != nullptr &&
@@ -300,9 +295,12 @@ private: System::Void dgvCustomer_CellContentClick(System::Object^ sender, Syste
 		txtLastName->Text = s->LastName;
 		txtDNI->Text = s->DNI;
 	}
+
 }
 private: System::Void CustomerForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	RefreshGrid();
 }
+private: System::Void dgvCustomer_CellContentDoubleClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
+
 };
 }

@@ -1,6 +1,6 @@
 #pragma once
 #include "SearchProduct.h"
-
+#include "CustomerForm.h"
 namespace SalesApp {
 
 	using namespace System;
@@ -104,6 +104,11 @@ namespace SalesApp {
 			this->btnAddtosale = (gcnew System::Windows::Forms::Button());
 			this->btnRemovefromsale = (gcnew System::Windows::Forms::Button());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->Código = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Nombre = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Precio = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Cantidad = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Subtotal = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
@@ -115,11 +120,6 @@ namespace SalesApp {
 			this->lblcustomerDNI = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->txtCompanyUser = (gcnew System::Windows::Forms::TextBox());
-			this->Código = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Nombre = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Precio = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Cantidad = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Subtotal = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -205,7 +205,43 @@ namespace SalesApp {
 			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->Size = System::Drawing::Size(724, 176);
 			this->dataGridView1->TabIndex = 7;
+			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &SaleForm::dataGridView1_CellContentClick);
 			this->dataGridView1->CellValueChanged += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &SaleForm::dataGridView1_CellValueChanged);
+			// 
+			// Código
+			// 
+			this->Código->HeaderText = L"Id";
+			this->Código->MinimumWidth = 6;
+			this->Código->Name = L"Código";
+			this->Código->Width = 125;
+			// 
+			// Nombre
+			// 
+			this->Nombre->HeaderText = L"Nombre";
+			this->Nombre->MinimumWidth = 6;
+			this->Nombre->Name = L"Nombre";
+			this->Nombre->Width = 270;
+			// 
+			// Precio
+			// 
+			this->Precio->HeaderText = L"Precio";
+			this->Precio->MinimumWidth = 6;
+			this->Precio->Name = L"Precio";
+			this->Precio->Width = 60;
+			// 
+			// Cantidad
+			// 
+			this->Cantidad->HeaderText = L"Cantidad";
+			this->Cantidad->MinimumWidth = 6;
+			this->Cantidad->Name = L"Cantidad";
+			this->Cantidad->Width = 70;
+			// 
+			// Subtotal
+			// 
+			this->Subtotal->HeaderText = L"Subtotal";
+			this->Subtotal->MinimumWidth = 6;
+			this->Subtotal->Name = L"Subtotal";
+			this->Subtotal->Width = 70;
 			// 
 			// label3
 			// 
@@ -311,40 +347,6 @@ namespace SalesApp {
 			this->txtCompanyUser->TabIndex = 18;
 			this->txtCompanyUser->TextChanged += gcnew System::EventHandler(this, &SaleForm::txtCompanyUser_TextChanged);
 			// 
-			// Código
-			// 
-			this->Código->HeaderText = L"Id";
-			this->Código->MinimumWidth = 6;
-			this->Código->Name = L"Código";
-			// 
-			// Nombre
-			// 
-			this->Nombre->HeaderText = L"Nombre";
-			this->Nombre->MinimumWidth = 6;
-			this->Nombre->Name = L"Nombre";
-			this->Nombre->Width = 270;
-			// 
-			// Precio
-			// 
-			this->Precio->HeaderText = L"Precio";
-			this->Precio->MinimumWidth = 6;
-			this->Precio->Name = L"Precio";
-			this->Precio->Width = 60;
-			// 
-			// Cantidad
-			// 
-			this->Cantidad->HeaderText = L"Cantidad";
-			this->Cantidad->MinimumWidth = 6;
-			this->Cantidad->Name = L"Cantidad";
-			this->Cantidad->Width = 70;
-			// 
-			// Subtotal
-			// 
-			this->Subtotal->HeaderText = L"Subtotal";
-			this->Subtotal->MinimumWidth = 6;
-			this->Subtotal->Name = L"Subtotal";
-			this->Subtotal->Width = 70;
-			// 
 			// SaleForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -401,8 +403,12 @@ private: System::Void btnAddtosale_Click(System::Object^ sender, System::EventAr
 				   "1",
 				   Convert::ToString(p->Price)
 		   });
-		   //RefreshTotalAmount();
+		   RefreshTotalAmount();
 	   }
+	public: Void AddCustomerToSaleDetail(Customer^ c) {
+		txtClient->Text = c->Name;
+		SetCustomer(c);
+	}
 
 private: System::Void btnSearchClient_Click(System::Object^ sender, System::EventArgs^ e) {
 	customer = Controller::QueryCustomerbyName(txtClient->Text);
@@ -413,7 +419,9 @@ private: System::Void btnSearchClient_Click(System::Object^ sender, System::Even
 			
 	}
 	else {
-		MessageBox::Show("Cliente no encontrado!");
+		CustomerForm^ customerform = gcnew CustomerForm(this);
+		customerform->ShowDialog();
+		
 	}
 }
 	   Void SetCustomer(Customer^ cust) {
@@ -453,6 +461,9 @@ private: System::Void label6_Click(System::Object^ sender, System::EventArgs^ e)
 }
 private: System::Void txtCompanyUser_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 
+}
+private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	RefreshTotalAmount();
 }
 };
 }

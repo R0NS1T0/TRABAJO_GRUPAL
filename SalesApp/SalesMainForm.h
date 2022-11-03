@@ -241,7 +241,7 @@ private: System::Void UsuariostoolStripMenuItem_Click(System::Object^ sender, Sy
 	usersform->Show();
 }
 private: System::Void clientesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	CustomerForm^ customerForm = gcnew CustomerForm();
+	CustomerForm^ customerForm = gcnew CustomerForm(this);
 	customerForm->MdiParent = this;
 	customerForm->Show();
 }
