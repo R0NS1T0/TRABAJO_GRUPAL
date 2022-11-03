@@ -52,6 +52,7 @@ namespace SalesController {
 			static void RegisterSale(Sale^ sale);
 			static double QueryLastSale();
 			static void PersistSales();
+			static List<Sale^>^ QueryAllSales();
 			static void LoadSalesData();
 		//funciones para el mantenimiento de tiendas***
 			static int AddStore(Store^ store);

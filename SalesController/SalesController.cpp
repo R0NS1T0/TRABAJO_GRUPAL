@@ -244,6 +244,11 @@ void SalesController::Controller::PersistSales()
     bFormatter->Serialize(stream, salesList); 
     stream->Close();
 }
+List<Sale^>^ SalesController::Controller::QueryAllSales()
+{
+    LoadSalesData();
+    return salesList;
+}
 void SalesController::Controller::LoadSalesData()
 {
     salesList = gcnew List<Sale^>();
