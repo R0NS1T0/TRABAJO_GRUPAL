@@ -123,7 +123,7 @@ void SalesController::Controller::EraseAll()
 Session^ SalesController::Controller::rememberdata()
 {
     Session^ s = gcnew Session();
-    for (int i; i < SessionList->Count; i++) {
+    for (int i=0; i < SessionList->Count; i++) {
         s = SessionList[i];
     }
     return s;
@@ -227,10 +227,10 @@ void SalesController::Controller::RegisterSale(Sale^ sale)
     salesList->Add(sale);
     PersistSales();
 }
-int SalesController::Controller::QueryLastSale()
+double SalesController::Controller::QueryLastSale()
 {
     LoadSalesData();
-    int lastSaleId = 0;
+    double lastSaleId = 0;
     for (int i = 0; i < salesList->Count; i++) {
         if (salesList[i]->ID > lastSaleId)
             lastSaleId = salesList[i]->ID;

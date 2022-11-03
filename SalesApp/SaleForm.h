@@ -425,6 +425,9 @@ private: System::Void btnSearchClient_Click(System::Object^ sender, System::Even
 
 private: System::Void SaleForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	txtdate->Text = DateTime::Now.ToString("dd/MM/yyyy");
+	Session^ logged = gcnew Session();
+	logged = Controller::rememberdata();
+	txtCompanyUser->Text = logged->ActiveUser;
 
 }
 private: System::Void dataGridView1_CellValueChanged(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {

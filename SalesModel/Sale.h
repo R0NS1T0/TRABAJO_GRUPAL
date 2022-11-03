@@ -12,7 +12,7 @@ using namespace System::Collections::Generic;
 namespace SalesModel {
     public ref class Sale {
     public:
-        property int ID;
+        property double ID;
         property String^ Date;
         property char Status;
         property double TotalPrice;

@@ -50,7 +50,7 @@ namespace SalesController {
 
 		//funciones para el mantenimiento de venta
 			static void RegisterSale(Sale^ sale);
-			static int QueryLastSale();
+			static double QueryLastSale();
 			static void PersistSales();
 			static void LoadSalesData();
 		//funciones para el mantenimiento de tiendas***
