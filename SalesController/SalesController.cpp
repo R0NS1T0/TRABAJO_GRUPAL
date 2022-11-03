@@ -82,6 +82,21 @@ Product^ SalesController::Controller::QueryProductByName(String^ productname)
         }
     return nullptr;
 }
+void SalesController::Controller::LoadStoresData()
+{
+    storeList = gcnew List<Store^>();
+    Stream^ sr = File::Open("Stores.bin", FileMode::Open);
+    BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
+    storeList = (List<Store^>^)bFormatter->Deserialize(sr);
+    sr->Close();
+}
+void SalesController::Controller::PersistStores()
+{
+    Stream^ stream = File::Open("Stores.bin", FileMode::Create);
+    BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
+    bFormatter->Serialize(stream, storeList);
+    stream->Close();
+}
 Void SalesController::Controller::LoadProductsData() {
     productList = gcnew List<Product^>();
     Stream^ sr = File::Open("Products.bin", FileMode::Open);
@@ -214,6 +229,49 @@ void SalesController::Controller::LoadSalesData()
     finally {
         if (sr != nullptr) sr->Close();
     }
+}
+int SalesController::Controller::AddStore(Store^ store)
+{
+    storeList->Add(store);
+    PersistStores();
+    return 1;
+}
+int SalesController::Controller::UpdateStore(Store^ store)
+{
+    for (int i = 0; i < storeList->Count; i++)
+        if (store->ID== storeList[i]->ID) {
+            storeList[i] = store;
+            PersistStores();
+            return 1;
+        }
+    return 0;
+}
+int SalesController::Controller::DeleteStore(int storeID)
+{
+    for (int i = 0; i < storeList->Count; i++)
+        if (storeID == storeList[i]->ID) {
+            storeList->RemoveAt(i);
+            PersistStores();
+            return 1;
+        }
+    return 0;
+}
+List<Store^>^ SalesController::Controller::QueryAllStores()
+{
+    LoadStoresData();
+    List<Store^>^ StoreList = gcnew List<Store^>();
+    for (int i = 0; i < storeList->Count; i++) {
+        StoreList->Add(storeList[i]);
+    }
+    return StoreList;
+}
+Store^ SalesController::Controller::QueryStoreByID(int storeID)
+{
+    for (int i = 0; i < storeList->Count; i++)
+        if (storeID == storeList[i]->ID) {
+            return storeList[i];
+        }
+    return nullptr; 
 }
 int SalesController::Controller::AddCustomer(Customer^ customer)
 {

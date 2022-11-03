@@ -8,6 +8,9 @@ namespace SalesApp {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace SalesModel;
+	using namespace SalesController;
+	using namespace System::Collections::Generic;
 
 	/// <summary>
 	/// Resumen de StoreForm
@@ -41,16 +44,22 @@ namespace SalesApp {
 	private: System::Windows::Forms::ToolStripMenuItem^ modificarToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ eliminarToolStripMenuItem;
 	private: System::Windows::Forms::Label^ label1;
+
+
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::Label^ label3;
+
 	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::Label^ label5;
+	private: System::Windows::Forms::TextBox^ txtID;
 
-	private: System::Windows::Forms::Label^ label7;
 
-	private: System::Windows::Forms::TextBox^ txtId;
-	private: System::Windows::Forms::TextBox^ txtName;
-	private: System::Windows::Forms::TextBox^ txtDescription;
+
+
+	private: System::Windows::Forms::TextBox^ txtDiscount;
+
+
+
+
+
 	private: System::Windows::Forms::TextBox^ txtAddress;
 
 
@@ -60,8 +69,8 @@ namespace SalesApp {
 
 
 
-	private: System::Windows::Forms::ComboBox^ cmbDistrict;
-	private: System::Windows::Forms::ComboBox^ cmbSalesman;
+
+
 
 
 
@@ -69,10 +78,26 @@ namespace SalesApp {
 	private: System::Windows::Forms::Button^ btnUpdate;
 	private: System::Windows::Forms::Button^ btnDelete;
 	private: System::Windows::Forms::DataGridView^ dgvStore;
+	private: System::Windows::Forms::TextBox^ txtBranchID;
 
+
+
+
+
+
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::LinkLabel^ linkLabel1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ storeId;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ storeName;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ salesmanResponsible;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ storeDiscount;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ storeBranchId;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ storeAddress;
+
+
+
+
+
+
+
 
 
 
@@ -97,23 +122,21 @@ namespace SalesApp {
 			this->eliminarToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->txtId = (gcnew System::Windows::Forms::TextBox());
-			this->txtName = (gcnew System::Windows::Forms::TextBox());
-			this->txtDescription = (gcnew System::Windows::Forms::TextBox());
+			this->txtID = (gcnew System::Windows::Forms::TextBox());
+			this->txtDiscount = (gcnew System::Windows::Forms::TextBox());
 			this->txtAddress = (gcnew System::Windows::Forms::TextBox());
-			this->cmbDistrict = (gcnew System::Windows::Forms::ComboBox());
-			this->cmbSalesman = (gcnew System::Windows::Forms::ComboBox());
 			this->btnAdd = (gcnew System::Windows::Forms::Button());
 			this->btnUpdate = (gcnew System::Windows::Forms::Button());
 			this->btnDelete = (gcnew System::Windows::Forms::Button());
 			this->dgvStore = (gcnew System::Windows::Forms::DataGridView());
 			this->storeId = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->storeName = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->salesmanResponsible = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->storeDiscount = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->storeBranchId = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->storeAddress = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->txtBranchID = (gcnew System::Windows::Forms::TextBox());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->linkLabel1 = (gcnew System::Windows::Forms::LinkLabel());
 			this->menuStrip1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvStore))->BeginInit();
 			this->SuspendLayout();
@@ -159,101 +182,51 @@ namespace SalesApp {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(25, 51);
+			this->label1->Location = System::Drawing::Point(25, 86);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(21, 16);
+			this->label1->Size = System::Drawing::Size(51, 16);
 			this->label1->TabIndex = 1;
-			this->label1->Text = L"Id:";
+			this->label1->Text = L"Código";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(25, 85);
+			this->label2->Location = System::Drawing::Point(25, 120);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(59, 16);
+			this->label2->Size = System::Drawing::Size(92, 16);
 			this->label2->TabIndex = 2;
-			this->label2->Text = L"Nombre:";
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(25, 126);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(82, 16);
-			this->label3->TabIndex = 3;
-			this->label3->Text = L"Descripción:";
+			this->label2->Text = L"Descuento(%)";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(25, 189);
+			this->label4->Location = System::Drawing::Point(25, 194);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(67, 16);
 			this->label4->TabIndex = 4;
 			this->label4->Text = L"Dirección:";
 			// 
-			// label5
+			// txtID
 			// 
-			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(25, 231);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(51, 16);
-			this->label5->TabIndex = 5;
-			this->label5->Text = L"Distrito:";
+			this->txtID->Location = System::Drawing::Point(124, 83);
+			this->txtID->Name = L"txtID";
+			this->txtID->Size = System::Drawing::Size(111, 22);
+			this->txtID->TabIndex = 9;
 			// 
-			// label7
+			// txtDiscount
 			// 
-			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(382, 48);
-			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(149, 16);
-			this->label7->TabIndex = 7;
-			this->label7->Text = L"Vendedor responsable:";
-			// 
-			// txtId
-			// 
-			this->txtId->Location = System::Drawing::Point(113, 45);
-			this->txtId->Name = L"txtId";
-			this->txtId->Size = System::Drawing::Size(227, 22);
-			this->txtId->TabIndex = 9;
-			// 
-			// txtName
-			// 
-			this->txtName->Location = System::Drawing::Point(113, 79);
-			this->txtName->Name = L"txtName";
-			this->txtName->Size = System::Drawing::Size(605, 22);
-			this->txtName->TabIndex = 10;
-			// 
-			// txtDescription
-			// 
-			this->txtDescription->Location = System::Drawing::Point(113, 126);
-			this->txtDescription->Multiline = true;
-			this->txtDescription->Name = L"txtDescription";
-			this->txtDescription->Size = System::Drawing::Size(605, 51);
-			this->txtDescription->TabIndex = 11;
+			this->txtDiscount->Location = System::Drawing::Point(124, 117);
+			this->txtDiscount->Name = L"txtDiscount";
+			this->txtDiscount->Size = System::Drawing::Size(111, 22);
+			this->txtDiscount->TabIndex = 10;
 			// 
 			// txtAddress
 			// 
-			this->txtAddress->Location = System::Drawing::Point(113, 189);
+			this->txtAddress->Location = System::Drawing::Point(124, 191);
+			this->txtAddress->Multiline = true;
 			this->txtAddress->Name = L"txtAddress";
-			this->txtAddress->Size = System::Drawing::Size(605, 22);
+			this->txtAddress->Size = System::Drawing::Size(227, 54);
 			this->txtAddress->TabIndex = 12;
-			// 
-			// cmbDistrict
-			// 
-			this->cmbDistrict->FormattingEnabled = true;
-			this->cmbDistrict->Location = System::Drawing::Point(113, 228);
-			this->cmbDistrict->Name = L"cmbDistrict";
-			this->cmbDistrict->Size = System::Drawing::Size(332, 24);
-			this->cmbDistrict->TabIndex = 16;
-			// 
-			// cmbSalesman
-			// 
-			this->cmbSalesman->FormattingEnabled = true;
-			this->cmbSalesman->Location = System::Drawing::Point(547, 45);
-			this->cmbSalesman->Name = L"cmbSalesman";
-			this->cmbSalesman->Size = System::Drawing::Size(171, 24);
-			this->cmbSalesman->TabIndex = 17;
 			// 
 			// btnAdd
 			// 
@@ -263,6 +236,7 @@ namespace SalesApp {
 			this->btnAdd->TabIndex = 19;
 			this->btnAdd->Text = L"Agregar";
 			this->btnAdd->UseVisualStyleBackColor = true;
+			this->btnAdd->Click += gcnew System::EventHandler(this, &StoreForm::btnAdd_Click);
 			// 
 			// btnUpdate
 			// 
@@ -272,6 +246,7 @@ namespace SalesApp {
 			this->btnUpdate->TabIndex = 20;
 			this->btnUpdate->Text = L"Modificar";
 			this->btnUpdate->UseVisualStyleBackColor = true;
+			this->btnUpdate->Click += gcnew System::EventHandler(this, &StoreForm::btnUpdate_Click);
 			// 
 			// btnDelete
 			// 
@@ -281,67 +256,101 @@ namespace SalesApp {
 			this->btnDelete->TabIndex = 21;
 			this->btnDelete->Text = L"Eliminar";
 			this->btnDelete->UseVisualStyleBackColor = true;
+			this->btnDelete->Click += gcnew System::EventHandler(this, &StoreForm::btnDelete_Click);
 			// 
 			// dgvStore
 			// 
 			this->dgvStore->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dgvStore->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
-				this->storeId, this->storeName,
-					this->salesmanResponsible
+			this->dgvStore->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
+				this->storeId, this->storeDiscount,
+					this->storeBranchId, this->storeAddress
 			});
-			this->dgvStore->Location = System::Drawing::Point(59, 346);
+			this->dgvStore->Location = System::Drawing::Point(28, 328);
 			this->dgvStore->Name = L"dgvStore";
 			this->dgvStore->RowHeadersWidth = 51;
 			this->dgvStore->RowTemplate->Height = 24;
-			this->dgvStore->Size = System::Drawing::Size(605, 150);
+			this->dgvStore->Size = System::Drawing::Size(697, 150);
 			this->dgvStore->TabIndex = 22;
+			this->dgvStore->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &StoreForm::dgvStore_CellClick);
+			this->dgvStore->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &StoreForm::dgvStore_CellContentClick);
 			// 
 			// storeId
 			// 
-			this->storeId->HeaderText = L"Id";
+			this->storeId->HeaderText = L"Código";
 			this->storeId->MinimumWidth = 6;
 			this->storeId->Name = L"storeId";
-			this->storeId->Width = 30;
+			this->storeId->Width = 90;
 			// 
-			// storeName
+			// storeDiscount
 			// 
-			this->storeName->HeaderText = L"Nombre";
-			this->storeName->MinimumWidth = 6;
-			this->storeName->Name = L"storeName";
-			this->storeName->Width = 250;
+			this->storeDiscount->HeaderText = L"Descuento";
+			this->storeDiscount->MinimumWidth = 6;
+			this->storeDiscount->Name = L"storeDiscount";
+			this->storeDiscount->Width = 90;
 			// 
-			// salesmanResponsible
+			// storeBranchId
 			// 
-			this->salesmanResponsible->HeaderText = L"Vendedor responsable";
-			this->salesmanResponsible->MinimumWidth = 6;
-			this->salesmanResponsible->Name = L"salesmanResponsible";
-			this->salesmanResponsible->Width = 170;
+			this->storeBranchId->HeaderText = L"Sucursal";
+			this->storeBranchId->MinimumWidth = 6;
+			this->storeBranchId->Name = L"storeBranchId";
+			this->storeBranchId->Width = 140;
+			// 
+			// storeAddress
+			// 
+			this->storeAddress->HeaderText = L"Dirección";
+			this->storeAddress->MinimumWidth = 6;
+			this->storeAddress->Name = L"storeAddress";
+			this->storeAddress->Width = 270;
+			// 
+			// txtBranchID
+			// 
+			this->txtBranchID->Location = System::Drawing::Point(124, 154);
+			this->txtBranchID->Name = L"txtBranchID";
+			this->txtBranchID->Size = System::Drawing::Size(109, 22);
+			this->txtBranchID->TabIndex = 24;
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(25, 157);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(59, 16);
+			this->label3->TabIndex = 23;
+			this->label3->Text = L"Sucursal";
+			// 
+			// linkLabel1
+			// 
+			this->linkLabel1->AutoSize = true;
+			this->linkLabel1->Location = System::Drawing::Point(436, 229);
+			this->linkLabel1->Name = L"linkLabel1";
+			this->linkLabel1->Size = System::Drawing::Size(198, 16);
+			this->linkLabel1->TabIndex = 25;
+			this->linkLabel1->TabStop = true;
+			this->linkLabel1->Text = L"Ver disponibilidad de productos";
 			// 
 			// StoreForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(752, 530);
+			this->Controls->Add(this->linkLabel1);
+			this->Controls->Add(this->txtBranchID);
+			this->Controls->Add(this->label3);
 			this->Controls->Add(this->dgvStore);
 			this->Controls->Add(this->btnDelete);
 			this->Controls->Add(this->btnUpdate);
 			this->Controls->Add(this->btnAdd);
-			this->Controls->Add(this->cmbSalesman);
-			this->Controls->Add(this->cmbDistrict);
 			this->Controls->Add(this->txtAddress);
-			this->Controls->Add(this->txtDescription);
-			this->Controls->Add(this->txtName);
-			this->Controls->Add(this->txtId);
-			this->Controls->Add(this->label7);
-			this->Controls->Add(this->label5);
+			this->Controls->Add(this->txtDiscount);
+			this->Controls->Add(this->txtID);
 			this->Controls->Add(this->label4);
-			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->menuStrip1);
 			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"StoreForm";
 			this->Text = L"Mantenimiento de tiendas";
+			this->Load += gcnew System::EventHandler(this, &StoreForm::StoreForm_Load);
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvStore))->EndInit();
@@ -350,5 +359,83 @@ namespace SalesApp {
 
 		}
 #pragma endregion
-	};
+
+	public:
+		void RefreshGrid() {
+			List<Store^>^ storeList = Controller::QueryAllStores();
+			dgvStore->Rows->Clear();
+			for (int i = 0; i < storeList->Count; i++) {
+				dgvStore->Rows->Add(gcnew array<String^>{
+					""+ storeList[i]->ID,		
+						"" + storeList[i]->Discount,	
+						storeList[i]->BranchID,		
+						storeList[i]->Address,		
+				});
+
+			}
+		}
+		void ClearControls() {
+			txtID->Clear();
+			txtDiscount->Clear();
+			txtBranchID->Clear();
+			txtAddress->Clear();
+		}
+	private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e) {
+		Store^ s = gcnew Store();
+		s->ID = Int32::Parse(txtID->Text);
+		s->Discount = Double::Parse(txtDiscount->Text);
+		s->BranchID = txtBranchID->Text;
+		s->Address = txtAddress->Text;
+		Controller::AddStore(s);
+		RefreshGrid();
+		ClearControls();
+	}
+private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^ e) {
+	Store^ s = gcnew Store();
+	s->ID = Int32::Parse(txtID->Text);
+	s->Discount = Double::Parse(txtDiscount->Text);
+	s->BranchID = txtBranchID->Text;
+	s->Address = txtAddress->Text;
+	Controller::UpdateStore(s);
+	RefreshGrid();
+}
+private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
+	int storeID = Int32::Parse(txtID->Text);
+	Controller::DeleteStore(storeID);
+	RefreshGrid();
+	ClearControls();
+}
+private: System::Void dgvStore_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	int SelectedRowIndex = dgvStore->SelectedCells[0]->RowIndex;
+	int storeID = Int32::Parse(dgvStore->Rows[SelectedRowIndex]->Cells[0]->Value->ToString());
+	Store^ s = Controller::QueryStoreByID(storeID);
+
+	txtID->Text = "" + s->ID;
+	txtDiscount->Text = "" + s->Discount;
+	txtBranchID->Text = s->BranchID;
+	txtAddress->Text = s->Address;
+
+}
+private: System::Void dgvStore_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	if (dgvStore->CurrentCell != nullptr &&
+		dgvStore->CurrentCell->Value != nullptr &&
+		dgvStore->CurrentCell->Value->ToString() != "") {
+		int selectedrowindex = dgvStore->SelectedCells[0]->RowIndex;
+		DataGridViewRow^ selectedRow = dgvStore->Rows[selectedrowindex];
+		int storeID = Int32::Parse(selectedRow->Cells[0]->Value->ToString());
+
+		Store^ s = Controller::QueryStoreByID(storeID);
+		txtID->Text = "" + s->ID;
+		txtDiscount->Text = "" + s->Discount;
+		txtBranchID->Text = s->BranchID;
+		txtAddress->Text = s->Address;
+
+
+	}
+	
+}
+private: System::Void StoreForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	RefreshGrid();
+}
+};
 }

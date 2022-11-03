@@ -13,6 +13,7 @@ namespace SalesController {
 			static List <Employee^>^ employeeList = gcnew List<Employee^>();
 			static List <Customer^>^ customerList = gcnew List<Customer^>();
 			static List <Sale^>^ salesList = gcnew List<Sale^>();
+			static List <Store^>^ storeList = gcnew List<Store^>();
 		// TODO: Agregue aquí los métodos de esta clase.
 		public:
 			static int AddProduct(Product^ product);
@@ -52,7 +53,13 @@ namespace SalesController {
 			static void PersistSales();
 			static void LoadSalesData();
 		//funciones para el mantenimiento de tiendas***
-
+			static int AddStore(Store^ store);
+			static int UpdateStore(Store^ store);
+			static int DeleteStore(int storeID);
+			static List <Store^>^ QueryAllStores();
+			static Store^ QueryStoreByID(int storeID);
+			static void LoadStoresData();
+			static void PersistStores();
 
 		//funciones extra
 
