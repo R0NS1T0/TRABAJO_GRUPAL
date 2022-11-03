@@ -183,7 +183,7 @@ namespace SalesApp {
 			// lbluser
 			// 
 			this->lbluser->AutoSize = true;
-			this->lbluser->Location = System::Drawing::Point(772, 12);
+			this->lbluser->Location = System::Drawing::Point(742, 9);
 			this->lbluser->Name = L"lbluser";
 			this->lbluser->Size = System::Drawing::Size(44, 16);
 			this->lbluser->TabIndex = 3;

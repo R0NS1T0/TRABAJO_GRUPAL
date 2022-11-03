@@ -101,6 +101,8 @@ void SalesController::Controller::SaveUserData(String^ username)
 {
     //esto va a sacar los datos de Employee en login, guardarlos en una lista de datos local para facilitar el proceso
     //NO va a requerir de permanencia tras el uso
+    EraseAll();
+
     SessionList = gcnew List<Session^>();
     Employee^ loggeduser = QueryUserById(username);
     Session^ s = gcnew Session;
