@@ -14,6 +14,7 @@ namespace SalesController {
 			static List <Customer^>^ customerList = gcnew List<Customer^>();
 			static List <Sale^>^ salesList = gcnew List<Sale^>();
 			static List <Store^>^ storeList = gcnew List<Store^>();
+			static List <Session^>^SessionList= gcnew List<Session^>();
 		// TODO: Agregue aquí los métodos de esta clase.
 		public:
 			static int AddProduct(Product^ product);
@@ -62,6 +63,8 @@ namespace SalesController {
 			static void PersistStores();
 
 		//funciones extra
-
+			static void SaveUserData(String^ username);	//guarda los datos de inicio de sesión en una clase
+			static void EraseAll();		//asegura que estos datos sean unicos de cada inicio de sesión
+			static Session^ rememberdata();
 	};
 }		

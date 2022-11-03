@@ -97,6 +97,36 @@ void SalesController::Controller::PersistStores()
     bFormatter->Serialize(stream, storeList);
     stream->Close();
 }
+void SalesController::Controller::SaveUserData(String^ username)
+{
+    //esto va a sacar los datos de Employee en login, guardarlos en una lista de datos local para facilitar el proceso
+    //NO va a requerir de permanencia tras el uso
+    SessionList = gcnew List<Session^>();
+    Employee^ loggeduser = QueryUserById(username);
+    Session^ s = gcnew Session;
+    
+    s->ActiveUser = loggeduser->CompanyUser;
+    s->authority = loggeduser->AuthorityClass;
+    s->Username = loggeduser->Name;
+    s->Lastname = loggeduser->LastName;
+
+    SessionList->Add(s);
+}
+void SalesController::Controller::EraseAll()
+{
+    SessionList->Clear();
+
+}
+
+Session^ SalesController::Controller::rememberdata()
+{
+    Session^ s = gcnew Session();
+    for (int i; i < SessionList->Count; i++) {
+        s = SessionList[i];
+    }
+    return s;
+}
+
 Void SalesController::Controller::LoadProductsData() {
     productList = gcnew List<Product^>();
     Stream^ sr = File::Open("Products.bin", FileMode::Open);
@@ -209,7 +239,7 @@ void SalesController::Controller::PersistSales()
 {
     Stream^ stream = File::Open("Sales.bin", FileMode::Create);
     BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
-    bFormatter->Serialize(stream, salesList);
+    bFormatter->Serialize(stream, salesList); 
     stream->Close();
 }
 void SalesController::Controller::LoadSalesData()

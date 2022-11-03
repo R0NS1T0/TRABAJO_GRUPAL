@@ -60,6 +60,9 @@
     <ClInclude Include="Warehouse.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="Session.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SalesModel.cpp">
@@ -105,6 +108,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="Warehouse.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Session.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

@@ -52,6 +52,8 @@ namespace SalesApp {
 	private: System::Windows::Forms::ToolStripTextBox^ UsuariostoolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ clientesToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ tiendasToolStripMenuItem;
+	private: System::Windows::Forms::Label^ lbluser;
+
 
 
 	private:
@@ -76,9 +78,10 @@ namespace SalesApp {
 			this->productoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->UsuariostoolStripMenuItem = (gcnew System::Windows::Forms::ToolStripTextBox());
 			this->clientesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->tiendasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->reporteToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ayudaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->tiendasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->lbluser = (gcnew System::Windows::Forms::Label());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -139,7 +142,7 @@ namespace SalesApp {
 			// productoToolStripMenuItem
 			// 
 			this->productoToolStripMenuItem->Name = L"productoToolStripMenuItem";
-			this->productoToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->productoToolStripMenuItem->Size = System::Drawing::Size(174, 26);
 			this->productoToolStripMenuItem->Text = L"Producto";
 			this->productoToolStripMenuItem->Click += gcnew System::EventHandler(this, &SalesMainForm::productoToolStripMenuItem_Click);
 			// 
@@ -154,9 +157,16 @@ namespace SalesApp {
 			// clientesToolStripMenuItem
 			// 
 			this->clientesToolStripMenuItem->Name = L"clientesToolStripMenuItem";
-			this->clientesToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->clientesToolStripMenuItem->Size = System::Drawing::Size(174, 26);
 			this->clientesToolStripMenuItem->Text = L"Clientes";
 			this->clientesToolStripMenuItem->Click += gcnew System::EventHandler(this, &SalesMainForm::clientesToolStripMenuItem_Click);
+			// 
+			// tiendasToolStripMenuItem
+			// 
+			this->tiendasToolStripMenuItem->Name = L"tiendasToolStripMenuItem";
+			this->tiendasToolStripMenuItem->Size = System::Drawing::Size(174, 26);
+			this->tiendasToolStripMenuItem->Text = L"Tiendas";
+			this->tiendasToolStripMenuItem->Click += gcnew System::EventHandler(this, &SalesMainForm::tiendasToolStripMenuItem_Click);
 			// 
 			// reporteToolStripMenuItem
 			// 
@@ -170,18 +180,21 @@ namespace SalesApp {
 			this->ayudaToolStripMenuItem->Size = System::Drawing::Size(65, 24);
 			this->ayudaToolStripMenuItem->Text = L"Ayuda";
 			// 
-			// tiendasToolStripMenuItem
+			// lbluser
 			// 
-			this->tiendasToolStripMenuItem->Name = L"tiendasToolStripMenuItem";
-			this->tiendasToolStripMenuItem->Size = System::Drawing::Size(224, 26);
-			this->tiendasToolStripMenuItem->Text = L"Tiendas";
-			this->tiendasToolStripMenuItem->Click += gcnew System::EventHandler(this, &SalesMainForm::tiendasToolStripMenuItem_Click);
+			this->lbluser->AutoSize = true;
+			this->lbluser->Location = System::Drawing::Point(772, 12);
+			this->lbluser->Name = L"lbluser";
+			this->lbluser->Size = System::Drawing::Size(44, 16);
+			this->lbluser->TabIndex = 3;
+			this->lbluser->Text = L"label1";
 			// 
 			// SalesMainForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(886, 665);
+			this->Controls->Add(this->lbluser);
 			this->Controls->Add(this->menuStrip1);
 			this->IsMdiContainer = true;
 			this->MainMenuStrip = this->menuStrip1;
@@ -199,6 +212,10 @@ namespace SalesApp {
 	private: System::Void SalesMainForm_Load(System::Object^ sender, System::EventArgs^ e) {
 		LoginForm^ loginForm = gcnew LoginForm();
 		loginForm->ShowDialog();
+
+		Session^ s = gcnew Session();
+		s = Controller::rememberdata();
+		lbluser->Text = s->ActiveUser;
 	}
 	private: System::Void transacToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
