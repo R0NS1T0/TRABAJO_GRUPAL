@@ -16,7 +16,9 @@ namespace SalesModel {
         property double ID;
         property String^ Date;
         property char Status;
+        property String^ Store;
         property double TotalPrice;
+        property double Amount;
         property String^ Salesman;
         property String^ Customer;
         property List<SaleDetail^>^ SaleDetails;

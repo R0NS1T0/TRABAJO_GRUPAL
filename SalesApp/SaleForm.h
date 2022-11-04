@@ -39,6 +39,8 @@ namespace SalesApp {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Precio;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ quantity;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Subtotal;
+	private: System::Windows::Forms::Label^ label7;
+	private: System::Windows::Forms::ComboBox^ cmbStore;
 
 
 
@@ -46,6 +48,7 @@ namespace SalesApp {
 
 
 		   double Salenumber;
+		   double saleamount;
 	protected:
 		/// <summary>
 		/// Limpiar los recursos que se estén usando.
@@ -125,6 +128,8 @@ namespace SalesApp {
 			this->lblcustomerDNI = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->txtCompanyUser = (gcnew System::Windows::Forms::TextBox());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->cmbStore = (gcnew System::Windows::Forms::ComboBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -352,11 +357,30 @@ namespace SalesApp {
 			this->txtCompanyUser->TabIndex = 18;
 			this->txtCompanyUser->TextChanged += gcnew System::EventHandler(this, &SaleForm::txtCompanyUser_TextChanged);
 			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Location = System::Drawing::Point(229, 410);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(50, 16);
+			this->label7->TabIndex = 20;
+			this->label7->Text = L"Tienda";
+			// 
+			// cmbStore
+			// 
+			this->cmbStore->FormattingEnabled = true;
+			this->cmbStore->Location = System::Drawing::Point(206, 429);
+			this->cmbStore->Name = L"cmbStore";
+			this->cmbStore->Size = System::Drawing::Size(98, 24);
+			this->cmbStore->TabIndex = 21;
+			// 
 			// SaleForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(765, 532);
+			this->Controls->Add(this->cmbStore);
+			this->Controls->Add(this->label7);
 			this->Controls->Add(this->txtCompanyUser);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->lblcustomerDNI);
@@ -435,13 +459,20 @@ private: System::Void btnSearchClient_Click(System::Object^ sender, System::Even
 		   lblcustomername->Text = this->customer->Name + " - " + customer->LastName;
 		   lblcustomerDNI->Text = this->customer->DNI;
 	   }
+	   void FillCmbStores() {
+		   cmbStore->Items->Clear();
+		   List <Store^>^ storeList = Controller::QueryAllStores();
+		   for (int i = 0; i < storeList->Count; i++) {
+			   cmbStore->Items->Add(storeList[i]);
+		   }
+	   }
 
 private: System::Void SaleForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	txtdate->Text = DateTime::Now.ToString("dd/MM/yyyy");
 	Session^ logged = gcnew Session();
 	logged = Controller::rememberdata();
 	txtCompanyUser->Text = logged->ActiveUser;
-
+	FillCmbStores();
 }
 private: System::Void dataGridView1_CellValueChanged(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	
@@ -451,12 +482,15 @@ private: System::Void dataGridView1_CellValueChanged(System::Object^ sender, Sys
 			Double::Parse(dataGridView1->Rows[e->RowIndex]->Cells[2]->Value->ToString());
 		RefreshTotalAmount();
 	}
+	saleamount= Double::Parse(dataGridView1->Rows[e->RowIndex]->Cells[2]->Value->ToString());
 }
 private: System::Void btnRecordSale_Click(System::Object^ sender, System::EventArgs^ e) {
 	Salenumber++;
 	Sale^ s = gcnew Sale();
 	s->ID = Salenumber;
 	s->Customer = txtClient->Text;
+	s->Amount = saleamount;
+	s->Store = cmbStore->Text;
 	s->Date = txtdate->Text;
 	s->TotalPrice = Convert::ToDouble(txtTotal->Text);
 	s->Salesman = txtCompanyUser->Text;
