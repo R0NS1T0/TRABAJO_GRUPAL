@@ -231,6 +231,7 @@ namespace SalesApp {
 			// 
 			// menuStrip1
 			// 
+			this->menuStrip1->AllowMerge = false;
 			this->menuStrip1->ImageScalingSize = System::Drawing::Size(20, 20);
 			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->accionesToolStripMenuItem });
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
@@ -334,9 +335,7 @@ namespace SalesApp {
 			// cmbAuthority
 			// 
 			this->cmbAuthority->FormattingEnabled = true;
-			this->cmbAuthority->Items->AddRange(gcnew cli::array< System::Object^  >(3) {
-				L"administrador", L"gerente de tienda", L"vendedor"
-			});
+			this->cmbAuthority->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"administrador", L"gerente de tienda", L"vendedor" });
 			this->cmbAuthority->Location = System::Drawing::Point(422, 212);
 			this->cmbAuthority->Name = L"cmbAuthority";
 			this->cmbAuthority->Size = System::Drawing::Size(121, 24);
@@ -572,9 +571,9 @@ private: System::Void añadirToolStripMenuItem_Click(System::Object^ sender, Syst
 }
 private: System::Void UsersForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	RefreshGrid();
-	btnAdd->Enabled = true;
-	btnDelete->Enabled = true;
-	btnupdate->Enabled = true;
+	btnAdd->Enabled = false;
+	btnDelete->Enabled = false;
+	btnupdate->Enabled = false;
 }
 private: System::Void modificarToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	btnAdd->Enabled = false;

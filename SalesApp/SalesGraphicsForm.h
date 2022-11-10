@@ -9,7 +9,8 @@ namespace SalesApp {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace SalesController;
-	using namespace SalesApp;
+	using namespace SalesModel;
+	using namespace System::Collections::Generic;
 
 	/// <summary>
 	/// Resumen de SalesGraphicsForm
@@ -132,19 +133,18 @@ namespace SalesApp {
 		
 private: System::Void SalesGraphicsForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	
-	/*private: System::Void SalesGraphicsForm_Load(System::Object^ sender, System::EventArgs^ e) {
-			List<Sale^>^ saleList = Controller::QueryAllSales();
+	List<Sale^>^ saleList = Controller::QueryAllSales();
 			for (int i = 0; i < saleList->Count; i++) {
 				BarChart->Series["Monto"]->Points->Add(saleList[i]->TotalPrice);
 				BarChart->Series["Monto"]->Points[i]->AxisLabel = saleList[i]->Customer;
 				BarChart->Series["Monto"]->Points[i]->Label = Convert::ToString(saleList[i]->TotalPrice);
 
-				Piechartsales->Series["Series2"]->Points->Add(saleList[i]->Amount);
-				Piechartsales->Series["Series2"]->Points[i]->LegendText = saleList[i]->Store;
-				Piechartsales->Series["Series2"]->Points[i]->Label = Convert::ToString(saleList[i]->TotalPrice);
+				Piechartsales->Series["Series1"]->Points->Add(saleList[i]->Amount);
+				Piechartsales->Series["Series1"]->Points[i]->LegendText = saleList[i]->Store;
+				Piechartsales->Series["Series1"]->Points[i]->Label = Convert::ToString(saleList[i]->TotalPrice);
 
 			}
-		}*/
+	
 }
 };
 

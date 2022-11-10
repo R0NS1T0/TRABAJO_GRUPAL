@@ -143,6 +143,7 @@ namespace SalesApp {
 			// 
 			// menuStrip1
 			// 
+			this->menuStrip1->AllowMerge = false;
 			this->menuStrip1->ImageScalingSize = System::Drawing::Size(20, 20);
 			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->archivoToolStripMenuItem });
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
@@ -164,20 +165,23 @@ namespace SalesApp {
 			// agregarToolStripMenuItem
 			// 
 			this->agregarToolStripMenuItem->Name = L"agregarToolStripMenuItem";
-			this->agregarToolStripMenuItem->Size = System::Drawing::Size(156, 26);
+			this->agregarToolStripMenuItem->Size = System::Drawing::Size(224, 26);
 			this->agregarToolStripMenuItem->Text = L"Agregar";
+			this->agregarToolStripMenuItem->Click += gcnew System::EventHandler(this, &StoreForm::agregarToolStripMenuItem_Click);
 			// 
 			// modificarToolStripMenuItem
 			// 
 			this->modificarToolStripMenuItem->Name = L"modificarToolStripMenuItem";
-			this->modificarToolStripMenuItem->Size = System::Drawing::Size(156, 26);
+			this->modificarToolStripMenuItem->Size = System::Drawing::Size(224, 26);
 			this->modificarToolStripMenuItem->Text = L"Modificar";
+			this->modificarToolStripMenuItem->Click += gcnew System::EventHandler(this, &StoreForm::modificarToolStripMenuItem_Click);
 			// 
 			// eliminarToolStripMenuItem
 			// 
 			this->eliminarToolStripMenuItem->Name = L"eliminarToolStripMenuItem";
-			this->eliminarToolStripMenuItem->Size = System::Drawing::Size(156, 26);
+			this->eliminarToolStripMenuItem->Size = System::Drawing::Size(224, 26);
 			this->eliminarToolStripMenuItem->Text = L"Salir";
+			this->eliminarToolStripMenuItem->Click += gcnew System::EventHandler(this, &StoreForm::eliminarToolStripMenuItem_Click);
 			// 
 			// label1
 			// 
@@ -435,7 +439,25 @@ private: System::Void dgvStore_CellContentClick(System::Object^ sender, System::
 	
 }
 private: System::Void StoreForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	btnAdd->Enabled = false;
+	btnDelete->Enabled = false;
+	btnUpdate->Enabled = false;
 	RefreshGrid();
+}
+private: System::Void agregarToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	btnAdd->Enabled = true;
+	btnDelete->Enabled = false;
+	btnUpdate->Enabled = false;
+
+}
+private: System::Void modificarToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	btnAdd->Enabled = false;
+	btnDelete->Enabled = true;
+	btnUpdate->Enabled = true;
+
+}
+private: System::Void eliminarToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
 }
 };
 }

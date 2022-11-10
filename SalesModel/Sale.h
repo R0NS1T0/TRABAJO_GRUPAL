@@ -15,13 +15,14 @@ namespace SalesModel {
     public:
         property double ID;
         property String^ Date;
-        property char Status;
+        property String^ Time;
         property String^ Store;
+        property char Status;
         property double TotalPrice;
         property double Amount;
         property String^ Salesman;
+        property SaleDetail^ saleDetail;
         property String^ Customer;
         property List<SaleDetail^>^ SaleDetails;
-
     };
 }

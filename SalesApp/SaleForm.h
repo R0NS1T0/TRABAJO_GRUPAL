@@ -48,6 +48,9 @@ namespace SalesApp {
 
 
 		   double Salenumber;
+	private: System::Windows::Forms::Label^ label8;
+	private: System::Windows::Forms::TextBox^ txttime;
+
 		   double saleamount;
 	protected:
 		/// <summary>
@@ -130,6 +133,8 @@ namespace SalesApp {
 			this->txtCompanyUser = (gcnew System::Windows::Forms::TextBox());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->cmbStore = (gcnew System::Windows::Forms::ComboBox());
+			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->txttime = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -146,12 +151,12 @@ namespace SalesApp {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(33, 81);
+			this->label2->Location = System::Drawing::Point(25, 79);
 			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(48, 16);
+			this->label2->Size = System::Drawing::Size(93, 16);
 			this->label2->TabIndex = 1;
-			this->label2->Text = L"Cliente";
+			this->label2->Text = L"DNI de Cliente";
 			// 
 			// txtdate
 			// 
@@ -374,11 +379,30 @@ namespace SalesApp {
 			this->cmbStore->Size = System::Drawing::Size(98, 24);
 			this->cmbStore->TabIndex = 21;
 			// 
+			// label8
+			// 
+			this->label8->AutoSize = true;
+			this->label8->Location = System::Drawing::Point(438, 44);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(37, 16);
+			this->label8->TabIndex = 22;
+			this->label8->Text = L"Hora";
+			// 
+			// txttime
+			// 
+			this->txttime->Location = System::Drawing::Point(481, 41);
+			this->txttime->Name = L"txttime";
+			this->txttime->ReadOnly = true;
+			this->txttime->Size = System::Drawing::Size(138, 22);
+			this->txttime->TabIndex = 23;
+			// 
 			// SaleForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(765, 532);
+			this->Controls->Add(this->txttime);
+			this->Controls->Add(this->label8);
 			this->Controls->Add(this->cmbStore);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->txtCompanyUser);
@@ -440,18 +464,9 @@ private: System::Void btnAddtosale_Click(System::Object^ sender, System::EventAr
 	}
 
 private: System::Void btnSearchClient_Click(System::Object^ sender, System::EventArgs^ e) {
-	customer = Controller::QueryCustomerbyName(txtClient->Text);
-	if (customer != nullptr) {
-		//
-		lblcustomername->Text = customer->Name + " - " + customer->LastName;
-		lblcustomerDNI->Text = customer->DNI;
-			
-	}
-	else {
 		CustomerForm^ customerform = gcnew CustomerForm(this);
 		customerform->ShowDialog();
-		
-	}
+//la pestaña de clientes se abre siempre		
 }
 	   Void SetCustomer(Customer^ cust) {
 		   this->customer = cust;
@@ -463,12 +478,14 @@ private: System::Void btnSearchClient_Click(System::Object^ sender, System::Even
 		   cmbStore->Items->Clear();
 		   List <Store^>^ storeList = Controller::QueryAllStores();
 		   for (int i = 0; i < storeList->Count; i++) {
-			   cmbStore->Items->Add(storeList[i]);
+			   cmbStore->Items->Add(storeList[i]->BranchID);
 		   }
 	   }
 
 private: System::Void SaleForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	txtdate->Text = DateTime::Now.ToString("dd/MM/yyyy");
+	txttime->Text = DateTime::Now.ToString("hh:mm:ss");
+	//ahora aparece la hora de EMPEZADO el registro, pero no se va a actualizar
 	Session^ logged = gcnew Session();
 	logged = Controller::rememberdata();
 	txtCompanyUser->Text = logged->ActiveUser;
@@ -482,7 +499,7 @@ private: System::Void dataGridView1_CellValueChanged(System::Object^ sender, Sys
 			Double::Parse(dataGridView1->Rows[e->RowIndex]->Cells[2]->Value->ToString());
 		RefreshTotalAmount();
 	}
-	saleamount= Double::Parse(dataGridView1->Rows[e->RowIndex]->Cells[2]->Value->ToString());
+ /*saleamount = Double::Parse(dataGridView1->Rows[e->RowIndex]->Cells[4]->Value->ToString());*/
 }
 private: System::Void btnRecordSale_Click(System::Object^ sender, System::EventArgs^ e) {
 	Salenumber++;
