@@ -17,6 +17,6 @@ namespace SalesModel {
         property String^ Size;
         property String^ Color;
         property char Status;       //Para la función de mantenimiento de productos no se va a usar esto por ahora
-        property array<Byte>^ Photo;//aun no se implementa
+        property array<Byte>^ Photo;
     };
 }

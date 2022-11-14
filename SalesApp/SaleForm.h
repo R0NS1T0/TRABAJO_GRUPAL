@@ -438,12 +438,42 @@ namespace SalesApp {
 	 private: Void RefreshTotalAmount() {
 		 double total = 0;
 		 double IGV = 0.18;
-		 for (int i = 0; i < dataGridView1->RowCount - 1; i++)
+		 double totalamount;
+		 for (int i = 0; i < dataGridView1->RowCount - 1; i++) {
 			 total += Double::Parse(dataGridView1->Rows[i]->Cells[4]->Value->ToString());
+			 totalamount += Double::Parse(dataGridView1->Rows[i]->Cells[3]->Value->ToString());
+		 }
 		 txtSubTotal->Text = "" + total*(1-IGV);
 		 txtIGV->Text = "" + (total * IGV);
 		 txtTotal->Text = "" + total;
+		 saleamount = totalamount;
 	 }
+
+		private: Void RefreshWarehouse() {
+			Product^ p = gcnew Product();
+			List <Product^>^ productlist = gcnew List<Product^>();
+			productlist = Controller::QueryAllProducts();
+			for (int i = 0; i < dataGridView1->RowCount - 1; i++) {
+				p->Code = dataGridView1->Rows[i]->Cells[0]->Value->ToString();
+				p->Stock= Double::Parse(dataGridView1->Rows[i]->Cells[3]->Value->ToString());
+				//para cada columna, si el ID del producto coincide con el id del almacén, modifica
+				for (int j = 0; j < productlist->Count; j++) {
+					if (productlist[j]->Code==p->Code) {
+						p->Description = productlist[j]->Description;
+						p->Code = productlist[j]->Code;
+						p->Color = productlist[j]->Color;
+						p->Name = productlist[j]->Name;
+						p->Price = productlist[j]->Price;
+						p->Size = productlist[j]->Size;
+						p->Photo = productlist[j]->Photo;
+						p->Status = productlist[j]->Status;
+						//Se está modificando solo el stock, lo demas debe permanecer intacto
+						p->Stock = productlist[j]->Stock - p->Stock;
+						Controller::UpdateProduct(p);
+					}
+				}
+			}
+			}
 private: System::Void btnAddtosale_Click(System::Object^ sender, System::EventArgs^ e) {
 	SearchProduct^ searchproduct = gcnew SearchProduct(this);
 	searchproduct->ShowDialog();
@@ -499,10 +529,11 @@ private: System::Void dataGridView1_CellValueChanged(System::Object^ sender, Sys
 			Double::Parse(dataGridView1->Rows[e->RowIndex]->Cells[2]->Value->ToString());
 		RefreshTotalAmount();
 	}
- /*saleamount = Double::Parse(dataGridView1->Rows[e->RowIndex]->Cells[4]->Value->ToString());*/
+	
 }
 private: System::Void btnRecordSale_Click(System::Object^ sender, System::EventArgs^ e) {
 	Salenumber++;
+	RefreshWarehouse();	//actualización del almacén en base a la boleta de venta final
 	Sale^ s = gcnew Sale();
 	s->ID = Salenumber;
 	s->Customer = txtClient->Text;
@@ -512,9 +543,6 @@ private: System::Void btnRecordSale_Click(System::Object^ sender, System::EventA
 	s->TotalPrice = Convert::ToDouble(txtTotal->Text);
 	s->Salesman = txtCompanyUser->Text;
 	Controller::RegisterSale(s);
-
-
-
 }
 private: System::Void label6_Click(System::Object^ sender, System::EventArgs^ e) {
 }
