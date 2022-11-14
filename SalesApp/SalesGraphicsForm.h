@@ -136,7 +136,7 @@ private: System::Void SalesGraphicsForm_Load(System::Object^ sender, System::Eve
 	List<Sale^>^ saleList = Controller::QueryAllSales();
 			for (int i = 0; i < saleList->Count; i++) {
 				BarChart->Series["Monto"]->Points->Add(saleList[i]->TotalPrice);
-				BarChart->Series["Monto"]->Points[i]->AxisLabel = saleList[i]->Customer;
+				BarChart->Series["Monto"]->Points[i]->AxisLabel = saleList[i]->Salesman;
 				BarChart->Series["Monto"]->Points[i]->Label = Convert::ToString(saleList[i]->TotalPrice);
 
 				Piechartsales->Series["Series1"]->Points->Add(saleList[i]->Amount);

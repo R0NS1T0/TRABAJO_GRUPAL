@@ -72,15 +72,21 @@ namespace SalesApp {
 	private: System::Windows::Forms::TextBox^ txtColor;
 
 	private: System::Windows::Forms::TextBox^ txtSize;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ProductCode;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ productPrice;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ productStock;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ productSize;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ producDescription;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ productColor;
+
+
+
+
+
+
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::TextBox^ txtName;
 	private: System::Windows::Forms::Button^ btnPhoto;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ProductCode;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ productPrice;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ productSize;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ productStock;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ producDescription;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ productColor;
 
 
 
@@ -104,12 +110,6 @@ namespace SalesApp {
 			this->modificarProductoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->salirToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->dgvWarehouse = (gcnew System::Windows::Forms::DataGridView());
-			this->ProductCode = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->productPrice = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->productStock = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->productSize = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->producDescription = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->productColor = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->btnDelete = (gcnew System::Windows::Forms::Button());
 			this->btnUpdate = (gcnew System::Windows::Forms::Button());
 			this->btnAdd = (gcnew System::Windows::Forms::Button());
@@ -129,6 +129,12 @@ namespace SalesApp {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->txtName = (gcnew System::Windows::Forms::TextBox());
 			this->btnPhoto = (gcnew System::Windows::Forms::Button());
+			this->ProductCode = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->productPrice = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->productSize = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->productStock = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->producDescription = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->productColor = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->menuStrip1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvWarehouse))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbPhoto))->BeginInit();
@@ -180,7 +186,7 @@ namespace SalesApp {
 			this->dgvWarehouse->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dgvWarehouse->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {
 				this->ProductCode,
-					this->productPrice, this->productStock, this->productSize, this->producDescription, this->productColor
+					this->productPrice, this->productSize, this->productStock, this->producDescription, this->productColor
 			});
 			this->dgvWarehouse->Location = System::Drawing::Point(40, 402);
 			this->dgvWarehouse->Margin = System::Windows::Forms::Padding(4);
@@ -191,48 +197,6 @@ namespace SalesApp {
 			this->dgvWarehouse->TabIndex = 30;
 			this->dgvWarehouse->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &ProductForm::dgvWarehouse_CellClick);
 			this->dgvWarehouse->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &ProductForm::dgvWarehouse_CellContentClick);
-			// 
-			// ProductCode
-			// 
-			this->ProductCode->HeaderText = L"Codigo";
-			this->ProductCode->MinimumWidth = 6;
-			this->ProductCode->Name = L"ProductCode";
-			this->ProductCode->Width = 70;
-			// 
-			// productPrice
-			// 
-			this->productPrice->HeaderText = L"Precio";
-			this->productPrice->MinimumWidth = 6;
-			this->productPrice->Name = L"productPrice";
-			this->productPrice->Width = 80;
-			// 
-			// productStock
-			// 
-			this->productStock->HeaderText = L"Stock";
-			this->productStock->MinimumWidth = 6;
-			this->productStock->Name = L"productStock";
-			this->productStock->Width = 80;
-			// 
-			// productSize
-			// 
-			this->productSize->HeaderText = L"Talla";
-			this->productSize->MinimumWidth = 6;
-			this->productSize->Name = L"productSize";
-			this->productSize->Width = 125;
-			// 
-			// producDescription
-			// 
-			this->producDescription->HeaderText = L"Descripcion";
-			this->producDescription->MinimumWidth = 6;
-			this->producDescription->Name = L"producDescription";
-			this->producDescription->Width = 225;
-			// 
-			// productColor
-			// 
-			this->productColor->HeaderText = L"Color";
-			this->productColor->MinimumWidth = 6;
-			this->productColor->Name = L"productColor";
-			this->productColor->Width = 125;
 			// 
 			// btnDelete
 			// 
@@ -413,6 +377,48 @@ namespace SalesApp {
 			this->btnPhoto->UseVisualStyleBackColor = true;
 			this->btnPhoto->Click += gcnew System::EventHandler(this, &ProductForm::btnPhoto_Click);
 			// 
+			// ProductCode
+			// 
+			this->ProductCode->HeaderText = L"Codigo";
+			this->ProductCode->MinimumWidth = 6;
+			this->ProductCode->Name = L"ProductCode";
+			this->ProductCode->Width = 70;
+			// 
+			// productPrice
+			// 
+			this->productPrice->HeaderText = L"Precio";
+			this->productPrice->MinimumWidth = 6;
+			this->productPrice->Name = L"productPrice";
+			this->productPrice->Width = 80;
+			// 
+			// productSize
+			// 
+			this->productSize->HeaderText = L"Talla";
+			this->productSize->MinimumWidth = 6;
+			this->productSize->Name = L"productSize";
+			this->productSize->Width = 80;
+			// 
+			// productStock
+			// 
+			this->productStock->HeaderText = L"Stock";
+			this->productStock->MinimumWidth = 6;
+			this->productStock->Name = L"productStock";
+			this->productStock->Width = 125;
+			// 
+			// producDescription
+			// 
+			this->producDescription->HeaderText = L"Descripcion";
+			this->producDescription->MinimumWidth = 6;
+			this->producDescription->Name = L"producDescription";
+			this->producDescription->Width = 225;
+			// 
+			// productColor
+			// 
+			this->productColor->HeaderText = L"Color";
+			this->productColor->MinimumWidth = 6;
+			this->productColor->Name = L"productColor";
+			this->productColor->Width = 125;
+			// 
 			// ProductForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -529,6 +535,7 @@ namespace SalesApp {
 		Product^ p = Controller::QueryProductByID(ProductCode);
 
 		txtCode->Text = p->Code;
+		txtName->Text = p->Name;
 		txtPrice->Text = "" + p->Price;
 		txtSize->Text = p->Size;
 		txtStock->Text = "" + p->Stock;
