@@ -445,16 +445,22 @@ private: System::Void StoreForm_Load(System::Object^ sender, System::EventArgs^ 
 	RefreshGrid();
 }
 private: System::Void agregarToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	btnAdd->Enabled = true;
-	btnDelete->Enabled = false;
-	btnUpdate->Enabled = false;
-
+	Session^ logged = gcnew Session();
+	logged = Controller::rememberdata();
+	if (logged->authority != 3) {
+		btnAdd->Enabled = true;
+		btnDelete->Enabled = false;
+		btnUpdate->Enabled = false;
+	}
 }
 private: System::Void modificarToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	btnAdd->Enabled = false;
-	btnDelete->Enabled = true;
-	btnUpdate->Enabled = true;
-
+	Session^ logged = gcnew Session();
+	logged = Controller::rememberdata();
+	if(logged->authority != 3) {
+		btnAdd->Enabled = false;
+		btnDelete->Enabled = true;
+		btnUpdate->Enabled = true;
+	}
 }
 private: System::Void eliminarToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Close();

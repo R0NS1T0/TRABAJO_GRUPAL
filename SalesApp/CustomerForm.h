@@ -19,6 +19,7 @@ namespace SalesApp {
 	{
 		Form^ refForm;
 	public:
+		//este formulario está abierto a todo usuario, no implementar limitación por autoridad
 		CustomerForm(Form^ form)
 		{
 			InitializeComponent();
@@ -348,7 +349,7 @@ private: System::Void btnModify_Click(System::Object^ sender, System::EventArgs^
 }
 private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
 	String^ CustomerName = txtName->Text;
-	Controller::DeleteProduct(CustomerName);
+	Controller::DeleteCustomer(CustomerName);
 	RefreshGrid();
 }
 private: System::Void dgvCustomer_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);

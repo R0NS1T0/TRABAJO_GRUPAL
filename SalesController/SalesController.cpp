@@ -43,7 +43,7 @@ int SalesController::Controller::UpdateProduct(Product^ product)
     return 0;
 }
 
-int SalesController::Controller::DeleteProduct(String^ productCode)
+int SalesController::Controller::DeleteProduct(double productCode)
 {
     for (int i = 0; i < productList->Count; i++)
         if (productCode == productList[i]->Code) {
@@ -66,7 +66,7 @@ List<Product^>^ SalesController::Controller::QueryAllProducts()
     return activeProductsList;
 }
 
-Product^ SalesController::Controller::QueryProductByID(String^ productCode)
+Product^ SalesController::Controller::QueryProductByID(double productCode)
 {
     for (int i = 0; i < productList->Count; i++)
         if (productCode == productList[i]->Code) {
@@ -130,11 +130,31 @@ Session^ SalesController::Controller::rememberdata()
 }
 
 Void SalesController::Controller::LoadProductsData() {
+    /*employeeList = gcnew List<Employee^>();
+    Stream^ sr = nullptr;
+    try {
+        sr = File::Open("Users.bin", FileMode::Open);
+        BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
+        employeeList = (List<Employee^>^)bFormatter->Deserialize(sr);
+    }
+    catch (FileNotFoundException^ ex) {}
+    catch (Exception^ ex) {}
+    finally {
+        if (sr != nullptr) sr->Close();
+    }*/
+
     productList = gcnew List<Product^>();
-    Stream^ sr = File::Open("Products.bin", FileMode::Open);
-    BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
-    productList = (List<Product^>^)bFormatter->Deserialize(sr);
-    sr->Close();
+    Stream^ sr = nullptr;
+    try {
+        sr = File::Open("Products.bin", FileMode::Open);
+        BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
+        productList = (List<Product^>^)bFormatter->Deserialize(sr);
+    }
+    catch(FileNotFoundException^ ex){}
+    catch(Exception^ ex){}
+    finally {
+        if (sr!=nullptr) sr->Close();
+    }  
 }
 
 

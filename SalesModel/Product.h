@@ -9,7 +9,7 @@ namespace SalesModel {
     [Serializable]
     public ref class Product {
     public:
-        property String^ Code;
+        property double Code;
         property String^ Name;      //para la función de mantenimiento de productos no se va a usar esto por ahora
         property double Stock;
         property String^ Description;

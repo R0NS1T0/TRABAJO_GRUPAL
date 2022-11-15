@@ -19,9 +19,9 @@ namespace SalesController {
 		public:
 			static int AddProduct(Product^ product);
 			static int UpdateProduct(Product^ product);
-			static int DeleteProduct(String^ productCode);
+			static int DeleteProduct(double productCode);
 			static List <Product^>^ QueryAllProducts();
-			static Product^ QueryProductByID(String^ productCode);
+			static Product^ QueryProductByID(double productCode);
 			static Product^ QueryProductByName(String^ productname);
 			static void LoadProductsData();
 			static void PersistWarehouse();

@@ -565,9 +565,13 @@ private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^
 	RefreshGrid();
 }
 private: System::Void añadirToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	btnAdd->Enabled = true;
-	btnDelete->Enabled = false;
-	btnupdate->Enabled = false;
+	Session^ logged = gcnew Session();
+	logged = Controller::rememberdata();
+	if (logged->authority != 3) {
+		btnAdd->Enabled = true;
+		btnDelete->Enabled = false;
+		btnupdate->Enabled = false;
+	}
 }
 private: System::Void UsersForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	RefreshGrid();
@@ -576,10 +580,14 @@ private: System::Void UsersForm_Load(System::Object^ sender, System::EventArgs^ 
 	btnupdate->Enabled = false;
 }
 private: System::Void modificarToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	btnAdd->Enabled = false;
-	btnDelete->Enabled = true;
-	btnupdate->Enabled = true;
-}
+	Session^ logged = gcnew Session();
+		logged = Controller::rememberdata();
+		if (logged->authority!= 3) {
+			btnAdd->Enabled = false;
+			btnDelete->Enabled = true;
+			btnupdate->Enabled = true;
+		}
+	}
 private: System::Void dgvUserList_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	if (dgvUserList->CurrentCell != nullptr &&
 		dgvUserList->CurrentCell->Value != nullptr &&
@@ -596,6 +604,11 @@ private: System::Void dgvUserList_CellContentClick(System::Object^ sender, Syste
 		txtDNI->Text = s->DocumentNumber;
 		txtPhone->Text = s->PhoneNumber;
 		txtPassword->Text=s->Password;
+		txtAddress->Text = s->Address;
+		txtPassword->Text = "*******";
+		dtpBirthday->Text = s->Birthday;
+		cmbGender->Text = s->Gender;
+		cmbAuthority->Text = Convert::ToString(s->AuthorityClass);
 	}
 }
 private: System::Void dgvUserList_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {

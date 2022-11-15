@@ -162,13 +162,13 @@ namespace SalesApp {
 #pragma endregion
 	private: System::Void btnSearch_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (txtCode->Text->Trim() != "") {
-			String^ productCode;
-			productCode = txtCode->Text;
+			double productCode;
+			productCode = Convert::ToDouble(txtCode->Text);
 			Product^ p = Controller::QueryProductByID(productCode);
 			//limpiar grid:
 			dgvproducts->Rows->Clear();
 			dgvproducts->Rows->Add(gcnew array<String^> {
-				p->Code,
+					Convert::ToString(p->Code),
 					p->Name,
 					Convert::ToString(p->Price),
 					Convert::ToString(p->Stock)
@@ -182,7 +182,7 @@ namespace SalesApp {
 			dgvproducts->Rows->Clear();
 			for (int i = 0; i < productList->Count; i++) {
 				dgvproducts->Rows->Add(gcnew array<String^> {
-					    productList[i]->Code,
+					    Convert::ToString(productList[i]->Code),
 						productList[i]->Name,
 						Convert::ToString(productList[i]->Price),
 						Convert::ToString(productList[i]->Stock)

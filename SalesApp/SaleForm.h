@@ -438,7 +438,7 @@ namespace SalesApp {
 	 private: Void RefreshTotalAmount() {
 		 double total = 0;
 		 double IGV = 0.18;
-		 double totalamount;
+		 double totalamount=0;
 		 for (int i = 0; i < dataGridView1->RowCount - 1; i++) {
 			 total += Double::Parse(dataGridView1->Rows[i]->Cells[4]->Value->ToString());
 			 totalamount += Double::Parse(dataGridView1->Rows[i]->Cells[3]->Value->ToString());
@@ -454,7 +454,7 @@ namespace SalesApp {
 			List <Product^>^ productlist = gcnew List<Product^>();
 			productlist = Controller::QueryAllProducts();
 			for (int i = 0; i < dataGridView1->RowCount - 1; i++) {
-				p->Code = dataGridView1->Rows[i]->Cells[0]->Value->ToString();
+				p->Code = Double::Parse(dataGridView1->Rows[i]->Cells[0]->Value->ToString());
 				p->Stock= Double::Parse(dataGridView1->Rows[i]->Cells[3]->Value->ToString());
 				//para cada columna, si el ID del producto coincide con el id del almacén, modifica
 				for (int j = 0; j < productlist->Count; j++) {
@@ -480,7 +480,7 @@ private: System::Void btnAddtosale_Click(System::Object^ sender, System::EventAr
 }
 	   public: Void AddProducttoSalesDetail(Product^ p) {
 		   dataGridView1->Rows->Add(gcnew array<String^> {
-					p->Code,
+					Convert::ToString(p->Code),
 				   p->Name,
 				   Convert::ToString(p->Price),
 				   "1",
@@ -552,8 +552,12 @@ private: System::Void txtCompanyUser_TextChanged(System::Object^ sender, System:
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	RefreshTotalAmount();
 }
-/*private: System::Void btnRemovefromsale_Click(System::Object^ sender, System::EventArgs^ e) {
-	dataGridView1->Rows
-}*/
+private: System::Void btnRemovefromsale_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (dataGridView1->CurrentCell != nullptr &&
+		dataGridView1->CurrentCell->Value != nullptr &&
+		dataGridView1->CurrentCell->Value->ToString() != "") {
+		//si se selecionó una columna, 
+	}
+}
 };
 }

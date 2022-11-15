@@ -6,7 +6,7 @@ System::Void SalesApp::SearchProduct::dgvproducts_CellClick(System::Object^ send
 {
 	if (e->RowIndex < 0) return;
 	if (e->RowIndex >= 0) {
-		String^ productId = dgvproducts->Rows[e->RowIndex]->Cells[0]->Value->ToString();
+		double productId = Convert::ToDouble(dgvproducts->Rows[e->RowIndex]->Cells[0]->Value->ToString());
 		Product^ p = Controller::QueryProductByID(productId);
 		((SaleForm^)refForm)->AddProducttoSalesDetail(p);
 	}
