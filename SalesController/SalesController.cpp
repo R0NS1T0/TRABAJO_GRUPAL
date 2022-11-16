@@ -7,9 +7,16 @@ using namespace System::Runtime::Serialization::Formatters::Binary;
 Void SalesController::Controller::PersistWarehouse() {
 
     Stream^ stream = File::Open("Products.bin", FileMode::Create);
-    BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
-    bFormatter->Serialize(stream, productList);
-    stream->Close();
+    try {
+        BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
+        bFormatter->Serialize(stream, productList);
+    }
+    catch(FileNotFoundException^ ex){}
+    catch(Exception^ ex){}
+    finally {
+        if (stream!=nullptr)stream->Close();
+    }
+    
 }
 int SalesController::Controller::searchProduct(Product^ productCode)
 {
@@ -82,21 +89,95 @@ Product^ SalesController::Controller::QueryProductByName(String^ productname)
         }
     return nullptr;
 }
-void SalesController::Controller::LoadStoresData()
-{
+void SalesController::Controller::LoadStoresData(){
     storeList = gcnew List<Store^>();
-    Stream^ sr = File::Open("Stores.bin", FileMode::Open);
-    BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
+    Stream^ sr = nullptr;
+    try {
+        sr = File::Open("Stores.bin", FileMode::Open);
+        BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
     storeList = (List<Store^>^)bFormatter->Deserialize(sr);
-    sr->Close();
+    }
+    catch(FileNotFoundException^ ex){}
+    catch(Exception^ ex){}
+    finally {
+        if(sr!=nullptr) sr->Close();
+    }
+   
 }
 void SalesController::Controller::PersistStores()
 {
     Stream^ stream = File::Open("Stores.bin", FileMode::Create);
-    BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
-    bFormatter->Serialize(stream, storeList);
-    stream->Close();
+    try {
+        BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
+        bFormatter->Serialize(stream, storeList);
+    }
+    catch (FileNotFoundException^ ex){}
+    catch(Exception^ ex){}
+    finally {
+        if (stream!=nullptr) stream->Close();
+    }
+   
 }
+
+
+List<StoreProducts^>^ SalesController::Controller::QueryStoreProducts(){
+    LoadStoreStock();
+    List<StoreProducts^>^ activeStockList = gcnew List<StoreProducts^>();
+    for (int i = 0; i < storeProductList->Count; i++) {
+        if ((storeProductList[i]->Stock >= 0) && (storeProductList[i]->Status=='A')) {
+            activeStockList->Add(storeProductList[i]);
+        }
+    }
+    return activeStockList;
+}
+void SalesController::Controller::LoadStoreStock()
+{
+    storeProductList = gcnew List<StoreProducts^>();
+    Stream^ sr = nullptr;
+    try {
+        sr = File::Open("StockPerStore.bin", FileMode::Open);
+        BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
+        storeProductList = (List<StoreProducts^>^)bFormatter->Deserialize(sr);
+    }
+    catch(FileNotFoundException^ ex){}
+    catch(Exception^ ex){}
+    finally {
+        if (sr!=nullptr) sr->Close();
+    }
+}
+void SalesController::Controller::PersistStoreStock() {
+     Stream^ stream = File::Open("StockPerStore.bin", FileMode::Create);
+try{
+    BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
+    bFormatter->Serialize(stream, storeProductList);
+}
+catch (FileNotFoundException^ ex) {}
+catch (Exception^ ex) {}
+finally {
+    if (stream != nullptr) stream->Close();
+}
+
+
+}
+int SalesController::Controller::addProductToStore(StoreProducts^ sp)
+{
+    storeProductList->Add(sp);
+    PersistStoreStock();
+    return 1;
+}
+int SalesController::Controller::EraseProductFromStore(int productID)
+{
+    for (int i = 0; i < storeProductList->Count; i++)
+        if (productID == storeProductList[i]->Code) {
+            storeProductList->RemoveAt(i);
+            PersistStoreStock();
+            return 1;
+        }
+    return 0;
+}
+
+
+
 void SalesController::Controller::SaveUserData(String^ username)
 {
     //esto va a sacar los datos de Employee en login, guardarlos en una lista de datos local para facilitar el proceso
@@ -130,19 +211,7 @@ Session^ SalesController::Controller::rememberdata()
 }
 
 Void SalesController::Controller::LoadProductsData() {
-    /*employeeList = gcnew List<Employee^>();
-    Stream^ sr = nullptr;
-    try {
-        sr = File::Open("Users.bin", FileMode::Open);
-        BinaryFormatter^ bFormatter = gcnew BinaryFormatter();
-        employeeList = (List<Employee^>^)bFormatter->Deserialize(sr);
-    }
-    catch (FileNotFoundException^ ex) {}
-    catch (Exception^ ex) {}
-    finally {
-        if (sr != nullptr) sr->Close();
-    }*/
-
+   
     productList = gcnew List<Product^>();
     Stream^ sr = nullptr;
     try {

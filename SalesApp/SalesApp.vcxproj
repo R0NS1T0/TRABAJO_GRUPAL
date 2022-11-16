@@ -134,6 +134,9 @@
     <ClInclude Include="LoginForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="StockPerStore.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="SalesGraphicsForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -165,6 +168,7 @@
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="CustomerForm.cpp" />
     <ClCompile Include="LoginForm.cpp" />
+    <ClCompile Include="StockPerStore.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -215,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SearchProduct.resx">
       <DependentUpon>SearchProduct.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockPerStore.resx">
+      <DependentUpon>StockPerStore.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StoreForm.resx">
       <DependentUpon>StoreForm.h</DependentUpon>

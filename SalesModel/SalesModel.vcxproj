@@ -135,6 +135,7 @@
     <ClInclude Include="Session.h" />
     <ClInclude Include="Store.h" />
     <ClInclude Include="StoreManager.h" />
+    <ClInclude Include="StoreProducts.h" />
     <ClInclude Include="Warehouse.h" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +159,7 @@
     <ClCompile Include="Session.cpp" />
     <ClCompile Include="Store.cpp" />
     <ClCompile Include="StoreManager.cpp" />
+    <ClCompile Include="StoreProducts.cpp" />
     <ClCompile Include="Warehouse.cpp" />
   </ItemGroup>
   <ItemGroup>

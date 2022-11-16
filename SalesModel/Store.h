@@ -12,6 +12,7 @@ namespace SalesModel {
     public:
         property String^ BranchID;
         property double StockStore;
-        property Double Discount;
+        property Double currentsalesonstore;//se busca guardar una cantidad fija en alguna tienda para así cargarlo en los gráficos
+        property Double storeamountsold;
     };
 }

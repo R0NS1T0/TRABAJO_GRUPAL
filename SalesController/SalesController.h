@@ -15,6 +15,7 @@ namespace SalesController {
 			static List <Sale^>^ salesList = gcnew List<Sale^>();
 			static List <Store^>^ storeList = gcnew List<Store^>();
 			static List <Session^>^SessionList= gcnew List<Session^>();
+			static List <StoreProducts^>^ storeProductList = gcnew List<StoreProducts^>();
 		// TODO: Agregue aquí los métodos de esta clase.
 		public:
 			static int AddProduct(Product^ product);
@@ -62,6 +63,14 @@ namespace SalesController {
 			static Store^ QueryStoreByID(int storeID);
 			static void LoadStoresData();
 			static void PersistStores();
+
+			//implementando los productos unicos de cada tienda
+			static List<StoreProducts^>^ QueryStoreProducts();	//muestra la lista de productos en el archivo
+			static void LoadStoreStock();			//carga stock de tienda
+			static void PersistStoreStock();		//recuerda stock de tienda
+			static int addProductToStore(StoreProducts^ sp);	//funcion Para añadir productos
+			static int EraseProductFromStore(int productID);	//funcion para eliminar un producto
+
 
 		//funciones extra
 			static void SaveUserData(String^ username);	//guarda los datos de inicio de sesión en una clase

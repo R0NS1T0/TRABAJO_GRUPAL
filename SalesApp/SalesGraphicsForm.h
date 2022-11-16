@@ -121,7 +121,7 @@ namespace SalesApp {
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->BarChart);
 			this->Name = L"SalesGraphicsForm";
-			this->Text = L"SalesGraphicsForm";
+			this->Text = L"Estadisticas de tiendas";
 			this->Load += gcnew System::EventHandler(this, &SalesGraphicsForm::SalesGraphicsForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->BarChart))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();

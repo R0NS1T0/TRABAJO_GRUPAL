@@ -426,7 +426,7 @@ namespace SalesApp {
 			this->Controls->Add(this->label1);
 			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"SaleForm";
-			this->Text = L"Venta realizada por";
+			this->Text = L"Proceso de Venta";
 			this->Load += gcnew System::EventHandler(this, &SaleForm::SaleForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
@@ -450,6 +450,7 @@ namespace SalesApp {
 	 }
 
 		private: Void RefreshWarehouse() {
+			//esta funcion puede que cambie, depende de la dependencia entre warehouse y el stock de cada tienda
 			Product^ p = gcnew Product();
 			List <Product^>^ productlist = gcnew List<Product^>();
 			productlist = Controller::QueryAllProducts();
@@ -457,6 +458,7 @@ namespace SalesApp {
 				p->Code = Double::Parse(dataGridView1->Rows[i]->Cells[0]->Value->ToString());
 				p->Stock= Double::Parse(dataGridView1->Rows[i]->Cells[3]->Value->ToString());
 				//para cada columna, si el ID del producto coincide con el id del almacén, modifica
+				//sigue siendo necesario para tener coherencia con el almacén individual de cada tienda
 				for (int j = 0; j < productlist->Count; j++) {
 					if (productlist[j]->Code==p->Code) {
 						p->Description = productlist[j]->Description;
@@ -512,6 +514,13 @@ private: System::Void btnSearchClient_Click(System::Object^ sender, System::Even
 		   }
 	   }
 
+private: Void refreshStoreStock(){
+	//es necesario implementar la asignación de valores a cada tienda primero
+
+}
+
+
+
 private: System::Void SaleForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	txtdate->Text = DateTime::Now.ToString("dd/MM/yyyy");
 	txttime->Text = DateTime::Now.ToString("hh:mm:ss");
@@ -532,7 +541,7 @@ private: System::Void dataGridView1_CellValueChanged(System::Object^ sender, Sys
 	
 }
 private: System::Void btnRecordSale_Click(System::Object^ sender, System::EventArgs^ e) {
-	Salenumber++;
+	Salenumber++;		//esto impide que las boletas de venta se guarden, modificar en servidor
 	RefreshWarehouse();	//actualización del almacén en base a la boleta de venta final
 	Sale^ s = gcnew Sale();
 	s->ID = Salenumber;
@@ -556,7 +565,7 @@ private: System::Void btnRemovefromsale_Click(System::Object^ sender, System::Ev
 	if (dataGridView1->CurrentCell != nullptr &&
 		dataGridView1->CurrentCell->Value != nullptr &&
 		dataGridView1->CurrentCell->Value->ToString() != "") {
-		//si se selecionó una columna, 
+		//si se selecionó una columna, debe guardar un dato para eliminar dicha columna, quizas un ID? 
 	}
 }
 };
