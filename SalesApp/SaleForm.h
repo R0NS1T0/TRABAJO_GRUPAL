@@ -16,6 +16,8 @@ namespace SalesApp {
 	/// </summary>
 	public ref class SaleForm : public System::Windows::Forms::Form
 	{
+	private: 
+		int RowIndex;
 	public:
 		SaleForm(void)
 		{
@@ -199,6 +201,7 @@ namespace SalesApp {
 			// 
 			// btnRemovefromsale
 			// 
+			this->btnRemovefromsale->Enabled = false;
 			this->btnRemovefromsale->Location = System::Drawing::Point(359, 128);
 			this->btnRemovefromsale->Margin = System::Windows::Forms::Padding(4);
 			this->btnRemovefromsale->Name = L"btnRemovefromsale";
@@ -206,6 +209,7 @@ namespace SalesApp {
 			this->btnRemovefromsale->TabIndex = 6;
 			this->btnRemovefromsale->Text = L"Eliminar producto";
 			this->btnRemovefromsale->UseVisualStyleBackColor = true;
+			this->btnRemovefromsale->Click += gcnew System::EventHandler(this, &SaleForm::btnRemovefromsale_Click_1);
 			// 
 			// dataGridView1
 			// 
@@ -220,6 +224,7 @@ namespace SalesApp {
 			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->Size = System::Drawing::Size(724, 176);
 			this->dataGridView1->TabIndex = 7;
+			this->dataGridView1->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &SaleForm::dataGridView1_CellClick);
 			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &SaleForm::dataGridView1_CellContentClick);
 			this->dataGridView1->CellValueChanged += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &SaleForm::dataGridView1_CellValueChanged);
 			// 
@@ -566,6 +571,17 @@ private: System::Void btnRemovefromsale_Click(System::Object^ sender, System::Ev
 		dataGridView1->CurrentCell->Value != nullptr &&
 		dataGridView1->CurrentCell->Value->ToString() != "") {
 		//si se selecionó una columna, debe guardar un dato para eliminar dicha columna, quizas un ID? 
+	}
+}
+private: System::Void btnRemovefromsale_Click_1(System::Object^ sender, System::EventArgs^ e) {
+	dataGridView1->Rows->RemoveAt(RowIndex);
+	RefreshTotalAmount();
+}
+private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	btnRemovefromsale->Enabled = false;
+	if (dataGridView1->Rows[e->RowIndex]->Cells[0]->Value != nullptr) {
+		RowIndex = e->RowIndex;
+		btnRemovefromsale->Enabled = true;
 	}
 }
 };
