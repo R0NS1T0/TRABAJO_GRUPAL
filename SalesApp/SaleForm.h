@@ -209,7 +209,7 @@ namespace SalesApp {
 			this->btnRemovefromsale->TabIndex = 6;
 			this->btnRemovefromsale->Text = L"Eliminar producto";
 			this->btnRemovefromsale->UseVisualStyleBackColor = true;
-			this->btnRemovefromsale->Click += gcnew System::EventHandler(this, &SaleForm::btnRemovefromsale_Click_1);
+			this->btnRemovefromsale->Click += gcnew System::EventHandler(this, &SaleForm::btnRemovefromsale_Click);
 			// 
 			// dataGridView1
 			// 
@@ -357,7 +357,6 @@ namespace SalesApp {
 			this->label6->Size = System::Drawing::Size(131, 16);
 			this->label6->TabIndex = 17;
 			this->label6->Text = L"usuario de vendedor";
-			this->label6->Click += gcnew System::EventHandler(this, &SaleForm::label6_Click);
 			// 
 			// txtCompanyUser
 			// 
@@ -558,22 +557,15 @@ private: System::Void btnRecordSale_Click(System::Object^ sender, System::EventA
 	s->Salesman = txtCompanyUser->Text;
 	Controller::RegisterSale(s);
 }
-private: System::Void label6_Click(System::Object^ sender, System::EventArgs^ e) {
-}
+
 private: System::Void txtCompanyUser_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 
 }
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	RefreshTotalAmount();
 }
+
 private: System::Void btnRemovefromsale_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (dataGridView1->CurrentCell != nullptr &&
-		dataGridView1->CurrentCell->Value != nullptr &&
-		dataGridView1->CurrentCell->Value->ToString() != "") {
-		//si se selecionó una columna, debe guardar un dato para eliminar dicha columna, quizas un ID? 
-	}
-}
-private: System::Void btnRemovefromsale_Click_1(System::Object^ sender, System::EventArgs^ e) {
 	dataGridView1->Rows->RemoveAt(RowIndex);
 	RefreshTotalAmount();
 }
