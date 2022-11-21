@@ -326,6 +326,15 @@ double SalesController::Controller::QueryLastSale()
     }
     return lastSaleId;
 }
+Sale^ SalesController::Controller::QuerySalesbyID(Double id)
+{
+
+    for (int i = 0; i < salesList->Count; i++)
+        if (id == salesList[i]->ID) {
+            return salesList[i];
+        }
+    return nullptr;
+}
 void SalesController::Controller::PersistSales()
 {
     Stream^ stream = File::Open("Sales.bin", FileMode::Create);

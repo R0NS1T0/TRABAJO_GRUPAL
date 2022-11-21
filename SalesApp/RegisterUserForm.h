@@ -389,11 +389,25 @@ namespace SalesApp {
 	private: System::Void btnCreate_click(System::Object^ sender, System::EventArgs^ e) {
 		//Como punto de partida, estoy estableciendo este codigo de acceso de administrador:1234
 		String^ admincode;
+		List<Employee^>^ currentList = Controller::QueryAllUsers();
 		Employee^ d = gcnew Employee();
+		int key=0;
+		//para todos los usuarios existentes, se busca si hay coincidencia de nombre de usuario, DNI y contraseña
+		for (int i = 0; 0 < currentList->Count; i++) {
+			if ((txtUsername->Text == currentList[i]->CompanyUser) ||
+				(txtId->Text == currentList[i]->DocumentNumber) ||
+				(txtPassword->Text == currentList[i]->Password)) {
+				MessageBox::Show("Datos ya en uso");
+				
+				break;
+			}
+			else {
+				key = 1;
+			}
+		}
+		if (key == 1) {
+			if ((admincode = txtAdminAccesCode->Text) == "1234") {
 
-		
-			if ((admincode= txtAdminAccesCode->Text) == "1234") {
-			
 				d->Name = txtName->Text;
 				d->LastName = txtSurname->Text;
 				d->Email = txtEmail->Text;
@@ -402,7 +416,7 @@ namespace SalesApp {
 				d->CompanyUser = txtUsername->Text;
 				d->Gender = cbGender->Text;
 				d->DocumentNumber = txtId->Text;
-				if (cbAuthorityLvl->Text== "administrador") {
+				if (cbAuthorityLvl->Text == "administrador") {
 					d->AuthorityClass = 1;
 				}
 				if (cbAuthorityLvl->Text == "gerente de tienda") {
@@ -414,8 +428,14 @@ namespace SalesApp {
 				d->Password = txtPassword->Text;
 				d->PhoneNumber = txtPhoneNumber->Text;
 				Controller::AddCompanyUser(d);
-			}			
+			}
+			else
+			{
+				MessageBox::Show("Ingrese el codigo de administrador correcto");
+			}
 		this->Close();
+		}
+		
 	}
 	
 	private: System::Void RegisterUserForm_Load(System::Object^ sender, System::EventArgs^ e) {

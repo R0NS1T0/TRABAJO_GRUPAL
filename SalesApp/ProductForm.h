@@ -512,42 +512,62 @@ namespace SalesApp {
 		}
 	private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e) {
 		Product^ p = gcnew Product();
-		p->Code = Double::Parse(txtCode->Text);
-		p->Name = txtName->Text;
-		p->Price = Double::Parse(txtPrice->Text);
-		p->Size = txtSize->Text;
-		p->Stock = Double::Parse(txtStock->Text);
-		p->Description = txtDescription->Text;
-		p->Color = txtColor->Text;
-		p->Status = Char::Parse(txtStatus->Text);
-		if (pbPhoto != nullptr && pbPhoto->Image != nullptr) {
-			System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream();
-			pbPhoto->Image->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
-			p->Photo = ms->ToArray();
+		int key = 0;
+		List <Product^>^ activeproducts = Controller::QueryAllProducts();
+		for (int i = 0; 0 < activeproducts->Count; i++) {
+			if ((txtCode->Text != Convert::ToString(activeproducts[i]->Code))
+				||(txtName->Text != activeproducts[i]->Name)) {
+				key = 1;
+			}
 		}
-		Controller::AddProduct(p);
-		RefreshGrid();
-		ClearControls();
+
+		if (key == 1) {
+			p->Code = Double::Parse(txtCode->Text);
+			p->Name = txtName->Text;
+			p->Price = Double::Parse(txtPrice->Text);
+			p->Size = txtSize->Text;
+			p->Stock = Double::Parse(txtStock->Text);
+			p->Description = txtDescription->Text;
+			p->Color = txtColor->Text;
+			p->Status = Char::Parse(txtStatus->Text);
+			if (pbPhoto != nullptr && pbPhoto->Image != nullptr) {
+				System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream();
+				pbPhoto->Image->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
+				p->Photo = ms->ToArray();
+			}
+			Controller::AddProduct(p);
+			RefreshGrid();
+			ClearControls();
+		}
 	}
 	private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^ e) {
-
+		
 		Product^ p = gcnew Product();
-		p->Code = Double::Parse(txtCode->Text);
-		p->Name = txtName->Text;
-		p->Price = Double::Parse(txtPrice->Text);
-		p->Size = txtSize->Text;
-		p->Stock = Double::Parse(txtStock->Text);
-		p->Description = txtDescription->Text;
-		p->Color = txtColor->Text;
-		p->Status = Char::Parse(txtStatus->Text);
-		if (pbPhoto != nullptr && pbPhoto->Image != nullptr) {
-			System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream();
-			pbPhoto->Image->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
-			p->Photo = ms->ToArray();
-		}	
-		Controller::UpdateProduct(p);
-		RefreshGrid();
-
+		int key = 0;
+		List <Product^>^ activeproducts = Controller::QueryAllProducts();
+		for (int i = 0; 0 < activeproducts->Count; i++) {
+			if ((txtCode->Text != Convert::ToString(activeproducts[i]->Code))
+				|| (txtName->Text != activeproducts[i]->Name)) {
+				key = 1;
+			}
+		}
+		if (key == 1) {
+			p->Code = Double::Parse(txtCode->Text);
+			p->Name = txtName->Text;
+			p->Price = Double::Parse(txtPrice->Text);
+			p->Size = txtSize->Text;
+			p->Stock = Double::Parse(txtStock->Text);
+			p->Description = txtDescription->Text;
+			p->Color = txtColor->Text;
+			p->Status = Char::Parse(txtStatus->Text);
+			if (pbPhoto != nullptr && pbPhoto->Image != nullptr) {
+				System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream();
+				pbPhoto->Image->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
+				p->Photo = ms->ToArray();
+			}
+			Controller::UpdateProduct(p);
+			RefreshGrid();
+		}
 	}
 	private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
 		double CodeProduct = Convert::ToDouble(txtCode->Text);

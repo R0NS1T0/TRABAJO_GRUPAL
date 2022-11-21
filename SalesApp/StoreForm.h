@@ -380,7 +380,7 @@ namespace SalesApp {
 		Store^ s = gcnew Store();
 		
 		s->ID = Int32::Parse(txtID->Text);					
-		s->StockStore = Double::Parse(txtStoreStock->Text);			//en base al link, se va a asignar de una variable heredada, implementación en curso
+		//s->StockStore = Double::Parse(txtStoreStock->Text);			//en base al link, se va a asignar de una variable heredada, implementación en curso
 		s->BranchID = txtBranchID->Text;					
 		s->Address = txtAddress->Text;
 		Controller::AddStore(s);
@@ -390,7 +390,7 @@ namespace SalesApp {
 private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^ e) {
 	Store^ s = gcnew Store();
 	s->ID = Int32::Parse(txtID->Text);
-	s->StockStore = Double::Parse(txtStoreStock->Text);			//en base al link, se va a asignar de una variable heredada, implementacion en curso
+	//s->StockStore = Double::Parse(txtStoreStock->Text);			//en base al link, se va a asignar de una variable heredada, implementacion en curso
 	s->BranchID = txtBranchID->Text;
 	s->Address = txtAddress->Text;
 	Controller::UpdateStore(s);

@@ -509,55 +509,76 @@ public:
 		}
 private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e) {
 	Employee^ d = gcnew Employee();
-	d->Name = txtName->Text;
-	d->LastName = txtLastname->Text;
-	d->Email = txtemail->Text;
-	d->Address = txtAddress->Text;
-	d->Birthday = dtpBirthday->Text;
-	d->CompanyUser = txtCompanyuser->Text;
-	d->Gender = cmbGender->Text;
-	d->DocumentNumber = txtDNI->Text;
-	//para d, cambiar cmbauthority de string a int16
-	//L"administrador", L"gerente de tienda", L"vendedor"
-	if (cmbAuthority->Text == "administrador") {
-		d->AuthorityClass = 1;
+	int key = 0;
+	List <Employee^>^ activeemployees = Controller::QueryAllUsers();
+	for (int i = 0; 0 < activeemployees->Count; i++) {
+		if ((txtCompanyuser->Text != activeemployees[i]->CompanyUser)
+			||(txtDNI->Text != activeemployees[i]->DocumentNumber)
+			||(txtPassword->Text!=activeemployees[i]->Password)) { 
+			key = 1;
+		}
 	}
-	if (cmbAuthority->Text == "gerente de tienda") {
-		d->AuthorityClass = 2;
+	if (key == 1) {
+		d->Name = txtName->Text;
+		d->LastName = txtLastname->Text;
+		d->Email = txtemail->Text;
+		d->Address = txtAddress->Text;
+		d->Birthday = dtpBirthday->Text;
+		d->CompanyUser = txtCompanyuser->Text;
+		d->Gender = cmbGender->Text;
+		d->DocumentNumber = txtDNI->Text;
+
+		if (cmbAuthority->Text == "administrador") {
+			d->AuthorityClass = 1;
+		}
+		if (cmbAuthority->Text == "gerente de tienda") {
+			d->AuthorityClass = 2;
+		}
+		if (cmbAuthority->Text == "vendedor") {
+			d->AuthorityClass = 3;
+		}
+		d->Password = txtPassword->Text;
+		d->PhoneNumber = txtPhone->Text;
+		Controller::AddCompanyUser(d);
+		ClearControls();
+		RefreshGrid();
 	}
-	if (cmbAuthority->Text == "vendedor") {
-		d->AuthorityClass = 3;
-	}
-	d->Password = txtPassword->Text;
-	d->PhoneNumber = txtPhone->Text;
-	Controller::AddCompanyUser(d);
-	ClearControls();
-	RefreshGrid();
 }
 private: System::Void btnupdate_Click(System::Object^ sender, System::EventArgs^ e) {
 	Employee^ d = gcnew Employee();
-	d->Name = txtName->Text;
-	d->LastName = txtLastname->Text;
-	d->Email = txtemail->Text;
-	d->Address = txtAddress->Text;
-	d->Birthday = dtpBirthday->Text;
-	d->CompanyUser = txtCompanyuser->Text;
-	d->Gender = cmbGender->Text;
-	d->DocumentNumber = txtDNI->Text;
-	if (cmbAuthority->Text == "administrador") {
-		d->AuthorityClass = 1;
+	int key = 0;
+	List <Employee^>^ activeemployees = Controller::QueryAllUsers();
+	for (int i = 0; 0 < activeemployees->Count; i++) {
+		if ((txtCompanyuser->Text != activeemployees[i]->CompanyUser)
+			|| (txtDNI->Text != activeemployees[i]->DocumentNumber)
+			|| (txtPassword->Text != activeemployees[i]->Password)) {
+			key = 1;
+		}
 	}
-	if (cmbAuthority->Text == "gerente de tienda") {
-		d->AuthorityClass = 2;
+	if (key == 1) {
+		d->Name = txtName->Text;
+		d->LastName = txtLastname->Text;
+		d->Email = txtemail->Text;
+		d->Address = txtAddress->Text;
+		d->Birthday = dtpBirthday->Text;
+		d->CompanyUser = txtCompanyuser->Text;
+		d->Gender = cmbGender->Text;
+		d->DocumentNumber = txtDNI->Text;
+		if (cmbAuthority->Text == "administrador") {
+			d->AuthorityClass = 1;
+		}
+		if (cmbAuthority->Text == "gerente de tienda") {
+			d->AuthorityClass = 2;
+		}
+		if (cmbAuthority->Text == "vendedor") {
+			d->AuthorityClass = 3;
+		}
+		d->Password = txtPassword->Text;
+		d->PhoneNumber = txtPhone->Text;
+		Controller::UpdateCompanyUser(d);
+		ClearControls();
+		RefreshGrid();
 	}
-	if (cmbAuthority->Text == "vendedor") {
-		d->AuthorityClass = 3;
-	}
-	d->Password = txtPassword->Text;
-	d->PhoneNumber = txtPhone->Text;
-	Controller::UpdateCompanyUser(d);
-	ClearControls();
-	RefreshGrid();
 }
 private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
 	String^ Code = txtCompanyuser->Text;

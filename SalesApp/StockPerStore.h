@@ -15,6 +15,7 @@ namespace SalesApp {
 	public ref class StockForm : public System::Windows::Forms::Form
 	{
 		Form^ refform;
+
 	public:
 		StockForm(Form^ form)
 		{
@@ -189,6 +190,20 @@ namespace SalesApp {
 			//esto va a requerir que el texto del combo siempre esté lleno
 			Controller::addProductToStore(sp);
 		}
+		 public: void RefreshTotalStock(double stock) {
+					  StoreProducts^ sp = gcnew StoreProducts();
+					  sp->Code = sp->Code;
+					  sp->Color = sp->Color;
+					  sp->Description = sp->Description;
+					  sp->Name = sp->Name;
+					  sp->Photo = sp->Photo;
+					  sp->Price = sp->Price;
+					  sp->Size = sp->Size;
+					  sp->Status = sp->Status;
+					//  sp->Store = cmbstore->Text;
+					  sp->Stock = stock;	//el unico valor que se va a modificar es stock, a menos que los valores iniciales de la pestaña principal se cambien
+					  Controller::addProductToStore(sp);
+				  }
 public:
 	void RefreshGrid() {
 		List<StoreProducts^>^ storestockList = Controller::QueryStoreProducts();
@@ -213,8 +228,6 @@ private: System::Void btnaddtoStore_Click(System::Object^ sender, System::EventA
 	SearchProduct^ storeproductsform = gcnew SearchProduct(this);
 	storeproductsform->ShowDialog();
 }
-private: System::Void dgvStockperStore_CellValueChanged(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-
-}
+private: System::Void dgvStockperStore_CellValueChanged(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e); 
 };
 }

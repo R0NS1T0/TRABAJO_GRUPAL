@@ -329,23 +329,41 @@ namespace SalesApp {
 
 private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e) {
 	Customer^ c = gcnew Customer();
-	c->Name = txtName->Text;
-	c->LastName = txtLastName->Text;
-	c->DNI = txtDNI->Text;
+	int key = 0;
+	List <Customer^>^ activeclients = Controller::QueryAllCustomers();
+	for (int i = 0; 0 < activeclients->Count; i++) {
+		if ((txtDNI->Text != activeclients[i]->DNI)) {
+			key = 1;
+		}
+	}
+	if (key == 1) {
+		c->Name = txtName->Text;
+		c->LastName = txtLastName->Text;
+		c->DNI = txtDNI->Text;
 
-	Controller::AddCustomer(c);
-	ClearControls();
-	RefreshGrid();
+		Controller::AddCustomer(c);
+		ClearControls();
+		RefreshGrid();
+	}
 }
 private: System::Void btnModify_Click(System::Object^ sender, System::EventArgs^ e) {
 	Customer^ c = gcnew Customer();
-	c->Name = txtName->Text;
-	c->LastName = txtLastName->Text;
-	c->DNI = txtDNI->Text;
+	int key = 0;
+	List <Customer^>^ activeclients = Controller::QueryAllCustomers();
+	for (int i = 0; 0 < activeclients->Count; i++) {
+		if ((txtDNI->Text != activeclients[i]->DNI)) {
+			key = 1;
+		}
+	}
+	if (key == 1) {
+		c->Name = txtName->Text;
+		c->LastName = txtLastName->Text;
+		c->DNI = txtDNI->Text;
 
-	Controller::UpdateCustomer(c);
-	ClearControls();
-	RefreshGrid();
+		Controller::UpdateCustomer(c);
+		ClearControls();
+		RefreshGrid();
+	}
 }
 private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
 	String^ CustomerName = txtName->Text;

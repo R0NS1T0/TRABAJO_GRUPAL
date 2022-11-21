@@ -50,11 +50,12 @@ namespace SalesApp {
 	private: System::Windows::Forms::ToolStripMenuItem^ reporteToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ ayudaToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ realizarVentaToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripTextBox^ UsuariostoolStripMenuItem;
+
 	private: System::Windows::Forms::ToolStripMenuItem^ clientesToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ tiendasToolStripMenuItem;
 	private: System::Windows::Forms::Label^ lbluser;
 	private: System::Windows::Forms::ToolStripMenuItem^ ventasToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ usuariosToolStripMenuItem;
 
 
 
@@ -78,13 +79,13 @@ namespace SalesApp {
 			this->realizarVentaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->mantenimientoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->productoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->UsuariostoolStripMenuItem = (gcnew System::Windows::Forms::ToolStripTextBox());
 			this->clientesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->tiendasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->usuariosToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->reporteToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->ventasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ayudaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->lbluser = (gcnew System::Windows::Forms::Label());
-			this->ventasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -135,7 +136,7 @@ namespace SalesApp {
 			// 
 			this->mantenimientoToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
 				this->productoToolStripMenuItem,
-					this->UsuariostoolStripMenuItem, this->clientesToolStripMenuItem, this->tiendasToolStripMenuItem
+					this->clientesToolStripMenuItem, this->tiendasToolStripMenuItem, this->usuariosToolStripMenuItem
 			});
 			this->mantenimientoToolStripMenuItem->Name = L"mantenimientoToolStripMenuItem";
 			this->mantenimientoToolStripMenuItem->Size = System::Drawing::Size(124, 24);
@@ -148,14 +149,6 @@ namespace SalesApp {
 			this->productoToolStripMenuItem->Size = System::Drawing::Size(224, 26);
 			this->productoToolStripMenuItem->Text = L"Producto";
 			this->productoToolStripMenuItem->Click += gcnew System::EventHandler(this, &SalesMainForm::productoToolStripMenuItem_Click);
-			// 
-			// UsuariostoolStripMenuItem
-			// 
-			this->UsuariostoolStripMenuItem->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9));
-			this->UsuariostoolStripMenuItem->Name = L"UsuariostoolStripMenuItem";
-			this->UsuariostoolStripMenuItem->Size = System::Drawing::Size(100, 27);
-			this->UsuariostoolStripMenuItem->Text = L"Usuarios";
-			this->UsuariostoolStripMenuItem->Click += gcnew System::EventHandler(this, &SalesMainForm::UsuariostoolStripMenuItem_Click);
 			// 
 			// clientesToolStripMenuItem
 			// 
@@ -171,12 +164,26 @@ namespace SalesApp {
 			this->tiendasToolStripMenuItem->Text = L"Tiendas";
 			this->tiendasToolStripMenuItem->Click += gcnew System::EventHandler(this, &SalesMainForm::tiendasToolStripMenuItem_Click);
 			// 
+			// usuariosToolStripMenuItem
+			// 
+			this->usuariosToolStripMenuItem->Name = L"usuariosToolStripMenuItem";
+			this->usuariosToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->usuariosToolStripMenuItem->Text = L"Usuarios";
+			this->usuariosToolStripMenuItem->Click += gcnew System::EventHandler(this, &SalesMainForm::usuariosToolStripMenuItem_Click);
+			// 
 			// reporteToolStripMenuItem
 			// 
 			this->reporteToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->ventasToolStripMenuItem });
 			this->reporteToolStripMenuItem->Name = L"reporteToolStripMenuItem";
 			this->reporteToolStripMenuItem->Size = System::Drawing::Size(76, 24);
 			this->reporteToolStripMenuItem->Text = L"Reporte";
+			// 
+			// ventasToolStripMenuItem
+			// 
+			this->ventasToolStripMenuItem->Name = L"ventasToolStripMenuItem";
+			this->ventasToolStripMenuItem->Size = System::Drawing::Size(135, 26);
+			this->ventasToolStripMenuItem->Text = L"Ventas";
+			this->ventasToolStripMenuItem->Click += gcnew System::EventHandler(this, &SalesMainForm::ventasToolStripMenuItem_Click);
 			// 
 			// ayudaToolStripMenuItem
 			// 
@@ -192,13 +199,6 @@ namespace SalesApp {
 			this->lbluser->Size = System::Drawing::Size(44, 16);
 			this->lbluser->TabIndex = 3;
 			this->lbluser->Text = L"label1";
-			// 
-			// ventasToolStripMenuItem
-			// 
-			this->ventasToolStripMenuItem->Name = L"ventasToolStripMenuItem";
-			this->ventasToolStripMenuItem->Size = System::Drawing::Size(224, 26);
-			this->ventasToolStripMenuItem->Text = L"Ventas";
-			this->ventasToolStripMenuItem->Click += gcnew System::EventHandler(this, &SalesMainForm::ventasToolStripMenuItem_Click);
 			// 
 			// SalesMainForm
 			// 
@@ -246,11 +246,7 @@ private: System::Void realizarVentaToolStripMenuItem_Click(System::Object^ sende
 	saleForm->Show();
 }
 
-private: System::Void UsuariostoolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	UsersForm^ usersform = gcnew UsersForm();
-	usersform->MdiParent = this;
-	usersform->Show();
-}
+
 private: System::Void clientesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	CustomerForm^ customerForm = gcnew CustomerForm(this);
 	customerForm->MdiParent = this;
@@ -265,6 +261,11 @@ private: System::Void ventasToolStripMenuItem_Click(System::Object^ sender, Syst
 	SalesGraphicsForm^ salesGraphicsForm = gcnew SalesGraphicsForm();
 	salesGraphicsForm->MdiParent = this;
 	salesGraphicsForm->Show();
+}
+private: System::Void usuariosToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	UsersForm^ usersform = gcnew UsersForm();
+	usersform->MdiParent = this;
+	usersform->Show();
 }
 };
 }
