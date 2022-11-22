@@ -459,7 +459,7 @@ namespace SalesApp {
 			List <Product^>^ productlist = gcnew List<Product^>();
 			productlist = Controller::QueryAllProducts();
 			for (int i = 0; i < dataGridView1->RowCount - 1; i++) {
-				p->Code = Double::Parse(dataGridView1->Rows[i]->Cells[0]->Value->ToString());
+				p->Code = Int16::Parse(dataGridView1->Rows[i]->Cells[0]->Value->ToString());
 				p->Stock= Double::Parse(dataGridView1->Rows[i]->Cells[3]->Value->ToString());
 				//para cada columna, si el ID del producto coincide con el id del almacén, modifica
 				//sigue siendo necesario para tener coherencia con el almacén individual de cada tienda

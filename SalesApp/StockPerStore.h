@@ -135,7 +135,7 @@ namespace SalesApp {
 			// 
 			// btnaddtoStore
 			// 
-			this->btnaddtoStore->Location = System::Drawing::Point(316, 43);
+			this->btnaddtoStore->Location = System::Drawing::Point(226, 43);
 			this->btnaddtoStore->Name = L"btnaddtoStore";
 			this->btnaddtoStore->Size = System::Drawing::Size(149, 24);
 			this->btnaddtoStore->TabIndex = 3;
@@ -171,24 +171,26 @@ namespace SalesApp {
 		}
 		public: Void AddProducttoSalesDetail(Product^ p) {
 			//solo se esta tomando prestado el nombre de la función
-			dgvStockperStore->Rows->Add(gcnew array<String^> {
-				cmbstore->Text,
-					"1",
-					p->Name,
-					Convert::ToString(p->Status)
-			});
-			StoreProducts^ sp = gcnew StoreProducts();
-			sp->Code = p->Code;
-			sp->Color = p->Color;
-			sp->Description = p->Description;
-			sp->Name = p->Name;
-			sp->Photo = p->Photo;
-			sp->Price = p->Price;
-			sp->Size = p->Size;
-			sp->Status = p->Status;
-			sp->Store = cmbstore->Text;
-			//esto va a requerir que el texto del combo siempre esté lleno
-			Controller::addProductToStore(sp);
+			if (cmbstore != nullptr) {
+				dgvStockperStore->Rows->Add(gcnew array<String^> {
+					cmbstore->Text,
+						"1",
+						p->Name,
+						Convert::ToString(p->Status)
+				});
+				StoreProducts^ sp = gcnew StoreProducts();
+				sp->Code = p->Code;
+				sp->Color = p->Color;
+				sp->Description = p->Description;
+				sp->Name = p->Name;
+				sp->Photo = p->Photo;
+				sp->Price = p->Price;
+				sp->Size = p->Size;
+				sp->Status = p->Status;
+				sp->Store = cmbstore->Text;
+				//esto va a requerir que el texto del combo siempre esté lleno
+				Controller::addProductToStore(sp);
+			}
 		}
 		 public: void RefreshTotalStock(double stock) {
 					  StoreProducts^ sp = gcnew StoreProducts();

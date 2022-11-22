@@ -162,8 +162,8 @@ namespace SalesApp {
 #pragma endregion
 	private: System::Void btnSearch_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (txtCode->Text->Trim() != "") {
-			double productCode;
-			productCode = Convert::ToDouble(txtCode->Text);
+			int productCode;
+			productCode = Convert::ToInt16(txtCode->Text);
 			Product^ p = Controller::QueryProductByID(productCode);
 			//limpiar grid:
 			dgvproducts->Rows->Clear();

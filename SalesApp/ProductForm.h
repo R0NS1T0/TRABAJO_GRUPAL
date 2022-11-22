@@ -522,7 +522,7 @@ namespace SalesApp {
 		}
 
 		if (key == 1) {
-			p->Code = Double::Parse(txtCode->Text);
+			p->Code = Int16::Parse(txtCode->Text);
 			p->Name = txtName->Text;
 			p->Price = Double::Parse(txtPrice->Text);
 			p->Size = txtSize->Text;
@@ -552,7 +552,7 @@ namespace SalesApp {
 			}
 		}
 		if (key == 1) {
-			p->Code = Double::Parse(txtCode->Text);
+			p->Code = Int16::Parse(txtCode->Text);
 			p->Name = txtName->Text;
 			p->Price = Double::Parse(txtPrice->Text);
 			p->Size = txtSize->Text;
@@ -570,7 +570,7 @@ namespace SalesApp {
 		}
 	}
 	private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
-		double CodeProduct = Convert::ToDouble(txtCode->Text);
+		int CodeProduct = Convert::ToInt16(txtCode->Text);
 		Controller::DeleteProduct(CodeProduct);
 		RefreshGrid();
 		ClearControls();
@@ -578,7 +578,7 @@ namespace SalesApp {
 	}
 	private: System::Void dgvWarehouse_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 		int SelectedRowIndex = dgvWarehouse->SelectedCells[0]->RowIndex;
-		double ProductCode = Convert::ToDouble(dgvWarehouse->Rows[SelectedRowIndex]->Cells[0]->Value->ToString());
+		int ProductCode = Convert::ToInt16(dgvWarehouse->Rows[SelectedRowIndex]->Cells[0]->Value->ToString());
 		Product^ p = Controller::QueryProductByID(ProductCode);
 
 		txtCode->Text = "" + p->Code;
@@ -612,7 +612,7 @@ namespace SalesApp {
 			DataGridViewRow^ selectedRow = dgvWarehouse->Rows[selectedrowindex];
 			String^ a = selectedRow->Cells[0]->Value->ToString();
 
-			double ProductCode = Convert::ToDouble(a);
+			int ProductCode = Convert::ToInt16(a);
 			Product^ s = Controller::QueryProductByID(ProductCode);
 			txtCode->Text = "" + s->Code;
 			txtPrice->Text = "" + s->Price;

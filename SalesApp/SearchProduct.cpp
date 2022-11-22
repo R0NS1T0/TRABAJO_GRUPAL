@@ -7,13 +7,13 @@ System::Void SalesApp::SearchProduct::dgvproducts_CellClick(System::Object^ send
 {
 	if (e->RowIndex < 0) return;
 	if (e->RowIndex >= 0) {
-		double productId = Convert::ToDouble(dgvproducts->Rows[e->RowIndex]->Cells[0]->Value->ToString());
+		int productId = Convert::ToInt16(dgvproducts->Rows[e->RowIndex]->Cells[0]->Value->ToString());
 		try {
 		Product^ p = Controller::QueryProductByID(productId);
 		((SaleForm^)refForm)->AddProducttoSalesDetail(p);
 	}
 		catch(InvalidCastException^ ex){
-			double productId2 = Convert::ToDouble(dgvproducts->Rows[e->RowIndex]->Cells[0]->Value->ToString());
+			int productId2 = Convert::ToInt16(dgvproducts->Rows[e->RowIndex]->Cells[0]->Value->ToString());
 			Product^ p = Controller::QueryProductByID(productId2);
 			((StockForm^)refForm)->AddProducttoSalesDetail(p);
 		}

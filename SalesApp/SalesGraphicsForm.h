@@ -339,24 +339,24 @@ private: System::Void SalesGraphicsForm_Load(System::Object^ sender, System::Eve
 	if(modList1!=nullptr){ //Si la lista selecionada no está vacia:
 		saleList = modList1;
 		for (int i = 0; i < saleList->Count; i++) {
-			BarChart->Series["Monto"]->Points->Add(saleList[i]->TotalPrice);
-			BarChart->Series["Monto"]->Points[i]->AxisLabel = saleList[i]->Salesman;
-			BarChart->Series["Monto"]->Points[i]->Label = Convert::ToString(saleList[i]->TotalPrice);
+			BarChart->Series["Monto"]->Points->Add(saleList[i]->Amount);						//valor de eje y
+			BarChart->Series["Monto"]->Points[i]->AxisLabel = saleList[i]->Salesman;				//valor de eje x
+			BarChart->Series["Monto"]->Points[i]->Label = Convert::ToString(saleList[i]->Amount);
 		}
 	}
 	else {					//caso contrario, vuelve a mostrar la general
 
 		saleList = Controller::QueryAllSales();
 		for (int i = 0; i < saleList->Count; i++) {
-			BarChart->Series["Monto"]->Points->Add(saleList[i]->TotalPrice);
+			BarChart->Series["Monto"]->Points->Add(saleList[i]->Amount);
 			BarChart->Series["Monto"]->Points[i]->AxisLabel = saleList[i]->Salesman;
-			BarChart->Series["Monto"]->Points[i]->Label = Convert::ToString(saleList[i]->TotalPrice);
+			BarChart->Series["Monto"]->Points[i]->Label = Convert::ToString(saleList[i]->Amount);
 		}
 	}
 	if (modList2 != nullptr) {
 		saleList = modList2;
 		for (int i = 0; i < saleList->Count; i++) {
-			Piechartsales->Series["Series1"]->Points->Add(saleList[i]->Amount);
+			Piechartsales->Series["Series1"]->Points->Add(saleList[i]->TotalPrice);
 			Piechartsales->Series["Series1"]->Points[i]->LegendText = saleList[i]->Store;
 			Piechartsales->Series["Series1"]->Points[i]->Label = Convert::ToString(saleList[i]->TotalPrice);
 		}
@@ -364,7 +364,7 @@ private: System::Void SalesGraphicsForm_Load(System::Object^ sender, System::Eve
 	else {
 		saleList = Controller::QueryAllSales();
 		for (int i = 0; i < saleList->Count; i++) {
-			Piechartsales->Series["Series1"]->Points->Add(saleList[i]->Amount);
+			Piechartsales->Series["Series1"]->Points->Add(saleList[i]->TotalPrice);
 			Piechartsales->Series["Series1"]->Points[i]->LegendText = saleList[i]->Store;
 			Piechartsales->Series["Series1"]->Points[i]->Label = Convert::ToString(saleList[i]->TotalPrice);
 		}

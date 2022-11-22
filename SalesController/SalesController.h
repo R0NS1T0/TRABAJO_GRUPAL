@@ -20,9 +20,9 @@ namespace SalesController {
 		public:
 			static int AddProduct(Product^ product);
 			static int UpdateProduct(Product^ product);
-			static int DeleteProduct(double productCode);
+			static int DeleteProduct(int productCode);
 			static List <Product^>^ QueryAllProducts();
-			static Product^ QueryProductByID(double productCode);
+			static Product^ QueryProductByID(int productCode);
 			static Product^ QueryProductByName(String^ productname);
 			static void LoadProductsData();
 			static void PersistWarehouse();
@@ -52,7 +52,7 @@ namespace SalesController {
 		//funciones para el mantenimiento de venta
 			static void RegisterSale(Sale^ sale);
 			static double QueryLastSale();
-			static Sale^ QuerySalesbyID(Double id);
+			static Sale^ QuerySalesbyID(int id);
 			static void PersistSales();
 			static List<Sale^>^ QueryAllSales();
 			static void LoadSalesData();

@@ -50,7 +50,7 @@ int SalesController::Controller::UpdateProduct(Product^ product)
     return 0;
 }
 
-int SalesController::Controller::DeleteProduct(double productCode)
+int SalesController::Controller::DeleteProduct(int productCode)
 {
     for (int i = 0; i < productList->Count; i++)
         if (productCode == productList[i]->Code) {
@@ -73,7 +73,7 @@ List<Product^>^ SalesController::Controller::QueryAllProducts()
     return activeProductsList;
 }
 
-Product^ SalesController::Controller::QueryProductByID(double productCode)
+Product^ SalesController::Controller::QueryProductByID(int productCode)
 {
     for (int i = 0; i < productList->Count; i++)
         if (productCode == productList[i]->Code) {
@@ -326,7 +326,7 @@ double SalesController::Controller::QueryLastSale()
     }
     return lastSaleId;
 }
-Sale^ SalesController::Controller::QuerySalesbyID(Double id)
+Sale^ SalesController::Controller::QuerySalesbyID(int id)
 {
 
     for (int i = 0; i < salesList->Count; i++)

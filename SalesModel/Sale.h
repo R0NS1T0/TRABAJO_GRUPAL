@@ -13,7 +13,7 @@ namespace SalesModel {
     [Serializable]
     public ref class Sale {
     public:
-        property double ID;
+        property int ID;
         property String^ Date;
         property String^ Time;
         property String^ Store;
