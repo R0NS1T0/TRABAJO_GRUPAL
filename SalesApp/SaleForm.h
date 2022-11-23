@@ -519,8 +519,29 @@ private: System::Void btnSearchClient_Click(System::Object^ sender, System::Even
 	   }
 
 private: Void refreshStoreStock(){
-	//es necesario implementar la asignación de valores a cada tienda primero
+	Product^ p = gcnew Product();
+	List<StoreProducts^>^ storeproducts = gcnew List<StoreProducts^>();
+	storeproducts = Controller::QueryStoreProducts();
+	for (int i = 0; i < dataGridView1->RowCount - 1; i++) {
+		p->Code = Int16::Parse(dataGridView1->Rows[i]->Cells[0]->Value->ToString());
+		p->Stock = Double::Parse(dataGridView1->Rows[i]->Cells[3]->Value->ToString());
 
+		for (int j = 0; j < storeproducts->Count; j++) {
+			if (storeproducts[j]->Code == p->Code) {
+				p->Description = storeproducts[j]->Description;
+				p->Code = storeproducts[j]->Code;
+				p->Color = storeproducts[j]->Color;
+				p->Name = storeproducts[j]->Name;
+				p->Price = storeproducts[j]->Price;
+				p->Size = storeproducts[j]->Size;
+				p->Photo = storeproducts[j]->Photo;
+				p->Status = storeproducts[j]->Status;
+				//Se está modificando solo el stock, lo demas debe permanecer intacto
+				p->Stock = storeproducts[j]->Stock - p->Stock;
+				Controller::UpdateProduct(p);
+			}
+		}
+	}
 }
 
 

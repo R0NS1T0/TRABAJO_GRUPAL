@@ -80,6 +80,7 @@ namespace SalesApp {
 			this->cmbstore->Name = L"cmbstore";
 			this->cmbstore->Size = System::Drawing::Size(125, 24);
 			this->cmbstore->TabIndex = 0;
+			this->cmbstore->SelectedIndexChanged += gcnew System::EventHandler(this, &StockForm::cmbstore_SelectedIndexChanged);
 			// 
 			// label1
 			// 
@@ -173,14 +174,7 @@ namespace SalesApp {
 			//solo se esta tomando prestado el nombre de la función
 			List<StoreProducts^>^ storestockList = Controller::QueryStoreProducts();
 			int key = 0;
-			if ((cmbstore->Text)!=" ") {
-				for (int i = 0; i < storestockList->Count; i++) {	//para cada item ya encontrado en el stock de tienda
-					if (storestockList[i]->Code != p->Code) {
-						key = 1;									//si el codigo ingresado corresponde a alguno ya registrado
-					}
-				}
-
-				if (key == 1) {
+			
 					dgvStockperStore->Rows->Add(gcnew array<String^> {
 						cmbstore->Text,
 							"1",
@@ -198,9 +192,9 @@ namespace SalesApp {
 					sp->Status = p->Status;
 					sp->Store = cmbstore->Text;
 					Controller::addProductToStore(sp);
-				}
-			}
+				
 		}
+		
 		 public: Void RefreshTotalStock(double stock) {
 					  StoreProducts^ sp = gcnew StoreProducts();
 					  sp->Code = sp->Code;
@@ -237,11 +231,35 @@ public:
 	private: System::Void StockForm_Load(System::Object^ sender, System::EventArgs^ e) {
 		FillCmbStores();
 		RefreshGrid();
+		btnaddtoStore->Enabled = false;
 	}
 private: System::Void btnaddtoStore_Click(System::Object^ sender, System::EventArgs^ e) {
 	SearchProduct^ storeproductsform = gcnew SearchProduct(this);
 	storeproductsform->ShowDialog();
 }
-private: System::Void dgvStockperStore_CellValueChanged(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e); 
+private: System::Void dgvStockperStore_CellValueChanged(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	double productstock = 0;
+	for (int i = 0; i < dgvStockperStore->RowCount - 1; i++) {
+		productstock += Convert::ToDouble(dgvStockperStore->Rows[e->RowIndex]->Cells[1]->Value->ToString());
+	}
+	RefreshTotalStock(productstock);
+	List<Store^>^ s = Controller::QueryAllStores();
+	for (int i = 0; i < s->Count; i++) {
+		if (cmbstore->Text == s[i]->BranchID) {
+			s[i]->ID = s[i]->ID;
+			s[i]->BranchID = s[i]->BranchID;
+			s[i]->Address = s[i]->Address;
+			s[i]->StockStore = productstock;
+
+			Controller::UpdateStore(s[i]);
+		}
+	}
+	
+	//solo estoy haciendo una sumatoria para el stack general, después se enviará el dato requerido
+}
+private: System::Void cmbstore_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+	btnaddtoStore->Enabled = true;
+	RefreshGrid();
+}
 };
 }

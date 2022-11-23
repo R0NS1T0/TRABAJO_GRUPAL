@@ -76,15 +76,15 @@ namespace SalesApp {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea2 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea3 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea7 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend7 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series7 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea8 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend8 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series8 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea9 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend9 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series9 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->BarChart = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->Piechartsales = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
@@ -111,16 +111,16 @@ namespace SalesApp {
 			// 
 			// BarChart
 			// 
-			chartArea1->Name = L"ChartArea1";
-			this->BarChart->ChartAreas->Add(chartArea1);
-			legend1->Name = L"Legend1";
-			this->BarChart->Legends->Add(legend1);
+			chartArea7->Name = L"ChartArea1";
+			this->BarChart->ChartAreas->Add(chartArea7);
+			legend7->Name = L"Legend1";
+			this->BarChart->Legends->Add(legend7);
 			this->BarChart->Location = System::Drawing::Point(34, 116);
 			this->BarChart->Name = L"BarChart";
-			series1->ChartArea = L"ChartArea1";
-			series1->Legend = L"Legend1";
-			series1->Name = L"Monto";
-			this->BarChart->Series->Add(series1);
+			series7->ChartArea = L"ChartArea1";
+			series7->Legend = L"Legend1";
+			series7->Name = L"Monto";
+			this->BarChart->Series->Add(series7);
 			this->BarChart->Size = System::Drawing::Size(300, 300);
 			this->BarChart->TabIndex = 0;
 			this->BarChart->Text = L"chart_employeeSale";
@@ -135,34 +135,34 @@ namespace SalesApp {
 			// 
 			// Piechartsales
 			// 
-			chartArea2->Name = L"ChartArea1";
-			this->Piechartsales->ChartAreas->Add(chartArea2);
-			legend2->Name = L"Legend1";
-			this->Piechartsales->Legends->Add(legend2);
+			chartArea8->Name = L"ChartArea1";
+			this->Piechartsales->ChartAreas->Add(chartArea8);
+			legend8->Name = L"Legend1";
+			this->Piechartsales->Legends->Add(legend8);
 			this->Piechartsales->Location = System::Drawing::Point(375, 116);
 			this->Piechartsales->Name = L"Piechartsales";
-			series2->ChartArea = L"ChartArea1";
-			series2->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Pie;
-			series2->Legend = L"Legend1";
-			series2->Name = L"Series1";
-			this->Piechartsales->Series->Add(series2);
+			series8->ChartArea = L"ChartArea1";
+			series8->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Pie;
+			series8->Legend = L"Legend1";
+			series8->Name = L"Series1";
+			this->Piechartsales->Series->Add(series8);
 			this->Piechartsales->Size = System::Drawing::Size(300, 300);
 			this->Piechartsales->TabIndex = 3;
 			this->Piechartsales->Text = L"chart_StoreSale";
 			// 
 			// pieChartModa
 			// 
-			chartArea3->Name = L"ChartArea1";
-			this->pieChartModa->ChartAreas->Add(chartArea3);
-			legend3->Name = L"Legend1";
-			this->pieChartModa->Legends->Add(legend3);
+			chartArea9->Name = L"ChartArea1";
+			this->pieChartModa->ChartAreas->Add(chartArea9);
+			legend9->Name = L"Legend1";
+			this->pieChartModa->Legends->Add(legend9);
 			this->pieChartModa->Location = System::Drawing::Point(710, 116);
 			this->pieChartModa->Name = L"pieChartModa";
-			series3->ChartArea = L"ChartArea1";
-			series3->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Pie;
-			series3->Legend = L"Legend1";
-			series3->Name = L"Series1";
-			this->pieChartModa->Series->Add(series3);
+			series9->ChartArea = L"ChartArea1";
+			series9->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Pie;
+			series9->Legend = L"Legend1";
+			series9->Name = L"Series1";
+			this->pieChartModa->Series->Add(series9);
 			this->pieChartModa->Size = System::Drawing::Size(300, 300);
 			this->pieChartModa->TabIndex = 4;
 			this->pieChartModa->Text = L"chart_ProductModa";
@@ -183,6 +183,7 @@ namespace SalesApp {
 			this->dtpfechafinal->Name = L"dtpfechafinal";
 			this->dtpfechafinal->Size = System::Drawing::Size(266, 22);
 			this->dtpfechafinal->TabIndex = 6;
+			this->dtpfechafinal->ValueChanged += gcnew System::EventHandler(this, &SalesGraphicsForm::dtpfechafinal_ValueChanged);
 			// 
 			// dtpfechainicio
 			// 
@@ -216,6 +217,7 @@ namespace SalesApp {
 			this->cmbtiendas->Name = L"cmbtiendas";
 			this->cmbtiendas->Size = System::Drawing::Size(121, 24);
 			this->cmbtiendas->TabIndex = 10;
+			this->cmbtiendas->SelectedIndexChanged += gcnew System::EventHandler(this, &SalesGraphicsForm::cmbtiendas_SelectedIndexChanged);
 			// 
 			// label3
 			// 
@@ -275,6 +277,7 @@ namespace SalesApp {
 			this->dtpfin2->Name = L"dtpfin2";
 			this->dtpfin2->Size = System::Drawing::Size(266, 22);
 			this->dtpfin2->TabIndex = 17;
+			this->dtpfin2->ValueChanged += gcnew System::EventHandler(this, &SalesGraphicsForm::dtpfin2_ValueChanged);
 			// 
 			// btnfiltrarTiendas
 			// 
@@ -321,8 +324,7 @@ namespace SalesApp {
 
 		}
 #pragma endregion
-		static	List<Sale^>^ modList1 = gcnew List<Sale^>();
-		static	List<Sale^>^ modList2 = gcnew List<Sale^>();
+
 
 public: Void FillCombStores() {
 	cmbtiendas->Items->Clear();
@@ -335,91 +337,79 @@ public: Void FillCombStores() {
 private: System::Void SalesGraphicsForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	FillCombStores();
 	List<Sale^>^ saleList = gcnew List<Sale^>();
-//primero verificar si se han aplicado filtros, al final los graficos cambiarán siempre y cuando la lista dada sea la correcta
-	if(modList1!=nullptr){ //Si la lista selecionada no está vacia:
-		saleList = modList1;
-		for (int i = 0; i < saleList->Count; i++) {
-			BarChart->Series["Monto"]->Points->Add(saleList[i]->Amount);						//valor de eje y
-			BarChart->Series["Monto"]->Points[i]->AxisLabel = saleList[i]->Salesman;				//valor de eje x
-			BarChart->Series["Monto"]->Points[i]->Label = Convert::ToString(saleList[i]->Amount);
-		}
-	}
-	else {					//caso contrario, vuelve a mostrar la general
-
-		saleList = Controller::QueryAllSales();
-		for (int i = 0; i < saleList->Count; i++) {
-			BarChart->Series["Monto"]->Points->Add(saleList[i]->Amount);
-			BarChart->Series["Monto"]->Points[i]->AxisLabel = saleList[i]->Salesman;
-			BarChart->Series["Monto"]->Points[i]->Label = Convert::ToString(saleList[i]->Amount);
-		}
-	}
-	if (modList2 != nullptr) {
-		saleList = modList2;
-		for (int i = 0; i < saleList->Count; i++) {
-			Piechartsales->Series["Series1"]->Points->Add(saleList[i]->TotalPrice);
-			Piechartsales->Series["Series1"]->Points[i]->LegendText = saleList[i]->Store;
-			Piechartsales->Series["Series1"]->Points[i]->Label = Convert::ToString(saleList[i]->TotalPrice);
-		}
-	}
-	else {
-		saleList = Controller::QueryAllSales();
-		for (int i = 0; i < saleList->Count; i++) {
-			Piechartsales->Series["Series1"]->Points->Add(saleList[i]->TotalPrice);
-			Piechartsales->Series["Series1"]->Points[i]->LegendText = saleList[i]->Store;
-			Piechartsales->Series["Series1"]->Points[i]->Label = Convert::ToString(saleList[i]->TotalPrice);
-		}
-	}
-	if ((cmbtiendas->Text)!=nullptr) {			//Si el combo no está vacio, procede a hacer moda de todos los productos
-		saleList = Controller::QueryAllSales();
-		for (int i = 0; i < saleList->Count; i++) {
-			if (saleList[i]->Store == cmbtiendas->Text) {
-				pieChartModa->Series["series1"]->Points->Add(saleList[i]->TotalPrice);
-				pieChartModa->Series["series1"]->Points[i]->AxisLabel = Convert::ToString(saleList[i]->Amount);
-				pieChartModa->Series["series1"]->Points[i]->Label = Convert::ToString(saleList[i]->Date);
-			}
-		}
-	}
-	else {										//caso contrario, hace moda de todo
-		saleList = Controller::QueryAllSales();
-		for (int i = 0; i < saleList->Count; i++) {
-			pieChartModa->Series["series1"]->Points->Add(saleList[i]->TotalPrice);
-			pieChartModa->Series["series1"]->Points[i]->AxisLabel = Convert::ToString(saleList[i]->Amount);
-			pieChartModa->Series["series1"]->Points[i]->Label = Convert::ToString(saleList[i]->Date);
-		}
-	}
-		//Se va a definir moda como un gráfico Product vs Stock, donde debemos encontrar una manera de guardar dato de stock usado.
-		//posible implementación relacionada a la hoja de productos en general y la hoja de productos de cada tienda
+	List<StoreProducts^>^ changedstock = gcnew List<StoreProducts^>();
+	saleList = Controller::QueryAllSales();
 	
-			
+	for (int i = 0; i < saleList->Count; i++) {
+		BarChart->Series["Monto"]->Points->Add(saleList[i]->Amount);
+		BarChart->Series["Monto"]->Points[i]->AxisLabel = saleList[i]->Salesman;
+		BarChart->Series["Monto"]->Points[i]->Label = Convert::ToString(saleList[i]->Amount);
+
+		Piechartsales->Series["Series1"]->Points->Add(saleList[i]->TotalPrice);
+		Piechartsales->Series["Series1"]->Points[i]->LegendText = saleList[i]->Store;
+		Piechartsales->Series["Series1"]->Points[i]->Label = Convert::ToString(saleList[i]->TotalPrice);
+
+		//procesos para hallar la moda de los productos exclusivo con filtro de tienda
+		
+	}
 	
 }
 private: System::Void btnfiltrarvendedor_Click(System::Object^ sender, System::EventArgs^ e) {
-	//este filtro se aplica al grafico de cantidad de venta por vendedor
-	modList1->Clear();
-	//las listas de referencia se limpian cada vez que se aplica el filtro
-	List<Sale^>^ saleList = Controller::QueryAllSales();
-	for (int i = 0; i < saleList->Count; i++) {
-		if((Convert::ToDateTime(dtpfechainicio->Text)<Convert::ToDateTime(saleList[i]->Date))&&
-			(Convert::ToDateTime(saleList[i]->Date)<Convert::ToDateTime(dtpfechafinal->Text))) {
-		//selecciona en una lista aparte los datos que estan en el intervalo escogido
-			modList1 = saleList;
-		}
 
+	List<Sale^>^ modList1 = gcnew List<Sale^>();
+	
+	List<Sale^>^ saleList = Controller::QueryAllSales();
+	for (int j = 0; j < modList1->Count; j++) {
+		for (int i = 0; i < saleList->Count; i++) {
+			if((Convert::ToDateTime(dtpfechainicio->Text)<=Convert::ToDateTime(saleList[i]->Date))&&
+				(Convert::ToDateTime(saleList[i]->Date)<=Convert::ToDateTime(dtpfechafinal->Text))) {
+					modList1[j] = saleList[i];
+			}
+		}
+	}
+	for (int i = 0; i < modList1->Count; i++) {
+		BarChart->Series["Monto"]->Points->Add(modList1[i]->Amount);						//valor de eje y
+		BarChart->Series["Monto"]->Points[i]->AxisLabel = modList1[i]->Salesman;				//valor de eje x
+		BarChart->Series["Monto"]->Points[i]->Label = Convert::ToString(modList1[i]->Amount);
 	}
 
 }
 private: System::Void btnfiltrarTiendas_Click(System::Object^ sender, System::EventArgs^ e) {
-	//este filtro se aplica al grafico de ganancias por tienda**
-	modList2->Clear();
-	//las listas de referencia se limpian cada vez que se aplica el filtro
+	
+	List<Sale^>^ modList2 = gcnew List<Sale^>();
 	List<Sale^>^ saleList = Controller::QueryAllSales();
-	for (int i = 0; i < saleList->Count; i++) {
-		if ((Convert::ToDateTime(dtpinicio2->Text) < Convert::ToDateTime(saleList[i]->Date)) &&
-			(Convert::ToDateTime(saleList[i]->Date) < Convert::ToDateTime(dtpfin2->Text))) {
-			//selecciona en una lista aparte los datos que estan en el intervalo escogido
-			modList2 = saleList;
-		}
+	for (int j = 0; j < modList2->Count; j++) {
+		for (int i = 0; i < saleList->Count; i++) {
+			if ((Convert::ToDateTime(dtpinicio2->Text) <= Convert::ToDateTime(saleList[i]->Date)) &&
+				(Convert::ToDateTime(saleList[i]->Date) <= Convert::ToDateTime(dtpfin2->Text))) {
 
+				modList2[j] = saleList[i];
+			}
+
+		}
+	}
+	for (int i = 0; i < modList2->Count; i++) {
+		Piechartsales->Series["Series1"]->Points->Add(saleList[i]->TotalPrice);
+		Piechartsales->Series["Series1"]->Points[i]->LegendText = saleList[i]->Store;
+		Piechartsales->Series["Series1"]->Points[i]->Label = Convert::ToString(saleList[i]->TotalPrice);
+	}
+}
+private: System::Void dtpfechafinal_ValueChanged(System::Object^ sender, System::EventArgs^ e) {}
+private: System::Void dtpfin2_ValueChanged(System::Object^ sender, System::EventArgs^ e) {}
+
+private: System::Void cmbtiendas_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+
+	List<Sale^>^ saleList = Controller::QueryAllSales();
+	List<StoreProducts^>^ changedstock = gcnew List<StoreProducts^>();
+	
+	for (int i = 0; i < saleList->Count; i++) {			//parece ser que la lista de venta no es realmente util aca
+		for (int j = 0; j < changedstock->Count; j++) {
+			if (changedstock[i]->Store == (Convert::ToString(cmbtiendas->Text))) {
+				pieChartModa->Series["series1"]->Points->Add(((changedstock[i]->originalStock) - (changedstock[i]->Status)));
+				pieChartModa->Series["series1"]->Points[i]->AxisLabel = Convert::ToString(changedstock[i]->Name);
+				pieChartModa->Series["series1"]->Points[i]->Label = Convert::ToString(((changedstock[i]->originalStock) - (changedstock[i]->Status)));
+			}
+		}
 	}
 }
 };

@@ -18,6 +18,7 @@ namespace SalesApp {
 	/// </summary>
 	public ref class StoreForm : public System::Windows::Forms::Form
 	{
+		Form^ stockmd;
 	public:
 		StoreForm(void)
 		{
@@ -25,6 +26,7 @@ namespace SalesApp {
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			
 		}
 
 	protected:
@@ -361,11 +363,6 @@ namespace SalesApp {
 		s->ID = Int32::Parse(txtID->Text);
 		s->BranchID = txtBranchID->Text;					
 		s->Address = txtAddress->Text;
-		for (int i = 0; 0 < sp->Count; i++) {
-			if (sp[i]->Store == Convert::ToString(txtBranchID->Text)) {
-				s->StockStore = sp[i]->Stock;
-			}
-		}
 		
 		Controller::AddStore(s);
 		RefreshGrid();
@@ -378,11 +375,6 @@ private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^
 	s->ID = Int32::Parse(txtID->Text);
 	s->BranchID = txtBranchID->Text;
 	s->Address = txtAddress->Text;
-	for (int i = 0; 0 < sp->Count; i++) {
-		if (sp[i]->Store == Convert::ToString(txtBranchID->Text)) {
-			s->StockStore = sp[i]->Stock;
-		}
-	}
 
 	Controller::UpdateStore(s);
 	ClearControls();
