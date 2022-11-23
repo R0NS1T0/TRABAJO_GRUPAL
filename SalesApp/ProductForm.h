@@ -512,17 +512,8 @@ namespace SalesApp {
 		}
 	private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e) {
 		Product^ p = gcnew Product();
-		int key = 0;
-		List <Product^>^ activeproducts = Controller::QueryAllProducts();
-		for (int i = 0; 0 < activeproducts->Count; i++) {
-			if ((txtCode->Text != Convert::ToString(activeproducts[i]->Code))
-				||(txtName->Text != activeproducts[i]->Name)) {
-				key = 1;
-			}
-		}
-
-		if (key == 1) {
-			p->Code = Int16::Parse(txtCode->Text);
+	
+			p->Code = Int16::Parse(txtCode->Text);			//cambiar al momento de implementar servidores
 			p->Name = txtName->Text;
 			p->Price = Double::Parse(txtPrice->Text);
 			p->Size = txtSize->Text;
@@ -535,23 +526,15 @@ namespace SalesApp {
 				pbPhoto->Image->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
 				p->Photo = ms->ToArray();
 			}
-			Controller::AddProduct(p);
-			RefreshGrid();
-			ClearControls();
-		}
+				Controller::AddProduct(p);
+				RefreshGrid();
+				ClearControls();		
 	}
 	private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^ e) {
 		
 		Product^ p = gcnew Product();
-		int key = 0;
-		List <Product^>^ activeproducts = Controller::QueryAllProducts();
-		for (int i = 0; 0 < activeproducts->Count; i++) {
-			if ((txtCode->Text != Convert::ToString(activeproducts[i]->Code))
-				|| (txtName->Text != activeproducts[i]->Name)) {
-				key = 1;
-			}
-		}
-		if (key == 1) {
+		
+		
 			p->Code = Int16::Parse(txtCode->Text);
 			p->Name = txtName->Text;
 			p->Price = Double::Parse(txtPrice->Text);
@@ -567,7 +550,7 @@ namespace SalesApp {
 			}
 			Controller::UpdateProduct(p);
 			RefreshGrid();
-		}
+		
 	}
 	private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
 		int CodeProduct = Convert::ToInt16(txtCode->Text);
@@ -588,7 +571,6 @@ namespace SalesApp {
 		txtStock->Text = "" + p->Stock;
 		txtDescription->Text = p->Description;
 		txtColor->Text = p->Color;
-		txtStatus->Text = "" + p->Status;
 		if (p->Photo != nullptr) {
 			System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream(p->Photo);
 			pbPhoto->Image = Image::FromStream(ms);
@@ -620,7 +602,6 @@ namespace SalesApp {
 			txtStock->Text = "" + s->Stock;
 			txtDescription->Text = s->Description;
 			txtColor->Text = s->Color;
-			txtStatus->Text = "" + s->Status;
 		}
 	}
 	private: System::Void ProductForm_Load(System::Object^ sender, System::EventArgs^ e) {

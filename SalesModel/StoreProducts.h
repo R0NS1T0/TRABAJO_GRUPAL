@@ -17,5 +17,6 @@ namespace SalesModel {
         property char Status;       //Para la función de mantenimiento de productos no se va a usar esto por ahora
         property array<Byte>^ Photo;
         property String^ Store;
+        property double originalStock;  //busca guardar el dato inicial de stock, con el fin de mostrar la función moda.
     };
 }

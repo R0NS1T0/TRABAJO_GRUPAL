@@ -47,11 +47,11 @@ namespace SalesApp {
 	private: System::Windows::Forms::Label^ label1;
 
 
-	private: System::Windows::Forms::Label^ label2;
+
 
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::TextBox^ txtID;
-	private: System::Windows::Forms::TextBox^ txtStoreStock;
+
 
 
 	private: System::Windows::Forms::TextBox^ txtAddress;
@@ -111,10 +111,8 @@ namespace SalesApp {
 			this->modificarToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->eliminarToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->txtID = (gcnew System::Windows::Forms::TextBox());
-			this->txtStoreStock = (gcnew System::Windows::Forms::TextBox());
 			this->txtAddress = (gcnew System::Windows::Forms::TextBox());
 			this->btnAdd = (gcnew System::Windows::Forms::Button());
 			this->btnUpdate = (gcnew System::Windows::Forms::Button());
@@ -182,15 +180,6 @@ namespace SalesApp {
 			this->label1->TabIndex = 1;
 			this->label1->Text = L"Código";
 			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(25, 157);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(172, 16);
-			this->label2->TabIndex = 2;
-			this->label2->Text = L"Stock general de productos";
-			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
@@ -206,14 +195,6 @@ namespace SalesApp {
 			this->txtID->Name = L"txtID";
 			this->txtID->Size = System::Drawing::Size(111, 22);
 			this->txtID->TabIndex = 9;
-			// 
-			// txtStoreStock
-			// 
-			this->txtStoreStock->Location = System::Drawing::Point(237, 154);
-			this->txtStoreStock->Name = L"txtStoreStock";
-			this->txtStoreStock->ReadOnly = true;
-			this->txtStoreStock->Size = System::Drawing::Size(65, 22);
-			this->txtStoreStock->TabIndex = 10;
 			// 
 			// txtAddress
 			// 
@@ -337,10 +318,8 @@ namespace SalesApp {
 			this->Controls->Add(this->btnUpdate);
 			this->Controls->Add(this->btnAdd);
 			this->Controls->Add(this->txtAddress);
-			this->Controls->Add(this->txtStoreStock);
 			this->Controls->Add(this->txtID);
 			this->Controls->Add(this->label4);
-			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->menuStrip1);
 			this->MainMenuStrip = this->menuStrip1;
@@ -372,28 +351,41 @@ namespace SalesApp {
 		}
 		void ClearControls() {
 			txtID->Clear();
-			txtStoreStock->Clear();
 			txtBranchID->Clear();
 			txtAddress->Clear();
 		}
 	private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e) {
 		Store^ s = gcnew Store();
-		
-		s->ID = Int32::Parse(txtID->Text);					
-		//s->StockStore = Double::Parse(txtStoreStock->Text);			//en base al link, se va a asignar de una variable heredada, implementación en curso
+		List<StoreProducts^>^ sp = Controller::QueryStoreProducts();
+
+		s->ID = Int32::Parse(txtID->Text);
 		s->BranchID = txtBranchID->Text;					
 		s->Address = txtAddress->Text;
+		for (int i = 0; 0 < sp->Count; i++) {
+			if (sp[i]->Store == Convert::ToString(txtBranchID->Text)) {
+				s->StockStore = sp[i]->Stock;
+			}
+		}
+		
 		Controller::AddStore(s);
 		RefreshGrid();
 		ClearControls();
 	}
 private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^ e) {
 	Store^ s = gcnew Store();
+	List<StoreProducts^>^ sp = Controller::QueryStoreProducts();
+
 	s->ID = Int32::Parse(txtID->Text);
-	//s->StockStore = Double::Parse(txtStoreStock->Text);			//en base al link, se va a asignar de una variable heredada, implementacion en curso
 	s->BranchID = txtBranchID->Text;
 	s->Address = txtAddress->Text;
+	for (int i = 0; 0 < sp->Count; i++) {
+		if (sp[i]->Store == Convert::ToString(txtBranchID->Text)) {
+			s->StockStore = sp[i]->Stock;
+		}
+	}
+
 	Controller::UpdateStore(s);
+	ClearControls();
 	RefreshGrid();
 }
 private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -408,7 +400,6 @@ private: System::Void dgvStore_CellClick(System::Object^ sender, System::Windows
 	Store^ s = Controller::QueryStoreByID(storeID);
 
 	txtID->Text = "" + s->ID;
-	txtStoreStock->Text = "" + s->StockStore;
 	txtBranchID->Text = s->BranchID;
 	txtAddress->Text = s->Address;
 
@@ -423,7 +414,6 @@ private: System::Void dgvStore_CellContentClick(System::Object^ sender, System::
 
 		Store^ s = Controller::QueryStoreByID(storeID);
 		txtID->Text = "" + s->ID;
-		txtStoreStock->Text = "" + s->StockStore;
 		txtBranchID->Text = s->BranchID;
 		txtAddress->Text = s->Address;
 
@@ -459,14 +449,12 @@ private: System::Void eliminarToolStripMenuItem_Click(System::Object^ sender, Sy
 	this->Close();
 }
 private: System::Void linkLabel1_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) {
-	//lo adecuado es actualizar el almacén de cada tienda en base a un ID propio de cada tienda
-	//el stock general de cada tienda NO se asigna, debe ser determinado por el administrador
+	
 	Session^ logged = gcnew Session();
 	logged = Controller::rememberdata();
 	if (logged->authority == 1) {
 		StockForm^ stockform = gcnew StockForm(this);
 		stockform->ShowDialog();
-		//acceder a la sección donde se asigna el producto
 	}
 	else {
 		MessageBox::Show("acceso limitado a administradores");

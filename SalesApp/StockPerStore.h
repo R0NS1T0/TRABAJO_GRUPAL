@@ -135,7 +135,7 @@ namespace SalesApp {
 			// 
 			// btnaddtoStore
 			// 
-			this->btnaddtoStore->Location = System::Drawing::Point(226, 43);
+			this->btnaddtoStore->Location = System::Drawing::Point(220, 43);
 			this->btnaddtoStore->Name = L"btnaddtoStore";
 			this->btnaddtoStore->Size = System::Drawing::Size(149, 24);
 			this->btnaddtoStore->TabIndex = 3;
@@ -171,28 +171,37 @@ namespace SalesApp {
 		}
 		public: Void AddProducttoSalesDetail(Product^ p) {
 			//solo se esta tomando prestado el nombre de la función
-			if (cmbstore != nullptr) {
-				dgvStockperStore->Rows->Add(gcnew array<String^> {
-					cmbstore->Text,
-						"1",
-						p->Name,
-						Convert::ToString(p->Status)
-				});
-				StoreProducts^ sp = gcnew StoreProducts();
-				sp->Code = p->Code;
-				sp->Color = p->Color;
-				sp->Description = p->Description;
-				sp->Name = p->Name;
-				sp->Photo = p->Photo;
-				sp->Price = p->Price;
-				sp->Size = p->Size;
-				sp->Status = p->Status;
-				sp->Store = cmbstore->Text;
-				//esto va a requerir que el texto del combo siempre esté lleno
-				Controller::addProductToStore(sp);
+			List<StoreProducts^>^ storestockList = Controller::QueryStoreProducts();
+			int key = 0;
+			if ((cmbstore->Text)!=" ") {
+				for (int i = 0; i < storestockList->Count; i++) {	//para cada item ya encontrado en el stock de tienda
+					if (storestockList[i]->Code != p->Code) {
+						key = 1;									//si el codigo ingresado corresponde a alguno ya registrado
+					}
+				}
+
+				if (key == 1) {
+					dgvStockperStore->Rows->Add(gcnew array<String^> {
+						cmbstore->Text,
+							"1",
+							p->Name,
+							Convert::ToString(p->Status)
+					});
+					StoreProducts^ sp = gcnew StoreProducts();
+					sp->Code = p->Code;
+					sp->Color = p->Color;
+					sp->Description = p->Description;
+					sp->Name = p->Name;
+					sp->Photo = p->Photo;
+					sp->Price = p->Price;
+					sp->Size = p->Size;
+					sp->Status = p->Status;
+					sp->Store = cmbstore->Text;
+					Controller::addProductToStore(sp);
+				}
 			}
 		}
-		 public: void RefreshTotalStock(double stock) {
+		 public: Void RefreshTotalStock(double stock) {
 					  StoreProducts^ sp = gcnew StoreProducts();
 					  sp->Code = sp->Code;
 					  sp->Color = sp->Color;
@@ -202,11 +211,14 @@ namespace SalesApp {
 					  sp->Price = sp->Price;
 					  sp->Size = sp->Size;
 					  sp->Status = sp->Status;
-					//  sp->Store = cmbstore->Text;
-					  sp->Stock = stock;	//el unico valor que se va a modificar es stock, a menos que los valores iniciales de la pestaña principal se cambien
+					  sp->Store = sp->Store;
+					  sp->originalStock = stock;
+					  sp->Stock = stock;	
 					  Controller::addProductToStore(sp);
+					  
 				  }
 public:
+
 	void RefreshGrid() {
 		List<StoreProducts^>^ storestockList = Controller::QueryStoreProducts();
 		dgvStockperStore->Rows->Clear();
