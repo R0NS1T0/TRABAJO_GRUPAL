@@ -165,10 +165,10 @@ namespace SalesApp {
 		
 	private: System::Void btnOK_Click(System::Object^ sender, System::EventArgs^ e) {
 		Employee^ emp = Controller::Login(txtCompanyUser->Text, txtPassword->Text);
-		Controller::EraseAll();
-		String^ user = txtCompanyUser->Text;
-		Controller::SaveUserData(user);
 		if (emp != nullptr) {
+			Controller::EraseAll();
+			String^ user = txtCompanyUser->Text;
+			Controller::SaveUserData(user);
 			MessageBox::Show("Bienvenido " + emp->Name);
 			this->Close();
 		}

@@ -588,6 +588,7 @@ private: System::Void dataGridView1_CellContentClick(System::Object^ sender, Sys
 
 private: System::Void btnRemovefromsale_Click(System::Object^ sender, System::EventArgs^ e) {
 	dataGridView1->Rows->RemoveAt(RowIndex);
+	btnRemovefromsale->Enabled = false;
 	RefreshTotalAmount();
 }
 private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
